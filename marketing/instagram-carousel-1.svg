@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="carouselBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="carouselGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#carouselBg)"/>
+
+  <!-- Large decorative circle -->
+  <circle cx="540" cy="540" r="450" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.1"/>
+  <circle cx="540" cy="540" r="350" fill="none" stroke="#ffd700" stroke-width="1" opacity="0.05"/>
+
+  <!-- Header -->
+  <text x="540" y="120" font-family="Arial, sans-serif" font-size="24" fill="#ffd700" text-anchor="middle" letter-spacing="5">TRUSTED BY CARIBBEAN BUSINESSES</text>
+
+  <!-- Central testimonial card -->
+  <g transform="translate(140, 200)">
+    <rect width="800" height="500" rx="30" fill="#16213e"/>
+    <rect width="800" height="8" rx="4" fill="url(#carouselGold)"/>
+
+    <!-- Quote marks -->
+    <text x="80" y="120" font-size="120" fill="#ffd700" opacity="0.3">"</text>
+
+    <!-- Testimonial text -->
+    <text x="400" y="200" font-family="Georgia, serif" font-size="32" fill="#ffffff" text-anchor="middle" font-style="italic">Found an amazing electrician</text>
+    <text x="400" y="250" font-family="Georgia, serif" font-size="32" fill="#ffffff" text-anchor="middle" font-style="italic">within 24 hours. The whole</text>
+    <text x="400" y="300" font-family="Georgia, serif" font-size="32" fill="#ffffff" text-anchor="middle" font-style="italic">process was so easy!</text>
+
+    <!-- Stars -->
+    <g transform="translate(300, 340)">
+      <text font-size="36" fill="#ffd700">⭐ ⭐ ⭐ ⭐ ⭐</text>
+    </g>
+
+    <!-- Customer info -->
+    <g transform="translate(250, 400)">
+      <circle cx="40" cy="40" r="40" fill="url(#carouselGold)"/>
+      <text x="40" y="50" font-size="28" font-weight="bold" fill="#1a1a2e" text-anchor="middle">MJ</text>
+      <text x="100" y="35" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff">Maria Johnson</text>
+      <text x="100" y="60" font-family="Arial, sans-serif" font-size="16" fill="#888888">Homeowner, Barbados</text>
+    </g>
+  </g>
+
+  <!-- Bottom stats -->
+  <g transform="translate(140, 750)" font-family="Arial, sans-serif">
+    <g>
+      <rect width="240" height="100" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="120" y="45" font-size="36" font-weight="bold" fill="#ffd700" text-anchor="middle">4.9★</text>
+      <text x="120" y="75" font-size="16" fill="#888888" text-anchor="middle">Average Rating</text>
+    </g>
+    <g transform="translate(280, 0)">
+      <rect width="240" height="100" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="120" y="45" font-size="36" font-weight="bold" fill="#ffd700" text-anchor="middle">1K+</text>
+      <text x="120" y="75" font-size="16" fill="#888888" text-anchor="middle">Jobs Completed</text>
+    </g>
+    <g transform="translate(560, 0)">
+      <rect width="240" height="100" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="120" y="45" font-size="36" font-weight="bold" fill="#ffd700" text-anchor="middle">98%</text>
+      <text x="120" y="75" font-size="16" fill="#888888" text-anchor="middle">Satisfaction</text>
+    </g>
+  </g>
+
+  <!-- Brand -->
+  <g transform="translate(340, 900)">
+    <rect width="400" height="70" rx="35" fill="url(#carouselGold)"/>
+    <text x="200" y="46" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Join Them Today →</text>
+  </g>
+
+  <!-- Swipe indicator -->
+  <text x="540" y="1030" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">Swipe for more reviews →</text>
+</svg>

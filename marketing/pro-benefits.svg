@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="proBenBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="proBenGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00b894"/>
+      <stop offset="100%" style="stop-color:#55efc4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1080" fill="url(#proBenBg)"/>
+
+  <!-- Header -->
+  <text x="540" y="80" font-family="Arial, sans-serif" font-size="20" fill="#00b894" text-anchor="middle" letter-spacing="3">WHY PROS CHOOSE US</text>
+
+  <text x="540" y="150" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="#ffffff" text-anchor="middle">Professional Benefits</text>
+
+  <!-- Benefits Grid 2x3 -->
+  <g transform="translate(90, 200)">
+    <!-- Row 1 -->
+    <g>
+      <rect width="420" height="220" rx="20" fill="#16213e" stroke="#00b894" stroke-width="2"/>
+      <circle cx="70" cy="70" r="40" fill="url(#proBenGreen)"/>
+      <text x="70" y="82" font-size="36" text-anchor="middle">📱</text>
+      <text x="130" y="55" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff">More Customers</text>
+      <text x="130" y="85" font-family="Arial, sans-serif" font-size="14" fill="#888888">Grow your client base</text>
+      <text x="30" y="140" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">Get matched with customers</text>
+      <text x="30" y="165" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">actively looking for your</text>
+      <text x="30" y="190" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">specific services.</text>
+    </g>
+
+    <g transform="translate(480, 0)">
+      <rect width="420" height="220" rx="20" fill="#16213e" stroke="#00b894" stroke-width="2"/>
+      <circle cx="70" cy="70" r="40" fill="url(#proBenGreen)"/>
+      <text x="70" y="82" font-size="36" text-anchor="middle">💵</text>
+      <text x="130" y="55" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff">Guaranteed Payment</text>
+      <text x="130" y="85" font-family="Arial, sans-serif" font-size="14" fill="#888888">No more chasing money</text>
+      <text x="30" y="140" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">Customer funds are secured</text>
+      <text x="30" y="165" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">before you start. Get paid</text>
+      <text x="30" y="190" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">when the job is done.</text>
+    </g>
+
+    <!-- Row 2 -->
+    <g transform="translate(0, 250)">
+      <rect width="420" height="220" rx="20" fill="#16213e" stroke="#00b894" stroke-width="2"/>
+      <circle cx="70" cy="70" r="40" fill="url(#proBenGreen)"/>
+      <text x="70" y="82" font-size="36" text-anchor="middle">🆓</text>
+      <text x="130" y="55" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff">Free to Join</text>
+      <text x="130" y="85" font-family="Arial, sans-serif" font-size="14" fill="#888888">No upfront costs</text>
+      <text x="30" y="140" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">Create your profile and start</text>
+      <text x="30" y="165" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">bidding on jobs for free.</text>
+      <text x="30" y="190" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">Only pay when you earn.</text>
+    </g>
+
+    <g transform="translate(480, 250)">
+      <rect width="420" height="220" rx="20" fill="#16213e" stroke="#00b894" stroke-width="2"/>
+      <circle cx="70" cy="70" r="40" fill="url(#proBenGreen)"/>
+      <text x="70" y="82" font-size="36" text-anchor="middle">⭐</text>
+      <text x="130" y="55" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff">Build Your Reputation</text>
+      <text x="130" y="85" font-family="Arial, sans-serif" font-size="14" fill="#888888">Collect reviews</text>
+      <text x="30" y="140" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">Every completed job earns</text>
+      <text x="30" y="165" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">you a review. Build a strong</text>
+      <text x="30" y="190" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">profile to win more work.</text>
+    </g>
+
+    <!-- Row 3 -->
+    <g transform="translate(0, 500)">
+      <rect width="420" height="220" rx="20" fill="#16213e" stroke="#00b894" stroke-width="2"/>
+      <circle cx="70" cy="70" r="40" fill="url(#proBenGreen)"/>
+      <text x="70" y="82" font-size="36" text-anchor="middle">📊</text>
+      <text x="130" y="55" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff">Business Dashboard</text>
+      <text x="130" y="85" font-family="Arial, sans-serif" font-size="14" fill="#888888">Track everything</text>
+      <text x="30" y="140" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">Manage jobs, quotes, earnings,</text>
+      <text x="30" y="165" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">and customer messages all</text>
+      <text x="30" y="190" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">in one easy dashboard.</text>
+    </g>
+
+    <g transform="translate(480, 500)">
+      <rect width="420" height="220" rx="20" fill="#16213e" stroke="#00b894" stroke-width="2"/>
+      <circle cx="70" cy="70" r="40" fill="url(#proBenGreen)"/>
+      <text x="70" y="82" font-size="36" text-anchor="middle">🏆</text>
+      <text x="130" y="55" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff">Verified Badge</text>
+      <text x="130" y="85" font-family="Arial, sans-serif" font-size="14" fill="#888888">Stand out from competition</text>
+      <text x="30" y="140" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">Complete verification to earn</text>
+      <text x="30" y="165" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">a trusted badge. Verified pros</text>
+      <text x="30" y="190" font-family="Arial, sans-serif" font-size="15" fill="#aaaaaa">get more job requests.</text>
+    </g>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(290, 970)">
+    <rect width="500" height="65" rx="32" fill="url(#proBenGreen)"/>
+    <text x="250" y="43" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Join as a Pro Today</text>
+  </g>
+
+  <text x="540" y="1060" font-family="Arial, sans-serif" font-size="18" fill="#00b894" text-anchor="middle">caricompros.com</text>
+</svg>

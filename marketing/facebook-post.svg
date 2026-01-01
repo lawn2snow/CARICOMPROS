@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="fbPostBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="fbPostGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#fbPostBg)"/>
+
+  <!-- Left Gold Accent -->
+  <rect width="10" height="630" fill="url(#fbPostGold)"/>
+
+  <!-- Content Left -->
+  <g transform="translate(80, 80)">
+    <!-- Badge -->
+    <rect width="200" height="45" rx="22" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+    <text x="100" y="30" font-family="Arial, sans-serif" font-size="16" fill="#ffd700" text-anchor="middle">NOW HIRING PROS</text>
+
+    <!-- Main Headline -->
+    <text y="130" font-family="Arial, sans-serif" font-size="54" font-weight="bold" fill="#ffffff">Need a Trusted</text>
+    <text y="195" font-family="Arial, sans-serif" font-size="54" font-weight="bold" fill="url(#fbPostGold)">Service Pro?</text>
+
+    <!-- Sub text -->
+    <text y="260" font-family="Arial, sans-serif" font-size="24" fill="#888888">Get quotes from verified professionals</text>
+    <text y="295" font-family="Arial, sans-serif" font-size="24" fill="#888888">across the Caribbean in minutes.</text>
+
+    <!-- Features -->
+    <g transform="translate(0, 340)" font-family="Arial, sans-serif">
+      <g>
+        <text font-size="20" fill="#ffd700">✓</text>
+        <text x="30" font-size="20" fill="#ffffff">Background Verified</text>
+      </g>
+      <g transform="translate(0, 35)">
+        <text font-size="20" fill="#ffd700">✓</text>
+        <text x="30" font-size="20" fill="#ffffff">Secure Payments</text>
+      </g>
+      <g transform="translate(0, 70)">
+        <text font-size="20" fill="#ffd700">✓</text>
+        <text x="30" font-size="20" fill="#ffffff">Quality Guaranteed</text>
+      </g>
+    </g>
+
+    <!-- CTA -->
+    <g transform="translate(0, 480)">
+      <rect width="300" height="70" rx="35" fill="url(#fbPostGold)"/>
+      <text x="150" y="46" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Get Free Quote</text>
+    </g>
+  </g>
+
+  <!-- Right Side - Service Icons -->
+  <g transform="translate(700, 80)">
+    <!-- Service Cards -->
+    <g>
+      <rect width="180" height="160" rx="20" fill="#16213e"/>
+      <text x="90" y="80" font-size="50" text-anchor="middle">⚡</text>
+      <text x="90" y="130" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Electrician</text>
+    </g>
+    <g transform="translate(200, 0)">
+      <rect width="180" height="160" rx="20" fill="#16213e"/>
+      <text x="90" y="80" font-size="50" text-anchor="middle">🔧</text>
+      <text x="90" y="130" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Plumber</text>
+    </g>
+    <g transform="translate(0, 180)">
+      <rect width="180" height="160" rx="20" fill="#16213e"/>
+      <text x="90" y="80" font-size="50" text-anchor="middle">🎨</text>
+      <text x="90" y="130" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Painter</text>
+    </g>
+    <g transform="translate(200, 180)">
+      <rect width="180" height="160" rx="20" fill="#16213e"/>
+      <text x="90" y="80" font-size="50" text-anchor="middle">🔨</text>
+      <text x="90" y="130" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Contractor</text>
+    </g>
+
+    <!-- More Services -->
+    <g transform="translate(0, 370)">
+      <rect width="380" height="70" rx="35" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="190" y="45" font-family="Arial, sans-serif" font-size="20" fill="#ffd700" text-anchor="middle">+ 50 More Services</text>
+    </g>
+  </g>
+
+  <!-- Bottom Stats -->
+  <g transform="translate(700, 510)" font-family="Arial, sans-serif">
+    <text font-size="42" font-weight="bold" fill="#ffd700">30+ Islands</text>
+    <text y="35" font-size="18" fill="#888888">Across the Caribbean</text>
+  </g>
+
+  <!-- Website -->
+  <text x="80" y="590" font-family="Arial, sans-serif" font-size="20" fill="#ffd700">caricompros.com</text>
+</svg>

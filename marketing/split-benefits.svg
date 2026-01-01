@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="splitLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="splitGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+    <linearGradient id="splitGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00b894"/>
+      <stop offset="100%" style="stop-color:#55efc4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Left Side - Customer -->
+  <rect width="600" height="630" fill="url(#splitLeft)"/>
+
+  <!-- Right Side - Pro -->
+  <rect x="600" width="600" height="630" fill="#16213e"/>
+
+  <!-- Center Divider -->
+  <rect x="595" width="10" height="630" fill="#ffd700"/>
+
+  <!-- Left Header - Customer -->
+  <g transform="translate(50, 40)">
+    <rect width="200" height="45" rx="22" fill="url(#splitGold)"/>
+    <text x="100" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e" text-anchor="middle">FOR CUSTOMERS</text>
+  </g>
+
+  <text x="300" y="130" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff" text-anchor="middle">Why Customers</text>
+  <text x="300" y="165" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="url(#splitGold)" text-anchor="middle">Love Us</text>
+
+  <!-- Customer Benefits -->
+  <g transform="translate(60, 200)">
+    <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffd700">✓</text>
+    <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Free to post jobs</text>
+  </g>
+
+  <g transform="translate(60, 250)">
+    <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffd700">✓</text>
+    <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Compare multiple quotes</text>
+  </g>
+
+  <g transform="translate(60, 300)">
+    <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffd700">✓</text>
+    <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Verified professionals only</text>
+  </g>
+
+  <g transform="translate(60, 350)">
+    <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffd700">✓</text>
+    <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Secure escrow payments</text>
+  </g>
+
+  <g transform="translate(60, 400)">
+    <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffd700">✓</text>
+    <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Real reviews from real people</text>
+  </g>
+
+  <g transform="translate(60, 450)">
+    <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffd700">✓</text>
+    <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Support if issues arise</text>
+  </g>
+
+  <!-- Customer CTA -->
+  <g transform="translate(100, 520)">
+    <rect width="400" height="55" rx="27" fill="url(#splitGold)"/>
+    <text x="200" y="36" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Post Your First Job Free</text>
+  </g>
+
+  <!-- Right Header - Pro -->
+  <g transform="translate(750, 40)">
+    <rect width="200" height="45" rx="22" fill="url(#splitGreen)"/>
+    <text x="100" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a2e" text-anchor="middle">FOR PROS</text>
+  </g>
+
+  <text x="900" y="130" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff" text-anchor="middle">Why Pros</text>
+  <text x="900" y="165" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="url(#splitGreen)" text-anchor="middle">Choose Us</text>
+
+  <!-- Pro Benefits -->
+  <g transform="translate(660, 200)">
+    <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#00b894">✓</text>
+    <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Free to join</text>
+  </g>
+
+  <g transform="translate(660, 250)">
+    <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#00b894">✓</text>
+    <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Access job leads in your area</text>
+  </g>
+
+  <g transform="translate(660, 300)">
+    <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#00b894">✓</text>
+    <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Build your verified reputation</text>
+  </g>
+
+  <g transform="translate(660, 350)">
+    <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#00b894">✓</text>
+    <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Guaranteed payment via escrow</text>
+  </g>
+
+  <g transform="translate(660, 400)">
+    <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#00b894">✓</text>
+    <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Grow with reviews and ratings</text>
+  </g>
+
+  <g transform="translate(660, 450)">
+    <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#00b894">✓</text>
+    <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Pro dashboard to manage jobs</text>
+  </g>
+
+  <!-- Pro CTA -->
+  <g transform="translate(700, 520)">
+    <rect width="400" height="55" rx="27" fill="url(#splitGreen)"/>
+    <text x="200" y="36" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Join as a Pro Today</text>
+  </g>
+
+  <!-- Bottom URL -->
+  <text x="600" y="610" font-family="Arial, sans-serif" font-size="16" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+</svg>

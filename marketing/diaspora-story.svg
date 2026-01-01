@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="storyDiaBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f1628"/>
+      <stop offset="50%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#0f1628"/>
+    </linearGradient>
+    <linearGradient id="storyDiaGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1920" fill="url(#storyDiaBg)"/>
+
+  <!-- Swipe up badge -->
+  <g transform="translate(340, 100)">
+    <rect width="400" height="55" rx="27" fill="url(#storyDiaGold)"/>
+    <text x="200" y="37" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e" text-anchor="middle">SWIPE UP • DIASPORA SPECIAL</text>
+  </g>
+
+  <!-- Globe with pins illustration -->
+  <g transform="translate(540, 380)">
+    <circle cx="0" cy="0" r="180" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.2"/>
+    <circle cx="0" cy="0" r="130" fill="none" stroke="#ffd700" stroke-width="1" opacity="0.1"/>
+
+    <!-- You location -->
+    <g transform="translate(-150, -80)">
+      <circle cx="0" cy="0" r="30" fill="#0077b6"/>
+      <text x="0" y="8" font-size="24" text-anchor="middle">📍</text>
+      <text x="0" y="55" font-family="Arial" font-size="14" fill="#ffffff" text-anchor="middle">YOU</text>
+    </g>
+
+    <!-- Caribbean -->
+    <g transform="translate(0, 0)">
+      <circle cx="0" cy="0" r="60" fill="url(#storyDiaGold)"/>
+      <text x="0" y="15" font-size="40" text-anchor="middle">🏝️</text>
+    </g>
+
+    <!-- Connection line -->
+    <line x1="-120" y1="-50" x2="-70" y2="-20" stroke="#ffd700" stroke-width="2" stroke-dasharray="8,4"/>
+  </g>
+
+  <!-- Main headline -->
+  <text x="540" y="650" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="#ffffff" text-anchor="middle">Miles Away,</text>
+  <text x="540" y="720" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="url(#storyDiaGold)" text-anchor="middle">Still In Control</text>
+
+  <!-- Subtext -->
+  <text x="540" y="800" font-family="Arial, sans-serif" font-size="26" fill="#888888" text-anchor="middle">Hire verified pros in the Caribbean</text>
+  <text x="540" y="840" font-family="Arial, sans-serif" font-size="26" fill="#888888" text-anchor="middle">from wherever you are</text>
+
+  <!-- Feature cards -->
+  <g transform="translate(100, 920)" font-family="Arial, sans-serif">
+    <g>
+      <rect width="880" height="110" rx="20" fill="#16213e" stroke="#ffd700" stroke-width="1"/>
+      <rect x="25" y="25" width="60" height="60" rx="12" fill="url(#storyDiaGold)"/>
+      <text x="55" y="65" font-size="28" text-anchor="middle">🔒</text>
+      <text x="110" y="50" font-size="24" font-weight="bold" fill="#ffffff">Secure International Payments</text>
+      <text x="110" y="80" font-size="16" fill="#888888">Pay in USD, GBP, CAD - we handle the rest</text>
+    </g>
+    <g transform="translate(0, 130)">
+      <rect width="880" height="110" rx="20" fill="#16213e" stroke="#ffd700" stroke-width="1"/>
+      <rect x="25" y="25" width="60" height="60" rx="12" fill="url(#storyDiaGold)"/>
+      <text x="55" y="65" font-size="28" text-anchor="middle">📸</text>
+      <text x="110" y="50" font-size="24" font-weight="bold" fill="#ffffff">Photo Updates</text>
+      <text x="110" y="80" font-size="16" fill="#888888">See progress photos before, during & after</text>
+    </g>
+    <g transform="translate(0, 260)">
+      <rect width="880" height="110" rx="20" fill="#16213e" stroke="#ffd700" stroke-width="1"/>
+      <rect x="25" y="25" width="60" height="60" rx="12" fill="url(#storyDiaGold)"/>
+      <text x="55" y="65" font-size="28" text-anchor="middle">💬</text>
+      <text x="110" y="50" font-size="24" font-weight="bold" fill="#ffffff">Direct Communication</text>
+      <text x="110" y="80" font-size="16" fill="#888888">Chat directly with your pro anytime</text>
+    </g>
+    <g transform="translate(0, 390)">
+      <rect width="880" height="110" rx="20" fill="#16213e" stroke="#ffd700" stroke-width="1"/>
+      <rect x="25" y="25" width="60" height="60" rx="12" fill="url(#storyDiaGold)"/>
+      <text x="55" y="65" font-size="28" text-anchor="middle">✅</text>
+      <text x="110" y="50" font-size="24" font-weight="bold" fill="#ffffff">Verified & Background Checked</text>
+      <text x="110" y="80" font-size="16" fill="#888888">Every pro is vetted for your peace of mind</text>
+    </g>
+  </g>
+
+  <!-- Countries served -->
+  <g transform="translate(200, 1500)" font-family="Arial, sans-serif">
+    <text x="340" y="0" font-size="16" fill="#ffd700" text-anchor="middle" letter-spacing="2">SERVING DIASPORA IN</text>
+    <g transform="translate(0, 40)">
+      <text x="0" y="0" font-size="40">🇺🇸</text>
+      <text x="120" y="0" font-size="40">🇬🇧</text>
+      <text x="240" y="0" font-size="40">🇨🇦</text>
+      <text x="360" y="0" font-size="40">🇪🇺</text>
+      <text x="480" y="0" font-size="40">🌍</text>
+      <text x="600" y="0" font-size="40">🌏</text>
+    </g>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(140, 1700)">
+    <rect width="800" height="100" rx="50" fill="url(#storyDiaGold)"/>
+    <text x="400" y="65" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Get Started Free</text>
+  </g>
+
+  <!-- Website -->
+  <text x="540" y="1870" font-family="Arial, sans-serif" font-size="26" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+</svg>

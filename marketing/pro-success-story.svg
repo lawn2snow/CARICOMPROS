@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="proSBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="50%" style="stop-color:#16213e"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="proSGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00b894"/>
+      <stop offset="100%" style="stop-color:#55efc4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1920" fill="url(#proSBg)"/>
+
+  <!-- Header -->
+  <g transform="translate(290, 80)">
+    <rect width="500" height="55" rx="27" fill="url(#proSGreen)"/>
+    <text x="250" y="37" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e" text-anchor="middle">YOUR PRO JOURNEY</text>
+  </g>
+
+  <text x="540" y="200" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle">From Sign Up</text>
+  <text x="540" y="260" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="url(#proSGreen)" text-anchor="middle">to Success</text>
+
+  <!-- Journey Steps -->
+  <g transform="translate(100, 320)">
+    <!-- Step 1 -->
+    <g>
+      <circle cx="50" cy="100" r="50" fill="url(#proSGreen)"/>
+      <text x="50" y="115" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#1a1a2e" text-anchor="middle">1</text>
+      <rect x="120" width="760" height="180" rx="25" fill="#16213e"/>
+      <text x="500" y="50" font-size="60" text-anchor="middle">📝</text>
+      <text x="500" y="100" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle">Create Your Profile</text>
+      <text x="500" y="140" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">Sign up free. Add your skills, experience,</text>
+      <text x="500" y="165" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">photos of past work, and certifications.</text>
+    </g>
+
+    <line x1="50" y1="170" x2="50" y2="240" stroke="#00b894" stroke-width="3" stroke-dasharray="8,4"/>
+
+    <!-- Step 2 -->
+    <g transform="translate(0, 220)">
+      <circle cx="50" cy="100" r="50" fill="url(#proSGreen)"/>
+      <text x="50" y="115" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#1a1a2e" text-anchor="middle">2</text>
+      <rect x="120" width="760" height="180" rx="25" fill="#16213e"/>
+      <text x="500" y="50" font-size="60" text-anchor="middle">✓</text>
+      <text x="500" y="100" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle">Get Verified</text>
+      <text x="500" y="140" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">Complete verification to earn your</text>
+      <text x="500" y="165" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">trusted badge and access more jobs.</text>
+    </g>
+
+    <line x1="50" y1="390" x2="50" y2="460" stroke="#00b894" stroke-width="3" stroke-dasharray="8,4"/>
+
+    <!-- Step 3 -->
+    <g transform="translate(0, 440)">
+      <circle cx="50" cy="100" r="50" fill="url(#proSGreen)"/>
+      <text x="50" y="115" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#1a1a2e" text-anchor="middle">3</text>
+      <rect x="120" width="760" height="180" rx="25" fill="#16213e"/>
+      <text x="500" y="50" font-size="60" text-anchor="middle">🔍</text>
+      <text x="500" y="100" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle">Browse Jobs</text>
+      <text x="500" y="140" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">See job requests in your area and</text>
+      <text x="500" y="165" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">specialty. Filter by location and budget.</text>
+    </g>
+
+    <line x1="50" y1="610" x2="50" y2="680" stroke="#00b894" stroke-width="3" stroke-dasharray="8,4"/>
+
+    <!-- Step 4 -->
+    <g transform="translate(0, 660)">
+      <circle cx="50" cy="100" r="50" fill="url(#proSGreen)"/>
+      <text x="50" y="115" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#1a1a2e" text-anchor="middle">4</text>
+      <rect x="120" width="760" height="180" rx="25" fill="#16213e"/>
+      <text x="500" y="50" font-size="60" text-anchor="middle">💬</text>
+      <text x="500" y="100" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle">Send Quotes</text>
+      <text x="500" y="140" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">Submit competitive quotes for jobs you want.</text>
+      <text x="500" y="165" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">Chat with customers to discuss details.</text>
+    </g>
+
+    <line x1="50" y1="830" x2="50" y2="900" stroke="#00b894" stroke-width="3" stroke-dasharray="8,4"/>
+
+    <!-- Step 5 -->
+    <g transform="translate(0, 880)">
+      <circle cx="50" cy="100" r="50" fill="url(#proSGreen)"/>
+      <text x="50" y="115" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#1a1a2e" text-anchor="middle">5</text>
+      <rect x="120" width="760" height="180" rx="25" fill="#16213e"/>
+      <text x="500" y="50" font-size="60" text-anchor="middle">🔧</text>
+      <text x="500" y="100" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle">Do Great Work</text>
+      <text x="500" y="140" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">Complete the job to the customer's</text>
+      <text x="500" y="165" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">satisfaction. Your reputation is growing!</text>
+    </g>
+
+    <line x1="50" y1="1050" x2="50" y2="1120" stroke="#00b894" stroke-width="3" stroke-dasharray="8,4"/>
+
+    <!-- Step 6 - Success -->
+    <g transform="translate(0, 1100)">
+      <circle cx="50" cy="100" r="50" fill="url(#proSGreen)"/>
+      <text x="50" y="115" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#1a1a2e" text-anchor="middle">✓</text>
+      <rect x="120" width="760" height="180" rx="25" fill="url(#proSGreen)"/>
+      <text x="500" y="50" font-size="60" text-anchor="middle">💵</text>
+      <text x="500" y="100" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Get Paid!</text>
+      <text x="500" y="140" font-family="Arial, sans-serif" font-size="18" fill="#1a1a2e" text-anchor="middle">Payment released instantly. Earn a review.</text>
+      <text x="500" y="165" font-family="Arial, sans-serif" font-size="18" fill="#1a1a2e" text-anchor="middle">Build your reputation. Get more jobs!</text>
+    </g>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(140, 1720)">
+    <rect width="800" height="90" rx="45" fill="url(#proSGreen)"/>
+    <text x="400" y="58" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Join as a Pro Today</text>
+  </g>
+
+  <text x="540" y="1870" font-family="Arial, sans-serif" font-size="24" fill="#00b894" text-anchor="middle">caricompros.com</text>
+</svg>

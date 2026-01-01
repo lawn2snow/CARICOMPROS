@@ -1,0 +1,1078 @@
+{
+  "name": "Hidden Kingz - Production Platform",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-start",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/job/create",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {"name": "Access-Control-Allow-Origin", "value": "*"},
+              {"name": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS"},
+              {"name": "Access-Control-Allow-Headers", "value": "Content-Type"}
+            ]
+          }
+        }
+      },
+      "id": "webhook-job-create",
+      "name": "Webhook - Create Job",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 500],
+      "webhookId": "job-create-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/contractor/register",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {"name": "Access-Control-Allow-Origin", "value": "*"}
+            ]
+          }
+        }
+      },
+      "id": "webhook-contractor-register",
+      "name": "Webhook - Contractor Register",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 700],
+      "webhookId": "contractor-register-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/customer/register",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {"name": "Access-Control-Allow-Origin", "value": "*"}
+            ]
+          }
+        }
+      },
+      "id": "webhook-customer-register",
+      "name": "Webhook - Customer Register",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 900],
+      "webhookId": "customer-register-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/quote/submit",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {"name": "Access-Control-Allow-Origin", "value": "*"}
+            ]
+          }
+        }
+      },
+      "id": "webhook-quote-submit",
+      "name": "Webhook - Submit Quote",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 1100],
+      "webhookId": "quote-submit-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/quote/accept",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {"name": "Access-Control-Allow-Origin", "value": "*"}
+            ]
+          }
+        }
+      },
+      "id": "webhook-quote-accept",
+      "name": "Webhook - Accept Quote",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 1300],
+      "webhookId": "quote-accept-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/job/complete",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {"name": "Access-Control-Allow-Origin", "value": "*"}
+            ]
+          }
+        }
+      },
+      "id": "webhook-job-complete",
+      "name": "Webhook - Complete Job",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 1500],
+      "webhookId": "job-complete-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "hiddenkingz/contractors",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {"name": "Access-Control-Allow-Origin", "value": "*"}
+            ]
+          }
+        }
+      },
+      "id": "webhook-get-contractors",
+      "name": "Webhook - Get Contractors",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 1700],
+      "webhookId": "get-contractors-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "hiddenkingz/jobs",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {"name": "Access-Control-Allow-Origin", "value": "*"}
+            ]
+          }
+        }
+      },
+      "id": "webhook-get-jobs",
+      "name": "Webhook - Get Jobs",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 1900],
+      "webhookId": "get-jobs-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "hiddenkingz/stats",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {"name": "Access-Control-Allow-Origin", "value": "*"}
+            ]
+          }
+        }
+      },
+      "id": "webhook-get-stats",
+      "name": "Webhook - Get Stats",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 2100],
+      "webhookId": "get-stats-webhook"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {"name": "action", "value": "createJob"},
+            {"name": "customerId", "value": "={{ $json.body.customerId || $json.customerId }}"},
+            {"name": "customerName", "value": "={{ $json.body.customerName || $json.customerName }}"},
+            {"name": "customerEmail", "value": "={{ $json.body.customerEmail || $json.customerEmail }}"},
+            {"name": "customerPhone", "value": "={{ $json.body.customerPhone || $json.customerPhone }}"},
+            {"name": "title", "value": "={{ $json.body.title || $json.title }}"},
+            {"name": "description", "value": "={{ $json.body.description || $json.description }}"},
+            {"name": "category", "value": "={{ $json.body.category || $json.category }}"},
+            {"name": "location", "value": "={{ $json.body.location || $json.location }}"},
+            {"name": "budget", "value": "={{ $json.body.budget || $json.budget }}"},
+            {"name": "urgency", "value": "={{ $json.body.urgency || $json.urgency || 'Medium' }}"}
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "http-apps-script-create-job",
+      "name": "Apps Script - Create Job",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 500]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {"name": "action", "value": "registerContractor"},
+            {"name": "name", "value": "={{ $json.body.name || $json.name }}"},
+            {"name": "email", "value": "={{ $json.body.email || $json.email }}"},
+            {"name": "phone", "value": "={{ $json.body.phone || $json.phone }}"},
+            {"name": "category", "value": "={{ $json.body.category || $json.category }}"},
+            {"name": "location", "value": "={{ $json.body.location || $json.location }}"},
+            {"name": "businessName", "value": "={{ $json.body.businessName || $json.businessName || '' }}"},
+            {"name": "experience", "value": "={{ $json.body.experience || $json.experience || '' }}"},
+            {"name": "bio", "value": "={{ $json.body.bio || $json.bio || '' }}"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-apps-script-register-contractor",
+      "name": "Apps Script - Register Contractor",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 700]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {"name": "action", "value": "registerCustomer"},
+            {"name": "name", "value": "={{ $json.body.name || $json.name }}"},
+            {"name": "email", "value": "={{ $json.body.email || $json.email }}"},
+            {"name": "phone", "value": "={{ $json.body.phone || $json.phone }}"},
+            {"name": "location", "value": "={{ $json.body.location || $json.location }}"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-apps-script-register-customer",
+      "name": "Apps Script - Register Customer",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 900]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {"name": "action", "value": "submitQuote"},
+            {"name": "jobId", "value": "={{ $json.body.jobId || $json.jobId }}"},
+            {"name": "contractorId", "value": "={{ $json.body.contractorId || $json.contractorId }}"},
+            {"name": "contractorName", "value": "={{ $json.body.contractorName || $json.contractorName }}"},
+            {"name": "amount", "value": "={{ $json.body.amount || $json.amount }}"},
+            {"name": "message", "value": "={{ $json.body.message || $json.message }}"},
+            {"name": "timeline", "value": "={{ $json.body.timeline || $json.timeline }}"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-apps-script-submit-quote",
+      "name": "Apps Script - Submit Quote",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 1100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {"name": "action", "value": "acceptQuote"},
+            {"name": "quoteId", "value": "={{ $json.body.quoteId || $json.quoteId }}"},
+            {"name": "jobId", "value": "={{ $json.body.jobId || $json.jobId }}"},
+            {"name": "contractorId", "value": "={{ $json.body.contractorId || $json.contractorId }}"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-apps-script-accept-quote",
+      "name": "Apps Script - Accept Quote",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 1300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {"name": "action", "value": "completeJob"},
+            {"name": "jobId", "value": "={{ $json.body.jobId || $json.jobId }}"},
+            {"name": "contractorId", "value": "={{ $json.body.contractorId || $json.contractorId }}"},
+            {"name": "amount", "value": "={{ $json.body.amount || $json.amount }}"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-apps-script-complete-job",
+      "name": "Apps Script - Complete Job",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 1500]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {"name": "action", "value": "getContractors"},
+            {"name": "category", "value": "={{ $json.query.category || '' }}"},
+            {"name": "location", "value": "={{ $json.query.location || '' }}"},
+            {"name": "verified", "value": "={{ $json.query.verified || '' }}"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-apps-script-get-contractors",
+      "name": "Apps Script - Get Contractors",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 1700]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {"name": "action", "value": "getJobs"},
+            {"name": "status", "value": "={{ $json.query.status || '' }}"},
+            {"name": "category", "value": "={{ $json.query.category || '' }}"},
+            {"name": "location", "value": "={{ $json.query.location || '' }}"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-apps-script-get-jobs",
+      "name": "Apps Script - Get Jobs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 1900]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {"name": "action", "value": "getStats"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-apps-script-get-stats",
+      "name": "Apps Script - Get Stats",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 2100]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.customerEmail || $json.customerEmail }}",
+        "subject": "Job Posted Successfully - Hidden Kingz",
+        "emailType": "html",
+        "message": "<!DOCTYPE html><html><body style=\"font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px;\"><div style=\"max-width: 600px; margin: 0 auto; background: white; border-radius: 15px; overflow: hidden;\"><div style=\"background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 30px; text-align: center;\"><h1 style=\"margin: 0; color: #ffd700;\">Hidden Kingz</h1><p>Caribbean's Trusted Service Marketplace</p></div><div style=\"padding: 30px;\"><h2>Your Job Has Been Posted!</h2><p>Hi {{ $json.body.customerName || $json.customerName }},</p><p>Your job request has been successfully posted. Verified contractors in your area will start sending quotes soon.</p><div style=\"background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;\"><p><strong>Job Title:</strong> {{ $json.body.title || $json.title }}</p><p><strong>Category:</strong> {{ $json.body.category || $json.category }}</p><p><strong>Location:</strong> {{ $json.body.location || $json.location }}</p><p><strong>Budget:</strong> ${{ $json.body.budget || $json.budget }}</p></div><a href=\"https://hiddenkingz.com/customer-dashboard.html\" style=\"display: inline-block; background: linear-gradient(45deg, #ffd700, #ffed4e); color: #1a1a2e; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold;\">View Your Dashboard</a></div><div style=\"background: #1a1a2e; color: white; padding: 20px; text-align: center;\"><p style=\"margin: 0; opacity: 0.8;\">© 2024 Hidden Kingz. All rights reserved.</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "gmail-job-created",
+      "name": "Gmail - Job Created",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [760, 500],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gmail-oauth",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.email || $json.email }}",
+        "subject": "Welcome to Hidden Kingz - Contractor Registration",
+        "emailType": "html",
+        "message": "<!DOCTYPE html><html><body style=\"font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px;\"><div style=\"max-width: 600px; margin: 0 auto; background: white; border-radius: 15px; overflow: hidden;\"><div style=\"background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 30px; text-align: center;\"><h1 style=\"margin: 0; color: #ffd700;\">Hidden Kingz</h1><p>Caribbean's Trusted Service Marketplace</p></div><div style=\"padding: 30px;\"><h2>Welcome, {{ $json.body.name || $json.name }}!</h2><p>Thank you for registering as a contractor on Hidden Kingz.</p><div style=\"background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 20px 0;\"><h3 style=\"color: #2e7d32; margin-top: 0;\">Next Steps:</h3><ul><li>Complete your profile</li><li>Upload certifications</li><li>Get verified to start receiving jobs</li></ul></div><a href=\"https://hiddenkingz.com/contractor-dashboard.html\" style=\"display: inline-block; background: linear-gradient(45deg, #ffd700, #ffed4e); color: #1a1a2e; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold;\">Complete Your Profile</a></div><div style=\"background: #1a1a2e; color: white; padding: 20px; text-align: center;\"><p style=\"margin: 0; opacity: 0.8;\">© 2024 Hidden Kingz. All rights reserved.</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "gmail-contractor-welcome",
+      "name": "Gmail - Contractor Welcome",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [760, 700],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gmail-oauth",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.email || $json.email }}",
+        "subject": "Welcome to Hidden Kingz!",
+        "emailType": "html",
+        "message": "<!DOCTYPE html><html><body style=\"font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px;\"><div style=\"max-width: 600px; margin: 0 auto; background: white; border-radius: 15px; overflow: hidden;\"><div style=\"background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 30px; text-align: center;\"><h1 style=\"margin: 0; color: #ffd700;\">Hidden Kingz</h1><p>Caribbean's Trusted Service Marketplace</p></div><div style=\"padding: 30px;\"><h2>Welcome, {{ $json.body.name || $json.name }}!</h2><p>Your account has been created successfully.</p><div style=\"background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;\"><h3>What you can do:</h3><ul><li>Post jobs and get quotes</li><li>Browse verified contractors</li><li>Pay securely</li><li>Leave reviews</li></ul></div><a href=\"https://hiddenkingz.com/customer-dashboard.html\" style=\"display: inline-block; background: linear-gradient(45deg, #ffd700, #ffed4e); color: #1a1a2e; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold;\">Post Your First Job</a></div><div style=\"background: #1a1a2e; color: white; padding: 20px; text-align: center;\"><p style=\"margin: 0; opacity: 0.8;\">© 2024 Hidden Kingz. All rights reserved.</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "gmail-customer-welcome",
+      "name": "Gmail - Customer Welcome",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [760, 900],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gmail-oauth",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.customerEmail || $json.customerEmail }}",
+        "subject": "New Quote Received - Hidden Kingz",
+        "emailType": "html",
+        "message": "<!DOCTYPE html><html><body style=\"font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px;\"><div style=\"max-width: 600px; margin: 0 auto; background: white; border-radius: 15px; overflow: hidden;\"><div style=\"background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 30px; text-align: center;\"><h1 style=\"margin: 0; color: #ffd700;\">Hidden Kingz</h1><p>Caribbean's Trusted Service Marketplace</p></div><div style=\"padding: 30px;\"><h2>You Have a New Quote!</h2><p>A contractor has submitted a quote for your job.</p><div style=\"background: #fff3e0; padding: 20px; border-radius: 10px; margin: 20px 0;\"><p><strong>Contractor:</strong> {{ $json.body.contractorName || $json.contractorName }}</p><p><strong>Quote Amount:</strong> ${{ $json.body.amount || $json.amount }}</p><p><strong>Timeline:</strong> {{ $json.body.timeline || $json.timeline }}</p></div><a href=\"https://hiddenkingz.com/customer-dashboard.html#jobs\" style=\"display: inline-block; background: linear-gradient(45deg, #ffd700, #ffed4e); color: #1a1a2e; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold;\">View Quote</a></div><div style=\"background: #1a1a2e; color: white; padding: 20px; text-align: center;\"><p style=\"margin: 0; opacity: 0.8;\">© 2024 Hidden Kingz. All rights reserved.</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "gmail-quote-received",
+      "name": "Gmail - Quote Received",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [760, 1100],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gmail-oauth",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.contractorEmail || $json.contractorEmail }}",
+        "subject": "Your Quote Was Accepted! - Hidden Kingz",
+        "emailType": "html",
+        "message": "<!DOCTYPE html><html><body style=\"font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px;\"><div style=\"max-width: 600px; margin: 0 auto; background: white; border-radius: 15px; overflow: hidden;\"><div style=\"background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 30px; text-align: center;\"><h1 style=\"margin: 0; color: #ffd700;\">Hidden Kingz</h1><p>Caribbean's Trusted Service Marketplace</p></div><div style=\"padding: 30px;\"><h2 style=\"color: #27ae60;\">Congratulations!</h2><p>Your quote has been accepted by the customer.</p><div style=\"background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 20px 0;\"><p><strong>Job ID:</strong> {{ $json.body.jobId || $json.jobId }}</p><p><strong>Amount:</strong> ${{ $json.body.amount || $json.amount }}</p><p>Please contact the customer to schedule the job.</p></div><a href=\"https://hiddenkingz.com/contractor-dashboard.html#my-jobs\" style=\"display: inline-block; background: linear-gradient(45deg, #ffd700, #ffed4e); color: #1a1a2e; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold;\">View Job Details</a></div><div style=\"background: #1a1a2e; color: white; padding: 20px; text-align: center;\"><p style=\"margin: 0; opacity: 0.8;\">© 2024 Hidden Kingz. All rights reserved.</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "gmail-quote-accepted",
+      "name": "Gmail - Quote Accepted",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [760, 1300],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gmail-oauth",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.customerEmail || $json.customerEmail }}",
+        "subject": "Job Completed - Hidden Kingz",
+        "emailType": "html",
+        "message": "<!DOCTYPE html><html><body style=\"font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px;\"><div style=\"max-width: 600px; margin: 0 auto; background: white; border-radius: 15px; overflow: hidden;\"><div style=\"background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 30px; text-align: center;\"><h1 style=\"margin: 0; color: #ffd700;\">Hidden Kingz</h1><p>Caribbean's Trusted Service Marketplace</p></div><div style=\"padding: 30px;\"><h2 style=\"color: #27ae60;\">Job Completed!</h2><p>Your job has been marked as complete by the contractor.</p><div style=\"background: #e3f2fd; padding: 20px; border-radius: 10px; margin: 20px 0;\"><p><strong>Job ID:</strong> {{ $json.body.jobId || $json.jobId }}</p><p><strong>Amount Paid:</strong> ${{ $json.body.amount || $json.amount }}</p></div><p>Please leave a review for the contractor to help other customers!</p><a href=\"https://hiddenkingz.com/customer-dashboard.html#jobs\" style=\"display: inline-block; background: linear-gradient(45deg, #ffd700, #ffed4e); color: #1a1a2e; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold;\">Leave a Review</a></div><div style=\"background: #1a1a2e; color: white; padding: 20px; text-align: center;\"><p style=\"margin: 0; opacity: 0.8;\">© 2024 Hidden Kingz. All rights reserved.</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "gmail-job-completed-customer",
+      "name": "Gmail - Job Completed (Customer)",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [760, 1500],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gmail-oauth",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.contractorEmail || $json.contractorEmail }}",
+        "subject": "Payment Processed - Hidden Kingz",
+        "emailType": "html",
+        "message": "<!DOCTYPE html><html><body style=\"font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px;\"><div style=\"max-width: 600px; margin: 0 auto; background: white; border-radius: 15px; overflow: hidden;\"><div style=\"background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 30px; text-align: center;\"><h1 style=\"margin: 0; color: #ffd700;\">Hidden Kingz</h1><p>Caribbean's Trusted Service Marketplace</p></div><div style=\"padding: 30px;\"><h2 style=\"color: #27ae60;\">Payment Processed!</h2><p>Your payment for the completed job has been processed.</p><div style=\"background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 20px 0;\"><p><strong>Job ID:</strong> {{ $json.body.jobId || $json.jobId }}</p><p><strong>Total Amount:</strong> ${{ $json.body.amount || $json.amount }}</p><p><strong>Platform Fee (10%):</strong> -${{ ($json.body.amount || $json.amount) * 0.1 }}</p><p style=\"font-size: 1.2em; font-weight: bold; color: #27ae60;\"><strong>Your Earnings:</strong> ${{ ($json.body.amount || $json.amount) * 0.9 }}</p></div><a href=\"https://hiddenkingz.com/contractor-dashboard.html#earnings\" style=\"display: inline-block; background: linear-gradient(45deg, #ffd700, #ffed4e); color: #1a1a2e; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold;\">View Earnings</a></div><div style=\"background: #1a1a2e; color: white; padding: 20px; text-align: center;\"><p style=\"margin: 0; opacity: 0.8;\">© 2024 Hidden Kingz. All rights reserved.</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "gmail-payment-contractor",
+      "name": "Gmail - Payment (Contractor)",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [1020, 1500],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gmail-oauth",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond-job-created",
+      "name": "Respond - Job Created",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, 500]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond-contractor-registered",
+      "name": "Respond - Contractor Registered",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, 700]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond-customer-registered",
+      "name": "Respond - Customer Registered",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, 900]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond-quote-submitted",
+      "name": "Respond - Quote Submitted",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, 1100]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond-quote-accepted",
+      "name": "Respond - Quote Accepted",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, 1300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond-job-completed",
+      "name": "Respond - Job Completed",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1280, 1500]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond-contractors-list",
+      "name": "Respond - Contractors List",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [760, 1700]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond-jobs-list",
+      "name": "Respond - Jobs List",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [760, 1900]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond-stats",
+      "name": "Respond - Stats",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [760, 2100]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/message/send",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {"name": "Access-Control-Allow-Origin", "value": "*"}
+            ]
+          }
+        }
+      },
+      "id": "webhook-send-message",
+      "name": "Webhook - Send Message",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 2300],
+      "webhookId": "send-message-webhook"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {"name": "action", "value": "sendMessage"},
+            {"name": "fromId", "value": "={{ $json.body.fromId || $json.fromId }}"},
+            {"name": "toId", "value": "={{ $json.body.toId || $json.toId }}"},
+            {"name": "jobId", "value": "={{ $json.body.jobId || $json.jobId || '' }}"},
+            {"name": "message", "value": "={{ $json.body.message || $json.message }}"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-apps-script-send-message",
+      "name": "Apps Script - Send Message",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 2300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond-message-sent",
+      "name": "Respond - Message Sent",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [760, 2300]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/review/submit",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {"name": "Access-Control-Allow-Origin", "value": "*"}
+            ]
+          }
+        }
+      },
+      "id": "webhook-submit-review",
+      "name": "Webhook - Submit Review",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 2500],
+      "webhookId": "submit-review-webhook"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {"name": "action", "value": "submitReview"},
+            {"name": "jobId", "value": "={{ $json.body.jobId || $json.jobId }}"},
+            {"name": "contractorId", "value": "={{ $json.body.contractorId || $json.contractorId }}"},
+            {"name": "customerId", "value": "={{ $json.body.customerId || $json.customerId }}"},
+            {"name": "rating", "value": "={{ $json.body.rating || $json.rating }}"},
+            {"name": "comment", "value": "={{ $json.body.comment || $json.comment }}"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-apps-script-submit-review",
+      "name": "Apps Script - Submit Review",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 2500]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond-review-submitted",
+      "name": "Respond - Review Submitted",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [760, 2500]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/contractor/verify",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {"name": "Access-Control-Allow-Origin", "value": "*"}
+            ]
+          }
+        }
+      },
+      "id": "webhook-verify-contractor",
+      "name": "Webhook - Verify Contractor",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 2700],
+      "webhookId": "verify-contractor-webhook"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {"name": "action", "value": "verifyContractor"},
+            {"name": "contractorId", "value": "={{ $json.body.contractorId || $json.contractorId }}"},
+            {"name": "adminId", "value": "={{ $json.body.adminId || $json.adminId }}"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-apps-script-verify-contractor",
+      "name": "Apps Script - Verify Contractor",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 2700]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.contractorEmail || $json.contractorEmail }}",
+        "subject": "You're Verified! - Hidden Kingz",
+        "emailType": "html",
+        "message": "<!DOCTYPE html><html><body style=\"font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px;\"><div style=\"max-width: 600px; margin: 0 auto; background: white; border-radius: 15px; overflow: hidden;\"><div style=\"background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 30px; text-align: center;\"><h1 style=\"margin: 0; color: #ffd700;\">Hidden Kingz</h1><p>Caribbean's Trusted Service Marketplace</p></div><div style=\"padding: 30px;\"><h2 style=\"color: #27ae60;\">Congratulations! You're Now Verified!</h2><p>Your contractor account has been verified. You can now:</p><div style=\"background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 20px 0;\"><ul><li>Appear in verified contractor searches</li><li>Receive priority job notifications</li><li>Display the verified badge on your profile</li></ul></div><a href=\"https://hiddenkingz.com/contractor-dashboard.html\" style=\"display: inline-block; background: linear-gradient(45deg, #ffd700, #ffed4e); color: #1a1a2e; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold;\">View Available Jobs</a></div><div style=\"background: #1a1a2e; color: white; padding: 20px; text-align: center;\"><p style=\"margin: 0; opacity: 0.8;\">© 2024 Hidden Kingz. All rights reserved.</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "gmail-contractor-verified",
+      "name": "Gmail - Contractor Verified",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [760, 2700],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gmail-oauth",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond-contractor-verified",
+      "name": "Respond - Contractor Verified",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, 2700]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/auth/login",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {"name": "Access-Control-Allow-Origin", "value": "*"},
+              {"name": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS"},
+              {"name": "Access-Control-Allow-Headers", "value": "Content-Type"}
+            ]
+          }
+        }
+      },
+      "id": "webhook-login",
+      "name": "Webhook - Login",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 2900],
+      "webhookId": "login-webhook"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {"name": "action", "value": "loginUser"},
+            {"name": "email", "value": "={{ $json.body.email || $json.email }}"},
+            {"name": "password", "value": "={{ $json.body.password || $json.password || '' }}"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-apps-script-login",
+      "name": "Apps Script - Login",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 2900]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond-login",
+      "name": "Respond - Login",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [760, 2900]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/payment/process",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {"name": "Access-Control-Allow-Origin", "value": "*"}
+            ]
+          }
+        }
+      },
+      "id": "webhook-process-payment",
+      "name": "Webhook - Process Payment",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 3100],
+      "webhookId": "process-payment-webhook"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {"name": "action", "value": "processPayment"},
+            {"name": "jobId", "value": "={{ $json.body.jobId || $json.jobId }}"},
+            {"name": "quoteId", "value": "={{ $json.body.quoteId || $json.quoteId }}"},
+            {"name": "contractorId", "value": "={{ $json.body.contractorId || $json.contractorId }}"},
+            {"name": "customerId", "value": "={{ $json.body.customerId || $json.customerId }}"},
+            {"name": "amount", "value": "={{ $json.body.amount || $json.amount }}"},
+            {"name": "squarePaymentId", "value": "={{ $json.body.squarePaymentId || $json.squarePaymentId || '' }}"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "http-apps-script-process-payment",
+      "name": "Apps Script - Process Payment",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [500, 3100]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.body.contractorEmail || $json.contractorEmail }}",
+        "subject": "Payment Received! - Hidden Kingz",
+        "emailType": "html",
+        "message": "<!DOCTYPE html><html><body style=\"font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px;\"><div style=\"max-width: 600px; margin: 0 auto; background: white; border-radius: 15px; overflow: hidden;\"><div style=\"background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 30px; text-align: center;\"><h1 style=\"margin: 0; color: #ffd700;\">Hidden Kingz</h1><p>Caribbean's Trusted Service Marketplace</p></div><div style=\"padding: 30px;\"><h2 style=\"color: #27ae60;\">Payment Received!</h2><p>Great news! A customer has paid for job: <strong>{{ $json.body.jobTitle || $json.jobTitle || 'Job' }}</strong></p><div style=\"background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 20px 0;\"><p><strong>Amount Paid:</strong> ${{ $json.body.amount || $json.amount }}</p><p><strong>Your Payout (90%):</strong> ${{ ($json.body.amount || $json.amount) * 0.9 }}</p><p><strong>Platform Fee (10%):</strong> ${{ ($json.body.amount || $json.amount) * 0.1 }}</p></div><p>The job is now <strong>In Progress</strong>. Complete the work and mark the job as complete to receive your payout.</p><a href=\"https://hiddenkingz.com/contractor-dashboard.html\" style=\"display: inline-block; background: linear-gradient(45deg, #ffd700, #ffed4e); color: #1a1a2e; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold;\">View Job Details</a></div><div style=\"background: #1a1a2e; color: white; padding: 20px; text-align: center;\"><p style=\"margin: 0; opacity: 0.8;\">© 2024 Hidden Kingz. All rights reserved.</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "gmail-payment-received",
+      "name": "Gmail - Payment Received",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [760, 3100],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gmail-oauth",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}"
+      },
+      "id": "respond-payment-processed",
+      "name": "Respond - Payment Processed",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, 3100]
+    }
+  ],
+  "connections": {
+    "webhook-job-create": {
+      "main": [[{"node": "http-apps-script-create-job", "type": "main", "index": 0}]]
+    },
+    "http-apps-script-create-job": {
+      "main": [[{"node": "gmail-job-created", "type": "main", "index": 0}]]
+    },
+    "gmail-job-created": {
+      "main": [[{"node": "respond-job-created", "type": "main", "index": 0}]]
+    },
+    "webhook-contractor-register": {
+      "main": [[{"node": "http-apps-script-register-contractor", "type": "main", "index": 0}]]
+    },
+    "http-apps-script-register-contractor": {
+      "main": [[{"node": "gmail-contractor-welcome", "type": "main", "index": 0}]]
+    },
+    "gmail-contractor-welcome": {
+      "main": [[{"node": "respond-contractor-registered", "type": "main", "index": 0}]]
+    },
+    "webhook-customer-register": {
+      "main": [[{"node": "http-apps-script-register-customer", "type": "main", "index": 0}]]
+    },
+    "http-apps-script-register-customer": {
+      "main": [[{"node": "gmail-customer-welcome", "type": "main", "index": 0}]]
+    },
+    "gmail-customer-welcome": {
+      "main": [[{"node": "respond-customer-registered", "type": "main", "index": 0}]]
+    },
+    "webhook-quote-submit": {
+      "main": [[{"node": "http-apps-script-submit-quote", "type": "main", "index": 0}]]
+    },
+    "http-apps-script-submit-quote": {
+      "main": [[{"node": "gmail-quote-received", "type": "main", "index": 0}]]
+    },
+    "gmail-quote-received": {
+      "main": [[{"node": "respond-quote-submitted", "type": "main", "index": 0}]]
+    },
+    "webhook-quote-accept": {
+      "main": [[{"node": "http-apps-script-accept-quote", "type": "main", "index": 0}]]
+    },
+    "http-apps-script-accept-quote": {
+      "main": [[{"node": "gmail-quote-accepted", "type": "main", "index": 0}]]
+    },
+    "gmail-quote-accepted": {
+      "main": [[{"node": "respond-quote-accepted", "type": "main", "index": 0}]]
+    },
+    "webhook-job-complete": {
+      "main": [[{"node": "http-apps-script-complete-job", "type": "main", "index": 0}]]
+    },
+    "http-apps-script-complete-job": {
+      "main": [[{"node": "gmail-job-completed-customer", "type": "main", "index": 0}]]
+    },
+    "gmail-job-completed-customer": {
+      "main": [[{"node": "gmail-payment-contractor", "type": "main", "index": 0}]]
+    },
+    "gmail-payment-contractor": {
+      "main": [[{"node": "respond-job-completed", "type": "main", "index": 0}]]
+    },
+    "webhook-get-contractors": {
+      "main": [[{"node": "http-apps-script-get-contractors", "type": "main", "index": 0}]]
+    },
+    "http-apps-script-get-contractors": {
+      "main": [[{"node": "respond-contractors-list", "type": "main", "index": 0}]]
+    },
+    "webhook-get-jobs": {
+      "main": [[{"node": "http-apps-script-get-jobs", "type": "main", "index": 0}]]
+    },
+    "http-apps-script-get-jobs": {
+      "main": [[{"node": "respond-jobs-list", "type": "main", "index": 0}]]
+    },
+    "webhook-get-stats": {
+      "main": [[{"node": "http-apps-script-get-stats", "type": "main", "index": 0}]]
+    },
+    "http-apps-script-get-stats": {
+      "main": [[{"node": "respond-stats", "type": "main", "index": 0}]]
+    },
+    "webhook-send-message": {
+      "main": [[{"node": "http-apps-script-send-message", "type": "main", "index": 0}]]
+    },
+    "http-apps-script-send-message": {
+      "main": [[{"node": "respond-message-sent", "type": "main", "index": 0}]]
+    },
+    "webhook-submit-review": {
+      "main": [[{"node": "http-apps-script-submit-review", "type": "main", "index": 0}]]
+    },
+    "http-apps-script-submit-review": {
+      "main": [[{"node": "respond-review-submitted", "type": "main", "index": 0}]]
+    },
+    "webhook-verify-contractor": {
+      "main": [[{"node": "http-apps-script-verify-contractor", "type": "main", "index": 0}]]
+    },
+    "http-apps-script-verify-contractor": {
+      "main": [[{"node": "gmail-contractor-verified", "type": "main", "index": 0}]]
+    },
+    "gmail-contractor-verified": {
+      "main": [[{"node": "respond-contractor-verified", "type": "main", "index": 0}]]
+    },
+    "webhook-login": {
+      "main": [[{"node": "http-apps-script-login", "type": "main", "index": 0}]]
+    },
+    "http-apps-script-login": {
+      "main": [[{"node": "respond-login", "type": "main", "index": 0}]]
+    },
+    "webhook-process-payment": {
+      "main": [[{"node": "http-apps-script-process-payment", "type": "main", "index": 0}]]
+    },
+    "http-apps-script-process-payment": {
+      "main": [[{"node": "gmail-payment-received", "type": "main", "index": 0}]]
+    },
+    "gmail-payment-received": {
+      "main": [[{"node": "respond-payment-processed", "type": "main", "index": 0}]]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "production-v2-gmail",
+  "meta": {
+    "instanceId": "hiddenkingz-production",
+    "appsScriptUrl": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec"
+  },
+  "tags": [
+    {"name": "Production", "id": "production"},
+    {"name": "Hidden Kingz", "id": "hiddenkingz"},
+    {"name": "Apps Script", "id": "apps-script"},
+    {"name": "Gmail", "id": "gmail"}
+  ]
+}

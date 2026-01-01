@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="escrowBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="escrowGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+    <linearGradient id="escrowGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00b894"/>
+      <stop offset="100%" style="stop-color:#55efc4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1080" fill="url(#escrowBg)"/>
+
+  <!-- Header -->
+  <g transform="translate(290, 60)">
+    <rect width="500" height="50" rx="25" fill="url(#escrowGold)"/>
+    <text x="250" y="34" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e" text-anchor="middle">🔒 SECURE PAYMENTS</text>
+  </g>
+
+  <text x="540" y="170" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#ffffff" text-anchor="middle">How Escrow Protection</text>
+  <text x="540" y="225" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="url(#escrowGold)" text-anchor="middle">Keeps You Safe</text>
+
+  <!-- Flow diagram -->
+  <g transform="translate(100, 280)">
+    <!-- Step 1: Customer pays -->
+    <g>
+      <rect width="250" height="180" rx="20" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="125" y="60" font-size="50" text-anchor="middle">👤</text>
+      <text x="125" y="110" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Customer</text>
+      <text x="125" y="135" font-family="Arial, sans-serif" font-size="14" fill="#888888" text-anchor="middle">Pays for job</text>
+      <text x="125" y="160" font-family="Arial, sans-serif" font-size="14" fill="#ffd700" text-anchor="middle">Money sent →</text>
+    </g>
+
+    <!-- Arrow 1 -->
+    <text x="280" y="370" font-size="30" fill="#ffd700">→</text>
+
+    <!-- Step 2: Escrow holds -->
+    <g transform="translate(330, 0)">
+      <rect width="250" height="180" rx="20" fill="#16213e" stroke="#00b894" stroke-width="3"/>
+      <text x="125" y="60" font-size="50" text-anchor="middle">🔒</text>
+      <text x="125" y="110" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#00b894" text-anchor="middle">CariCom Pros</text>
+      <text x="125" y="135" font-family="Arial, sans-serif" font-size="14" fill="#888888" text-anchor="middle">Holds payment</text>
+      <text x="125" y="160" font-family="Arial, sans-serif" font-size="14" fill="#00b894" text-anchor="middle">SECURED</text>
+    </g>
+
+    <!-- Arrow 2 -->
+    <text x="610" y="370" font-size="30" fill="#ffd700">→</text>
+
+    <!-- Step 3: Pro works -->
+    <g transform="translate(660, 0)">
+      <rect width="250" height="180" rx="20" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="125" y="60" font-size="50" text-anchor="middle">🔧</text>
+      <text x="125" y="110" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Professional</text>
+      <text x="125" y="135" font-family="Arial, sans-serif" font-size="14" fill="#888888" text-anchor="middle">Does the work</text>
+      <text x="125" y="160" font-family="Arial, sans-serif" font-size="14" fill="#ffd700" text-anchor="middle">Knows payment ready</text>
+    </g>
+  </g>
+
+  <!-- Step 4: Release flow -->
+  <g transform="translate(100, 520)">
+    <rect width="880" height="140" rx="20" fill="#16213e" stroke="url(#escrowGreen)" stroke-width="3"/>
+    <text x="440" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#00b894" text-anchor="middle">✓ Job Completed &amp; Approved</text>
+    <text x="440" y="90" font-family="Arial, sans-serif" font-size="18" fill="#ffffff" text-anchor="middle">Customer confirms satisfaction → Payment released to Pro</text>
+    <text x="440" y="120" font-family="Arial, sans-serif" font-size="16" fill="#888888" text-anchor="middle">Everyone wins. Everyone protected.</text>
+  </g>
+
+  <!-- Benefits for both -->
+  <g transform="translate(100, 700)">
+    <g>
+      <rect width="420" height="150" rx="15" fill="#16213e"/>
+      <text x="210" y="35" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffd700" text-anchor="middle">For Customers</text>
+      <text x="30" y="70" font-family="Arial, sans-serif" font-size="14" fill="#aaaaaa">✓ Money protected until job done</text>
+      <text x="30" y="95" font-family="Arial, sans-serif" font-size="14" fill="#aaaaaa">✓ Easy dispute resolution</text>
+      <text x="30" y="120" font-family="Arial, sans-serif" font-size="14" fill="#aaaaaa">✓ Refund if not satisfied</text>
+    </g>
+
+    <g transform="translate(480, 0)">
+      <rect width="420" height="150" rx="15" fill="#16213e"/>
+      <text x="210" y="35" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#00b894" text-anchor="middle">For Professionals</text>
+      <text x="30" y="70" font-family="Arial, sans-serif" font-size="14" fill="#aaaaaa">✓ Payment guaranteed upfront</text>
+      <text x="30" y="95" font-family="Arial, sans-serif" font-size="14" fill="#aaaaaa">✓ No chasing payments</text>
+      <text x="30" y="120" font-family="Arial, sans-serif" font-size="14" fill="#aaaaaa">✓ Fast, secure payouts</text>
+    </g>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(290, 900)">
+    <rect width="500" height="70" rx="35" fill="url(#escrowGold)"/>
+    <text x="250" y="46" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Start with Confidence</text>
+  </g>
+
+  <text x="540" y="1010" font-family="Arial, sans-serif" font-size="16" fill="#888888" text-anchor="middle">Your money. Your work. Protected.</text>
+  <text x="540" y="1050" font-family="Arial, sans-serif" font-size="18" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+</svg>

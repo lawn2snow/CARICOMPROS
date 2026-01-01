@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="parentsBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#16213e"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="parentsGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+    <linearGradient id="warmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e76f51"/>
+      <stop offset="100%" style="stop-color:#f4a261"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#parentsBg)"/>
+
+  <!-- Warm glow behind main visual -->
+  <circle cx="540" cy="350" r="200" fill="#e76f51" opacity="0.05"/>
+
+  <!-- Heart badge -->
+  <g transform="translate(390, 80)">
+    <rect width="300" height="50" rx="25" fill="url(#warmGrad)"/>
+    <text x="150" y="33" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">❤️ CARE FROM AFAR</text>
+  </g>
+
+  <!-- Main visual - Parents + House -->
+  <g transform="translate(340, 170)">
+    <rect width="400" height="320" rx="40" fill="#16213e" stroke="url(#parentsGold)" stroke-width="3"/>
+
+    <!-- House -->
+    <text x="200" y="130" font-size="90" text-anchor="middle">🏠</text>
+
+    <!-- Parents -->
+    <text x="200" y="250" font-size="80" text-anchor="middle">👴👵</text>
+
+    <!-- Heart -->
+    <g transform="translate(310, 50)">
+      <circle cx="30" cy="30" r="30" fill="url(#warmGrad)"/>
+      <text x="30" y="40" font-size="28" text-anchor="middle">❤️</text>
+    </g>
+  </g>
+
+  <!-- Headline -->
+  <text x="540" y="560" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="#ffffff" text-anchor="middle">Take Care of Your</text>
+  <text x="540" y="620" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="url(#parentsGold)" text-anchor="middle">Parents' Home</text>
+  <text x="540" y="680" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="#ffffff" text-anchor="middle">From Anywhere</text>
+
+  <!-- Subtext -->
+  <text x="540" y="740" font-family="Arial, sans-serif" font-size="20" fill="#888888" text-anchor="middle">Even when you can't be there, we've got them covered</text>
+
+  <!-- Scenarios -->
+  <g transform="translate(120, 790)" font-family="Arial, sans-serif">
+    <g>
+      <rect width="260" height="100" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="1"/>
+      <text x="130" y="45" font-size="28" text-anchor="middle">🔧</text>
+      <text x="130" y="75" font-size="14" fill="#ffffff" text-anchor="middle">Emergency Repairs</text>
+    </g>
+    <g transform="translate(290, 0)">
+      <rect width="260" height="100" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="1"/>
+      <text x="130" y="45" font-size="28" text-anchor="middle">🧹</text>
+      <text x="130" y="75" font-size="14" fill="#ffffff" text-anchor="middle">Regular Cleaning</text>
+    </g>
+    <g transform="translate(580, 0)">
+      <rect width="260" height="100" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="1"/>
+      <text x="130" y="45" font-size="28" text-anchor="middle">🌿</text>
+      <text x="130" y="75" font-size="14" fill="#ffffff" text-anchor="middle">Yard Maintenance</text>
+    </g>
+  </g>
+
+  <!-- Peace of mind message -->
+  <g transform="translate(340, 920)">
+    <rect width="400" height="50" rx="10" fill="#16213e"/>
+    <text x="200" y="33" font-family="Arial, sans-serif" font-size="16" fill="#ffd700" text-anchor="middle">🔒 Verified Pros • Secure Payments • Photo Updates</text>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(290, 990)">
+    <rect width="500" height="65" rx="32" fill="url(#parentsGold)"/>
+    <text x="250" y="43" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Find a Trusted Pro Now</text>
+  </g>
+
+  <!-- Website -->
+  <text x="540" y="1070" font-family="Arial, sans-serif" font-size="18" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+</svg>

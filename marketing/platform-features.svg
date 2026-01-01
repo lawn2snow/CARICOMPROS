@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="featBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="featGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1080" fill="url(#featBg)"/>
+
+  <!-- Header -->
+  <text x="540" y="80" font-family="Arial, sans-serif" font-size="20" fill="#ffd700" text-anchor="middle" letter-spacing="3">THE COMPLETE PLATFORM</text>
+
+  <text x="540" y="150" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="#ffffff" text-anchor="middle">Everything You Need</text>
+  <text x="540" y="200" font-family="Arial, sans-serif" font-size="22" fill="#888888" text-anchor="middle">All-in-one platform for service professionals and customers</text>
+
+  <!-- Features Grid 3x3 -->
+  <g transform="translate(80, 250)">
+    <g>
+      <rect width="280" height="200" rx="20" fill="#16213e"/>
+      <text x="140" y="70" font-size="50" text-anchor="middle">🔍</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Smart Matching</text>
+      <text x="140" y="150" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">Find the right pro for</text>
+      <text x="140" y="170" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">your specific needs</text>
+    </g>
+
+    <g transform="translate(310, 0)">
+      <rect width="280" height="200" rx="20" fill="#16213e"/>
+      <text x="140" y="70" font-size="50" text-anchor="middle">💬</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">In-App Messaging</text>
+      <text x="140" y="150" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">Chat directly with pros</text>
+      <text x="140" y="170" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">and share photos</text>
+    </g>
+
+    <g transform="translate(620, 0)">
+      <rect width="280" height="200" rx="20" fill="#16213e"/>
+      <text x="140" y="70" font-size="50" text-anchor="middle">📋</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Quote Management</text>
+      <text x="140" y="150" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">Request and compare</text>
+      <text x="140" y="170" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">quotes easily</text>
+    </g>
+
+    <g transform="translate(0, 230)">
+      <rect width="280" height="200" rx="20" fill="#16213e"/>
+      <text x="140" y="70" font-size="50" text-anchor="middle">🔒</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Secure Payments</text>
+      <text x="140" y="150" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">Escrow protection on</text>
+      <text x="140" y="170" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">every transaction</text>
+    </g>
+
+    <g transform="translate(310, 230)">
+      <rect width="280" height="200" rx="20" fill="#16213e"/>
+      <text x="140" y="70" font-size="50" text-anchor="middle">⭐</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Reviews &amp; Ratings</text>
+      <text x="140" y="150" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">Verified reviews from</text>
+      <text x="140" y="170" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">real customers</text>
+    </g>
+
+    <g transform="translate(620, 230)">
+      <rect width="280" height="200" rx="20" fill="#16213e"/>
+      <text x="140" y="70" font-size="50" text-anchor="middle">📊</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Pro Dashboard</text>
+      <text x="140" y="150" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">Manage jobs and</text>
+      <text x="140" y="170" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">track earnings</text>
+    </g>
+
+    <g transform="translate(0, 460)">
+      <rect width="280" height="200" rx="20" fill="#16213e"/>
+      <text x="140" y="70" font-size="50" text-anchor="middle">📍</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Location Based</text>
+      <text x="140" y="150" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">Find pros in your</text>
+      <text x="140" y="170" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">local area</text>
+    </g>
+
+    <g transform="translate(310, 460)">
+      <rect width="280" height="200" rx="20" fill="#16213e"/>
+      <text x="140" y="70" font-size="50" text-anchor="middle">📱</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Mobile Friendly</text>
+      <text x="140" y="150" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">Works perfectly on</text>
+      <text x="140" y="170" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">any device</text>
+    </g>
+
+    <g transform="translate(620, 460)">
+      <rect width="280" height="200" rx="20" fill="#16213e"/>
+      <text x="140" y="70" font-size="50" text-anchor="middle">🛡️</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">Dispute Support</text>
+      <text x="140" y="150" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">24/7 help if any</text>
+      <text x="140" y="170" font-family="Arial, sans-serif" font-size="13" fill="#888888" text-anchor="middle">issues arise</text>
+    </g>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(290, 960)">
+    <rect width="500" height="65" rx="32" fill="url(#featGold)"/>
+    <text x="250" y="43" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Get Started Free</text>
+  </g>
+
+  <text x="540" y="1055" font-family="Arial, sans-serif" font-size="18" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+</svg>

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="proBg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="proGold2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+    <linearGradient id="proGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00b894"/>
+      <stop offset="100%" style="stop-color:#55efc4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1080" fill="url(#proBg2)"/>
+
+  <!-- Header -->
+  <g transform="translate(240, 60)">
+    <rect width="600" height="50" rx="25" fill="url(#proGreen)"/>
+    <text x="300" y="34" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e" text-anchor="middle">FOR PROFESSIONALS</text>
+  </g>
+
+  <text x="540" y="170" font-family="Arial, sans-serif" font-size="46" font-weight="bold" fill="#ffffff" text-anchor="middle">How It Works</text>
+
+  <!-- Steps -->
+  <g transform="translate(100, 220)">
+    <!-- Step 1 -->
+    <g>
+      <rect width="880" height="160" rx="20" fill="#16213e"/>
+      <circle cx="80" cy="80" r="45" fill="url(#proGreen)"/>
+      <text x="80" y="92" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#1a1a2e" text-anchor="middle">1</text>
+      <text x="160" y="55" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff">Create Your Profile</text>
+      <text x="160" y="90" font-family="Arial, sans-serif" font-size="16" fill="#888888">Sign up free, add your skills, experience, and</text>
+      <text x="160" y="115" font-family="Arial, sans-serif" font-size="16" fill="#888888">certifications. Get verified to stand out.</text>
+      <text x="780" y="90" font-size="50" text-anchor="middle">👤</text>
+    </g>
+
+    <!-- Step 2 -->
+    <g transform="translate(0, 180)">
+      <rect width="880" height="160" rx="20" fill="#16213e"/>
+      <circle cx="80" cy="80" r="45" fill="url(#proGreen)"/>
+      <text x="80" y="92" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#1a1a2e" text-anchor="middle">2</text>
+      <text x="160" y="55" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff">Browse Available Jobs</text>
+      <text x="160" y="90" font-family="Arial, sans-serif" font-size="16" fill="#888888">See job requests in your area and specialty.</text>
+      <text x="160" y="115" font-family="Arial, sans-serif" font-size="16" fill="#888888">Filter by location, job type, and budget.</text>
+      <text x="780" y="90" font-size="50" text-anchor="middle">🔍</text>
+    </g>
+
+    <!-- Step 3 -->
+    <g transform="translate(0, 360)">
+      <rect width="880" height="160" rx="20" fill="#16213e"/>
+      <circle cx="80" cy="80" r="45" fill="url(#proGreen)"/>
+      <text x="80" y="92" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#1a1a2e" text-anchor="middle">3</text>
+      <text x="160" y="55" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff">Send Quotes</text>
+      <text x="160" y="90" font-family="Arial, sans-serif" font-size="16" fill="#888888">Submit competitive quotes for jobs you want.</text>
+      <text x="160" y="115" font-family="Arial, sans-serif" font-size="16" fill="#888888">Chat with customers to discuss details.</text>
+      <text x="780" y="90" font-size="50" text-anchor="middle">💬</text>
+    </g>
+
+    <!-- Step 4 -->
+    <g transform="translate(0, 540)">
+      <rect width="880" height="160" rx="20" fill="#16213e"/>
+      <circle cx="80" cy="80" r="45" fill="url(#proGreen)"/>
+      <text x="80" y="92" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#1a1a2e" text-anchor="middle">4</text>
+      <text x="160" y="55" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff">Get Paid Securely</text>
+      <text x="160" y="90" font-family="Arial, sans-serif" font-size="16" fill="#888888">Complete the job, get paid through our secure</text>
+      <text x="160" y="115" font-family="Arial, sans-serif" font-size="16" fill="#888888">platform. No chasing payments!</text>
+      <text x="780" y="90" font-size="50" text-anchor="middle">💵</text>
+    </g>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(290, 960)">
+    <rect width="500" height="70" rx="35" fill="url(#proGreen)"/>
+    <text x="250" y="46" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Join as a Pro - It's Free</text>
+  </g>
+
+  <text x="540" y="1060" font-family="Arial, sans-serif" font-size="18" fill="#00b894" text-anchor="middle">caricompros.com</text>
+</svg>

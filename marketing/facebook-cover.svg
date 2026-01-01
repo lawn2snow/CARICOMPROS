@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="fbCoverBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="fbCoverGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+    <filter id="fbGlow">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#fbCoverBg)"/>
+
+  <!-- Pattern -->
+  <g opacity="0.02">
+    <pattern id="fbPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="2" fill="#ffd700"/>
+    </pattern>
+    <rect width="1200" height="630" fill="url(#fbPattern)"/>
+  </g>
+
+  <!-- Decorative Elements -->
+  <circle cx="1100" cy="100" r="150" fill="#ffd700" opacity="0.05"/>
+  <circle cx="100" cy="530" r="180" fill="#ffd700" opacity="0.05"/>
+
+  <!-- Left Side - Branding -->
+  <g transform="translate(80, 100)">
+    <!-- Logo Badge -->
+    <rect width="120" height="120" rx="30" fill="url(#fbCoverGold)" filter="url(#fbGlow)"/>
+    <text x="60" y="85" font-size="60" text-anchor="middle">🏝️</text>
+
+    <!-- Brand Text -->
+    <text x="150" y="50" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="#ffffff">CariCom</text>
+    <text x="150" y="110" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="url(#fbCoverGold)">PROS</text>
+  </g>
+
+  <!-- Tagline -->
+  <text x="80" y="280" font-family="Arial, sans-serif" font-size="28" fill="#ffffff">Caribbean's Trusted Service Marketplace</text>
+  <text x="80" y="320" font-family="Arial, sans-serif" font-size="20" fill="#888888">Connect with verified professionals for any job</text>
+
+  <!-- Trust Badges -->
+  <g transform="translate(80, 370)" font-family="Arial, sans-serif">
+    <g>
+      <rect width="160" height="70" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="80" y="35" font-size="22" font-weight="bold" fill="#ffd700" text-anchor="middle">100+</text>
+      <text x="80" y="55" font-size="14" fill="#888888" text-anchor="middle">Verified Pros</text>
+    </g>
+    <g transform="translate(180, 0)">
+      <rect width="160" height="70" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="80" y="35" font-size="22" font-weight="bold" fill="#ffd700" text-anchor="middle">30+</text>
+      <text x="80" y="55" font-size="14" fill="#888888" text-anchor="middle">Islands</text>
+    </g>
+    <g transform="translate(360, 0)">
+      <rect width="160" height="70" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="80" y="35" font-size="22" font-weight="bold" fill="#ffd700" text-anchor="middle">50+</text>
+      <text x="80" y="55" font-size="14" fill="#888888" text-anchor="middle">Services</text>
+    </g>
+  </g>
+
+  <!-- Right Side - Services -->
+  <g transform="translate(700, 100)" font-family="Arial, sans-serif">
+    <text font-size="18" fill="#ffd700" letter-spacing="2">TOP SERVICES</text>
+
+    <g transform="translate(0, 40)">
+      <circle cx="15" cy="12" r="8" fill="#ffd700"/>
+      <text x="35" font-size="22" fill="#ffffff">General Contractors</text>
+    </g>
+    <g transform="translate(0, 80)">
+      <circle cx="15" cy="12" r="8" fill="#ffd700"/>
+      <text x="35" font-size="22" fill="#ffffff">Electricians</text>
+    </g>
+    <g transform="translate(0, 120)">
+      <circle cx="15" cy="12" r="8" fill="#ffd700"/>
+      <text x="35" font-size="22" fill="#ffffff">Plumbers</text>
+    </g>
+    <g transform="translate(0, 160)">
+      <circle cx="15" cy="12" r="8" fill="#ffd700"/>
+      <text x="35" font-size="22" fill="#ffffff">Painters</text>
+    </g>
+    <g transform="translate(0, 200)">
+      <circle cx="15" cy="12" r="8" fill="#ffd700"/>
+      <text x="35" font-size="22" fill="#ffffff">Landscapers</text>
+    </g>
+    <g transform="translate(0, 240)">
+      <circle cx="15" cy="12" r="8" fill="#ffd700"/>
+      <text x="35" font-size="22" fill="#ffffff">& 45+ More...</text>
+    </g>
+  </g>
+
+  <!-- Bottom CTA Bar -->
+  <rect y="530" width="1200" height="100" fill="#16213e"/>
+  <rect y="530" width="1200" height="4" fill="url(#fbCoverGold)"/>
+  <text x="600" y="590" font-family="Arial, sans-serif" font-size="28" fill="#ffd700" text-anchor="middle">caricompros.com | Find Your Pro Today</text>
+</svg>

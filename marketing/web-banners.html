@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CariCom Pros - Web Banners</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #e0e0e0; padding: 30px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        h3 { color: #1a1a2e; margin: 30px 0 15px; font-size: 18px; }
+        h3:first-child { margin-top: 0; }
+
+        /* ============================================ */
+        /* LEADERBOARD BANNER 728x90 */
+        /* ============================================ */
+        .banner-728x90 {
+            width: 728px;
+            height: 90px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .banner-728x90::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: linear-gradient(180deg, #ffd700, #ffed4e);
+        }
+
+        .banner-728x90 .logo {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .banner-728x90 .content { flex: 1; }
+
+        .banner-728x90 .brand {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .banner-728x90 .brand span { color: #ffd700; }
+
+        .banner-728x90 .tagline {
+            color: #888888;
+            font-size: 13px;
+        }
+
+        .banner-728x90 .features {
+            display: flex;
+            gap: 20px;
+            margin-right: 25px;
+        }
+
+        .banner-728x90 .feature {
+            color: #cccccc;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .banner-728x90 .feature::before {
+            content: '✓';
+            color: #ffd700;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .banner-728x90 .cta {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #1a1a2e;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 13px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: transform 0.3s;
+        }
+
+        .banner-728x90 .cta:hover {
+            transform: scale(1.05);
+        }
+
+        /* ============================================ */
+        /* MEDIUM RECTANGLE 300x250 */
+        /* ============================================ */
+        .banner-300x250 {
+            width: 300px;
+            height: 250px;
+            background: linear-gradient(180deg, #1a1a2e, #16213e);
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .banner-300x250::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e);
+        }
+
+        .banner-300x250 .logo {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .banner-300x250 .brand {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .banner-300x250 .brand span { color: #ffd700; }
+
+        .banner-300x250 .tagline {
+            color: #888888;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .banner-300x250 .features {
+            color: #cccccc;
+            font-size: 13px;
+            margin-bottom: 18px;
+            line-height: 1.9;
+        }
+
+        .banner-300x250 .features span {
+            color: #ffd700;
+            margin-right: 5px;
+        }
+
+        .banner-300x250 .cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #1a1a2e;
+            padding: 14px 35px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 15px;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .banner-300x250 .cta:hover {
+            transform: scale(1.05);
+        }
+
+        /* ============================================ */
+        /* SKYSCRAPER 160x600 */
+        /* ============================================ */
+        .banner-160x600 {
+            width: 160px;
+            height: 600px;
+            background: linear-gradient(180deg, #1a1a2e, #16213e, #1a1a2e);
+            padding: 20px 15px;
+            text-align: center;
+            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .banner-160x600::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #ffd700, #ffed4e, #ffd700);
+        }
+
+        .banner-160x600 .logo {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+        }
+
+        .banner-160x600 .brand {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .banner-160x600 .brand span { color: #ffd700; }
+
+        .banner-160x600 .tagline {
+            color: #888888;
+            font-size: 10px;
+            margin-bottom: 20px;
+        }
+
+        .banner-160x600 .service {
+            background: #16213e;
+            border-radius: 10px;
+            padding: 12px 8px;
+            margin-bottom: 8px;
+            border: 1px solid #2a2a4e;
+        }
+
+        .banner-160x600 .service-icon {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .banner-160x600 .service-name {
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .banner-160x600 .stats {
+            margin: 15px 0;
+            padding: 12px 0;
+            border-top: 1px solid #2a2a4e;
+            border-bottom: 1px solid #2a2a4e;
+        }
+
+        .banner-160x600 .stat-number {
+            color: #ffd700;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .banner-160x600 .stat-label {
+            color: #888888;
+            font-size: 10px;
+        }
+
+        .banner-160x600 .cta {
+            display: block;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #1a1a2e;
+            padding: 14px 12px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 13px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: transform 0.3s;
+        }
+
+        .banner-160x600 .cta:hover {
+            transform: scale(1.05);
+        }
+
+        .banner-160x600 .website {
+            color: #ffd700;
+            font-size: 10px;
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+        }
+
+        /* ============================================ */
+        /* MOBILE BANNER 320x100 */
+        /* ============================================ */
+        .banner-320x100 {
+            width: 320px;
+            height: 100px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .banner-320x100::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e);
+        }
+
+        .banner-320x100 .logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .banner-320x100 .content { flex: 1; }
+
+        .banner-320x100 .brand {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .banner-320x100 .brand span { color: #ffd700; }
+
+        .banner-320x100 .tagline {
+            color: #888888;
+            font-size: 11px;
+        }
+
+        .banner-320x100 .cta {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #1a1a2e;
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 11px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        /* ============================================ */
+        /* SQUARE BANNER 250x250 */
+        /* ============================================ */
+        .banner-250x250 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .banner-250x250::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+        }
+
+        .banner-250x250 .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .banner-250x250 .brand {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .banner-250x250 .brand span { color: #ffd700; }
+
+        .banner-250x250 .tagline {
+            color: #888888;
+            font-size: 11px;
+            margin-bottom: 12px;
+        }
+
+        .banner-250x250 .highlight {
+            background: #16213e;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 12px;
+        }
+
+        .banner-250x250 .highlight-text {
+            color: #ffd700;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .banner-250x250 .highlight-label {
+            color: #888888;
+            font-size: 11px;
+        }
+
+        .banner-250x250 .cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #1a1a2e;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 13px;
+            text-decoration: none;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <h3>Leaderboard Banner (728x90)</h3>
+    <div class="banner-728x90">
+        <div class="logo">🏝️</div>
+        <div class="content">
+            <div class="brand">CariCom <span>PROS</span></div>
+            <div class="tagline">Caribbean's Trusted Service Marketplace</div>
+        </div>
+        <div class="features">
+            <span class="feature">Verified Pros</span>
+            <span class="feature">Secure Pay</span>
+            <span class="feature">30+ Islands</span>
+        </div>
+        <a href="https://caricompros.com" class="cta">Find a Pro</a>
+    </div>
+
+    <h3>Medium Rectangle (300x250)</h3>
+    <div class="banner-300x250">
+        <div class="logo">🏝️</div>
+        <div class="brand">CariCom <span>PROS</span></div>
+        <div class="tagline">Caribbean's Trusted Service Marketplace</div>
+        <div class="features">
+            <span>✓</span> Verified Professionals<br>
+            <span>✓</span> Secure Payments<br>
+            <span>✓</span> Quality Guaranteed
+        </div>
+        <a href="https://caricompros.com" class="cta">Find a Pro Now</a>
+    </div>
+
+    <h3>Skyscraper (160x600)</h3>
+    <div class="banner-160x600">
+        <div class="logo">🏝️</div>
+        <div class="brand">CariCom <span>PROS</span></div>
+        <div class="tagline">Service Marketplace</div>
+
+        <div class="service">
+            <div class="service-icon">⚡</div>
+            <div class="service-name">Electricians</div>
+        </div>
+        <div class="service">
+            <div class="service-icon">🔧</div>
+            <div class="service-name">Plumbers</div>
+        </div>
+        <div class="service">
+            <div class="service-icon">🔨</div>
+            <div class="service-name">Contractors</div>
+        </div>
+        <div class="service">
+            <div class="service-icon">🎨</div>
+            <div class="service-name">Painters</div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Verified Pros</div>
+        </div>
+
+        <a href="https://caricompros.com" class="cta">Find a Pro</a>
+        <div class="website">caricompros.com</div>
+    </div>
+
+    <h3>Mobile Banner (320x100)</h3>
+    <div class="banner-320x100">
+        <div class="logo">🏝️</div>
+        <div class="content">
+            <div class="brand">CariCom <span>PROS</span></div>
+            <div class="tagline">Find Trusted Service Pros</div>
+        </div>
+        <a href="https://caricompros.com" class="cta">Find a Pro</a>
+    </div>
+
+    <h3>Square Banner (250x250)</h3>
+    <div class="banner-250x250">
+        <div class="logo">🏝️</div>
+        <div class="brand">CariCom <span>PROS</span></div>
+        <div class="tagline">Caribbean's Service Marketplace</div>
+        <div class="highlight">
+            <div class="highlight-text">100+</div>
+            <div class="highlight-label">Verified Professionals</div>
+        </div>
+        <a href="https://caricompros.com" class="cta">Find a Pro</a>
+    </div>
+</body>
+</html>

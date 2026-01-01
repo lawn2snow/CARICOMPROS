@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contractor Dashboard - CariCom Pros</title>
+    <meta name="description" content="Manage your service business, track jobs, and grow your reputation on CariCom Pros marketplace.">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #ffd700;
+            --accent-light: #ffed4e;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --error: #f44336;
+            --info: #2196F3;
+            --text: #333;
+            --text-light: #666;
+            --bg: #f8f9fa;
+            --white: #ffffff;
+            --shadow: rgba(0,0,0,0.1);
+            --radius: 15px;
+            --verified: #00bfa5;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100vh;
+            background: var(--primary);
+            color: var(--white);
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            background: rgba(255, 215, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contractor-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contractor-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .contractor-details { flex: 1; }
+        .contractor-name { font-weight: 600; margin-bottom: 0.25rem; font-size: 0.95rem; }
+
+        .verification-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        .verification-status.verified { background: var(--verified); color: var(--white); }
+        .verification-status.pending { background: var(--warning); color: var(--white); }
+        .verification-status.unverified { background: #666; color: var(--white); }
+
+        .sidebar-nav { padding: 1rem 0; }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-item:hover { background: rgba(255, 215, 0, 0.1); }
+        .nav-item.active { background: rgba(255, 215, 0, 0.2); border-left: 4px solid var(--accent); }
+        .nav-icon { font-size: 1.2rem; width: 24px; text-align: center; }
+
+        .nav-badge {
+            margin-left: auto;
+            background: var(--error);
+            color: var(--white);
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: var(--white);
+            padding: 1rem 2rem;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 10px var(--shadow);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title { font-size: 1.5rem; font-weight: 600; color: var(--primary); }
+
+        .top-actions { display: flex; gap: 1rem; align-items: center; }
+
+        .notification-bell { position: relative; cursor: pointer; padding: 0.5rem; }
+
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--error);
+            color: var(--white);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 10px var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 5px 20px var(--shadow); }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .stat-icon.earnings { background: linear-gradient(45deg, #4CAF50, #66BB6A); color: var(--white); }
+        .stat-icon.jobs { background: linear-gradient(45deg, #2196F3, #42A5F5); color: var(--white); }
+        .stat-icon.rating { background: linear-gradient(45deg, var(--accent), var(--accent-light)); color: var(--primary); }
+        .stat-icon.pending { background: linear-gradient(45deg, #FF9800, #FFB74D); color: var(--white); }
+
+        .stat-details { flex: 1; }
+        .stat-value { font-size: 1.75rem; font-weight: bold; color: var(--primary); }
+        .stat-label { color: #666; font-size: 0.9rem; }
+        .stat-change { font-size: 0.8rem; margin-top: 0.25rem; }
+        .stat-change.positive { color: var(--success); }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title { font-size: 1.25rem; font-weight: 600; color: var(--primary); }
+
+        /* Job Cards */
+        .jobs-list { display: grid; gap: 1rem; }
+
+        .job-card {
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .job-card:hover { box-shadow: 0 4px 15px var(--shadow); border-color: var(--accent); }
+        .job-info { display: grid; gap: 0.5rem; }
+        .job-title { font-weight: 600; color: var(--primary); }
+        .job-customer { font-size: 0.9rem; color: #666; }
+        .job-meta { display: flex; gap: 1rem; font-size: 0.85rem; color: #666; flex-wrap: wrap; }
+        .job-actions { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+
+        .job-status { padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; display: inline-block; }
+        .status-open { background: #e3f2fd; color: var(--info); }
+        .status-in-progress { background: #fff3e0; color: var(--warning); }
+        .status-completed { background: #e8f5e9; color: var(--success); }
+        .status-pending { background: #f3e5f5; color: #9c27b0; }
+        .status-accepted { background: #e0f2f1; color: #00897b; }
+        .status-rejected { background: #ffebee; color: var(--error); }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            color: var(--primary);
+        }
+
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3); }
+        .btn-success { background: var(--success); color: var(--white); }
+        .btn-success:hover { background: #43a047; }
+        .btn-danger { background: var(--error); color: var(--white); }
+        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+        .btn-outline:hover { background: var(--primary); color: var(--white); }
+        .btn-small { padding: 0.5rem 1rem; font-size: 0.85rem; }
+
+        /* Forms */
+        .form-group { margin-bottom: 1.5rem; }
+        .form-label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--primary); }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--accent); }
+
+        /* Tabs */
+        .tabs { display: flex; gap: 0.5rem; border-bottom: 2px solid #e9ecef; margin-bottom: 1.5rem; overflow-x: auto; }
+
+        .tab {
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            position: relative;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .tab:hover { color: var(--primary); }
+        .tab.active { color: var(--primary); }
+        .tab.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 3px; background: var(--accent); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #888;
+        }
+
+        .empty-state i { font-size: 4rem; color: #ddd; margin-bottom: 1rem; display: block; }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal.active { display: flex; }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: var(--radius);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 { margin: 0; color: var(--primary); }
+        .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; }
+        .modal-body { padding: 1.5rem; }
+        .modal-footer { padding: 1.5rem; border-top: 1px solid #e9ecef; display: flex; gap: 1rem; justify-content: flex-end; }
+
+        /* Reviews */
+        .review-card {
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .review-customer { font-weight: 600; color: var(--primary); }
+        .review-rating { color: var(--accent); }
+        .review-text { color: #666; line-height: 1.6; }
+        .review-date { font-size: 0.85rem; color: #999; margin-top: 0.5rem; }
+
+        /* Messages */
+        .message-list { border: 1px solid #e9ecef; border-radius: 10px; overflow: hidden; }
+
+        .message-item {
+            padding: 1rem;
+            border-bottom: 1px solid #e9ecef;
+            cursor: pointer;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .message-item:hover { background: var(--bg); }
+        .message-item:last-child { border-bottom: none; }
+        .message-item.unread { background: rgba(33, 150, 243, 0.05); }
+        .message-item.active { background: rgba(255, 215, 0, 0.1); }
+
+        .message-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--info), #42A5F5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .message-content { flex: 1; min-width: 0; }
+        .message-sender { font-weight: 600; color: var(--primary); }
+        .message-preview { font-size: 0.9rem; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .message-time { font-size: 0.8rem; color: #999; }
+
+        /* Chat */
+        .chat-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 0;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 500px;
+        }
+
+        .chat-sidebar { border-right: 1px solid #e9ecef; overflow-y: auto; }
+        .chat-main { display: flex; flex-direction: column; }
+        .chat-header { padding: 1rem; border-bottom: 1px solid #e9ecef; display: flex; align-items: center; gap: 0.75rem; }
+        .chat-messages { flex: 1; padding: 1rem; overflow-y: auto; background: var(--bg); }
+
+        .chat-bubble {
+            max-width: 70%;
+            padding: 0.75rem 1rem;
+            border-radius: 15px;
+            margin-bottom: 0.75rem;
+        }
+
+        .chat-bubble.received { background: var(--white); border-top-left-radius: 5px; }
+        .chat-bubble.sent { background: var(--accent); margin-left: auto; border-top-right-radius: 5px; }
+        .chat-bubble .time { font-size: 0.75rem; color: #999; margin-top: 0.25rem; }
+        .chat-bubble.sent .time { color: rgba(0,0,0,0.5); }
+
+        .chat-input {
+            padding: 1rem;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        /* Verification */
+        .verification-steps { display: grid; gap: 1rem; }
+
+        .verification-step {
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .verification-step.completed { border-color: var(--success); background: #e8f5e9; }
+        .verification-step.pending { border-color: var(--warning); background: #fff3e0; }
+
+        .step-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .step-icon.completed { background: var(--success); color: var(--white); }
+        .step-icon.pending { background: var(--warning); color: var(--white); }
+        .step-icon.incomplete { background: #e9ecef; color: #999; }
+        .step-info { flex: 1; }
+        .step-title { font-weight: 600; color: var(--primary); margin-bottom: 0.25rem; }
+        .step-description { font-size: 0.9rem; color: #666; }
+
+        /* Upload */
+        .upload-area {
+            border: 2px dashed #e9ecef;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-area:hover { border-color: var(--accent); background: rgba(255, 215, 0, 0.05); }
+        .upload-area i { font-size: 3rem; color: var(--accent); margin-bottom: 1rem; }
+
+        /* Marketplace Listing Cards */
+        .listing-card {
+            background: var(--white);
+            border: 1px solid #e9ecef;
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .listing-card:hover { box-shadow: 0 8px 25px var(--shadow); transform: translateY(-3px); }
+        .listing-image {
+            width: 100%;
+            height: 180px;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .listing-image img { width: 100%; height: 100%; object-fit: cover; }
+        .listing-image i { font-size: 3rem; color: #ccc; }
+        .listing-content { padding: 1rem; }
+        .listing-price { font-size: 1.25rem; font-weight: bold; color: var(--primary); margin-bottom: 0.25rem; }
+        .listing-title { font-weight: 600; color: var(--text); margin-bottom: 0.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .listing-meta { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-light); margin-bottom: 0.75rem; }
+        .listing-status { padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+        .listing-status.active { background: #e8f5e9; color: var(--success); }
+        .listing-status.sold { background: #e3f2fd; color: var(--info); }
+        .listing-actions { display: flex; gap: 0.5rem; padding-top: 0.75rem; border-top: 1px solid #e9ecef; }
+        .listing-actions button { flex: 1; }
+        .image-preview-item { position: relative; aspect-ratio: 1; border-radius: 8px; overflow: hidden; background: var(--bg); }
+        .image-preview-item img { width: 100%; height: 100%; object-fit: cover; }
+        .image-preview-remove { position: absolute; top: 4px; right: 4px; width: 20px; height: 20px; background: var(--error); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; }
+
+        /* Transaction Table */
+        .transaction-table { width: 100%; border-collapse: collapse; }
+        .transaction-table th, .transaction-table td { padding: 1rem; text-align: left; border-bottom: 1px solid #e9ecef; }
+        .transaction-table th { background: var(--bg); font-weight: 600; color: var(--primary); }
+        .transaction-table tr { cursor: pointer; transition: background 0.3s; }
+        .transaction-table tr:hover { background: var(--bg); }
+        .amount-positive { color: var(--success); font-weight: 600; }
+        .amount-negative { color: var(--error); font-weight: 600; }
+
+        /* Settings */
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .settings-item-info h4 { margin: 0 0 0.25rem 0; color: var(--primary); }
+        .settings-item-info p { margin: 0; font-size: 0.85rem; color: #666; }
+
+        .toggle-switch {
+            width: 50px;
+            height: 26px;
+            background: #ccc;
+            border-radius: 13px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active { background: var(--success); }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+        }
+        .toggle-switch.active::after { transform: translateX(24px); }
+
+        /* Mobile */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 2000;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.active { transform: translateX(0); }
+            .main-content { margin-left: 0; padding: 1rem; }
+            .mobile-toggle { display: block; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .top-bar { margin-top: 60px; flex-wrap: wrap; gap: 1rem; }
+            .chat-container { grid-template-columns: 1fr; height: auto; }
+            .chat-sidebar { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <button class="mobile-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="contractor-profile">
+                <div class="contractor-avatar" id="sidebarAvatar">--</div>
+                <div class="contractor-details">
+                    <div class="contractor-name" id="sidebarName">Loading...</div>
+                    <span class="verification-status unverified" id="sidebarVerification">
+                        <i class="fas fa-clock"></i> <span>Unverified</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a class="nav-item active" onclick="showSection('dashboard')">
+                <span class="nav-icon"><i class="fas fa-home"></i></span>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-item" onclick="showSection('jobs')">
+                <span class="nav-icon"><i class="fas fa-briefcase"></i></span>
+                <span>Find Jobs</span>
+                <span class="nav-badge" id="availableJobsBadge">0</span>
+            </a>
+            <a class="nav-item" onclick="showSection('my-jobs')">
+                <span class="nav-icon"><i class="fas fa-clipboard-list"></i></span>
+                <span>My Jobs</span>
+                <span class="nav-badge" id="activeJobsBadge">0</span>
+            </a>
+            <a class="nav-item" onclick="showSection('earnings')">
+                <span class="nav-icon"><i class="fas fa-dollar-sign"></i></span>
+                <span>Earnings</span>
+            </a>
+            <a class="nav-item" onclick="showSection('schedule')">
+                <span class="nav-icon"><i class="fas fa-calendar"></i></span>
+                <span>Schedule</span>
+            </a>
+            <a class="nav-item" onclick="showSection('messages')">
+                <span class="nav-icon"><i class="fas fa-comment"></i></span>
+                <span>Messages</span>
+                <span class="nav-badge" id="messagesBadge">0</span>
+            </a>
+            <a class="nav-item" onclick="showSection('reviews')">
+                <span class="nav-icon"><i class="fas fa-star"></i></span>
+                <span>Reviews</span>
+            </a>
+            <a class="nav-item" onclick="showSection('verification')">
+                <span class="nav-icon"><i class="fas fa-shield-alt"></i></span>
+                <span>Verification</span>
+            </a>
+            <a class="nav-item" onclick="showSection('profile')">
+                <span class="nav-icon"><i class="fas fa-user"></i></span>
+                <span>Profile</span>
+            </a>
+            <a class="nav-item" onclick="showSection('settings')">
+                <span class="nav-icon"><i class="fas fa-cog"></i></span>
+                <span>Settings</span>
+            </a>
+            <div style="padding: 0.5rem 1.5rem; font-size: 0.75rem; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.5rem;">Marketplace</div>
+            <a class="nav-item" href="marketplace.html">
+                <span class="nav-icon"><i class="fas fa-store"></i></span>
+                <span>Browse Marketplace</span>
+            </a>
+            <a class="nav-item" onclick="showSection('my-listings')">
+                <span class="nav-icon"><i class="fas fa-tags"></i></span>
+                <span>My Listings</span>
+                <span class="nav-badge" id="nav-listings-count" style="background: var(--success);">0</span>
+            </a>
+            <a class="nav-item" onclick="openCreateListingModal()">
+                <span class="nav-icon"><i class="fas fa-plus-circle" style="color: var(--accent);"></i></span>
+                <span>Sell Something</span>
+            </a>
+            <a class="nav-item" href="index.html">
+                <span class="nav-icon"><i class="fas fa-globe"></i></span>
+                <span>Back to Website</span>
+            </a>
+            <a class="nav-item" onclick="logout()" style="color: #ff9800;">
+                <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
+                <span>Logout</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="top-bar">
+            <h1 class="page-title" id="pageTitle">Dashboard</h1>
+            <div class="top-actions">
+                <div class="notification-bell" onclick="showNotifications()">
+                    <i class="fas fa-bell fa-lg"></i>
+                    <span class="notification-badge" id="notificationBadge">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="section-content">
+            <div class="stats-grid">
+                <div class="stat-card" onclick="showSection('earnings')">
+                    <div class="stat-icon earnings"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="stat-details">
+                        <div class="stat-value" id="dashEarnings">$0</div>
+                        <div class="stat-label">Total Earnings</div>
+                    </div>
+                </div>
+                <div class="stat-card" onclick="showSection('my-jobs')">
+                    <div class="stat-icon jobs"><i class="fas fa-briefcase"></i></div>
+                    <div class="stat-details">
+                        <div class="stat-value" id="dashActiveJobs">0</div>
+                        <div class="stat-label">Active Jobs</div>
+                    </div>
+                </div>
+                <div class="stat-card" onclick="showSection('reviews')">
+                    <div class="stat-icon rating"><i class="fas fa-star"></i></div>
+                    <div class="stat-details">
+                        <div class="stat-value" id="dashRating">0.0</div>
+                        <div class="stat-label">Rating</div>
+                    </div>
+                </div>
+                <div class="stat-card" onclick="showSection('jobs')">
+                    <div class="stat-icon pending"><i class="fas fa-clock"></i></div>
+                    <div class="stat-details">
+                        <div class="stat-value" id="dashPendingQuotes">0</div>
+                        <div class="stat-label">Pending Quotes</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Active Jobs</h2>
+                    <a href="#" onclick="showSection('my-jobs'); return false;">View All</a>
+                </div>
+                <div class="jobs-list" id="dashActiveJobsList">
+                    <div class="empty-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading jobs...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Reviews</h2>
+                    <a href="#" onclick="showSection('reviews'); return false;">View All</a>
+                </div>
+                <div id="dashRecentReviews">
+                    <div class="empty-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading reviews...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Find Jobs Section -->
+        <section id="jobs-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Available Jobs</h2>
+                    <div>
+                        <select class="form-select" id="jobCategoryFilter" onchange="filterAvailableJobs()" style="width: auto; display: inline-block;">
+                            <option value="">All Categories</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="jobs-list" id="availableJobsList">
+                    <div class="empty-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading available jobs...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Jobs Section -->
+        <section id="my-jobs-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <div class="tabs">
+                    <button class="tab active" onclick="showMyJobsTab('active', this)">Active <span id="activeTabCount">(0)</span></button>
+                    <button class="tab" onclick="showMyJobsTab('quotes', this)">My Quotes <span id="quotesTabCount">(0)</span></button>
+                    <button class="tab" onclick="showMyJobsTab('completed', this)">Completed <span id="completedTabCount">(0)</span></button>
+                </div>
+                <div id="activeJobsTab" class="tab-content active">
+                    <div class="jobs-list" id="activeJobsList">
+                        <div class="empty-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading...</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="quotesTab" class="tab-content">
+                    <div class="jobs-list" id="myQuotesList">
+                        <div class="empty-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading...</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="completedJobsTab" class="tab-content">
+                    <div class="jobs-list" id="completedJobsList">
+                        <div class="empty-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Earnings Section -->
+        <section id="earnings-section" class="section-content" style="display: none;">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon earnings"><i class="fas fa-wallet"></i></div>
+                    <div class="stat-details">
+                        <div class="stat-value" id="availableBalance">$0</div>
+                        <div class="stat-label">Available Balance</div>
+                        <button class="btn btn-success btn-small" style="margin-top: 0.5rem;" onclick="requestWithdrawal()">Withdraw</button>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(45deg, #9c27b0, #ba68c8); color: white;"><i class="fas fa-hourglass-half"></i></div>
+                    <div class="stat-details">
+                        <div class="stat-value" id="pendingBalance">$0</div>
+                        <div class="stat-label">Pending Clearance</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon jobs"><i class="fas fa-chart-line"></i></div>
+                    <div class="stat-details">
+                        <div class="stat-value" id="totalEarned">$0</div>
+                        <div class="stat-label">Total Earned</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Transactions</h2>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Customer</th>
+                                <th style="text-align: right;">Amount</th>
+                                <th style="text-align: center;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionsList">
+                            <tr>
+                                <td colspan="5" style="text-align: center; padding: 2rem;">Loading transactions...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section id="schedule-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Schedule</h2>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline btn-small" onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+                        <span id="currentMonth" style="padding: 0.5rem 1rem; font-weight: 600;">December 2024</span>
+                        <button class="btn btn-outline btn-small" onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; text-align: center; margin-bottom: 1rem;">
+                    <div style="font-weight: 600; color: var(--primary); padding: 0.5rem;">Sun</div>
+                    <div style="font-weight: 600; color: var(--primary); padding: 0.5rem;">Mon</div>
+                    <div style="font-weight: 600; color: var(--primary); padding: 0.5rem;">Tue</div>
+                    <div style="font-weight: 600; color: var(--primary); padding: 0.5rem;">Wed</div>
+                    <div style="font-weight: 600; color: var(--primary); padding: 0.5rem;">Thu</div>
+                    <div style="font-weight: 600; color: var(--primary); padding: 0.5rem;">Fri</div>
+                    <div style="font-weight: 600; color: var(--primary); padding: 0.5rem;">Sat</div>
+                </div>
+                <div class="calendar-grid" id="calendarGrid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem;"></div>
+            </div>
+            <div class="content-section">
+                <h2 class="section-title" style="margin-bottom: 1rem;">Upcoming Jobs</h2>
+                <div class="jobs-list" id="upcomingJobsList">
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-alt"></i>
+                        <p>No upcoming jobs scheduled</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Messages Section -->
+        <section id="messages-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <h2 class="section-title" style="margin-bottom: 1.5rem;">Messages</h2>
+                <div class="chat-container">
+                    <div class="chat-sidebar" id="conversationsList">
+                        <div style="padding: 2rem; text-align: center; color: #888;">Loading conversations...</div>
+                    </div>
+                    <div class="chat-main">
+                        <div class="chat-header" id="chatHeader" style="display: none;">
+                            <div class="message-avatar" id="chatAvatar">--</div>
+                            <div>
+                                <div class="message-sender" id="chatName">Select a conversation</div>
+                                <div style="font-size: 0.85rem; color: #666;" id="chatJobTitle"></div>
+                            </div>
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="empty-state">
+                                <i class="fas fa-comments"></i>
+                                <p>Select a conversation to view messages</p>
+                            </div>
+                        </div>
+                        <div class="chat-input" id="chatInputArea" style="display: none;">
+                            <input type="text" class="form-input" id="messageInput" placeholder="Type a message..." onkeypress="if(event.key==='Enter')sendChatMessage()">
+                            <button class="btn btn-primary" onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Your Reviews</h2>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--accent);" id="averageRating">0.0</div>
+                        <div>
+                            <div id="ratingStars" style="color: var(--accent);"></div>
+                            <div style="font-size: 0.9rem; color: #666;"><span id="totalReviews">0</span> reviews</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="reviewsList">
+                    <div class="empty-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading reviews...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Verification Section -->
+        <section id="verification-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <h2 class="section-title">Verification Status</h2>
+                <p style="margin: 1rem 0 2rem; color: var(--text-light);">Complete all verification steps to get the Verified Pro badge and increase your visibility to customers.</p>
+                <div class="verification-steps" id="verificationSteps">
+                    <div class="empty-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading verification status...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content-section" id="uploadDocSection" style="display: none;">
+                <h2 class="section-title">Upload Documents</h2>
+                <div class="upload-area" onclick="document.getElementById('docUpload').click()">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Drop files here or click to upload</h3>
+                    <p style="color: #666; margin-top: 0.5rem;">PDF, JPG, PNG (Max 10MB)</p>
+                    <input type="file" id="docUpload" style="display: none;" accept=".pdf,.jpg,.jpeg,.png" onchange="handleDocUpload(event)">
+                </div>
+                <div id="uploadedDocs" style="margin-top: 1rem;"></div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <h2 class="section-title">Profile Information</h2>
+                <form id="profileForm" onsubmit="saveProfile(event)">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" class="form-input" id="profileName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Business Name</label>
+                            <input type="text" class="form-input" id="profileBusiness">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Email *</label>
+                            <input type="email" class="form-input" id="profileEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" class="form-input" id="profilePhone">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Category *</label>
+                            <select class="form-select" id="profileCategory" required>
+                                <option value="">Select category</option>
+                                <option value="General Contractor">General Contractor</option>
+                                <option value="Electrician">Electrician</option>
+                                <option value="Plumber">Plumber</option>
+                                <option value="Carpenter">Carpenter</option>
+                                <option value="Painter">Painter</option>
+                                <option value="Roofer">Roofer</option>
+                                <option value="Landscaper">Landscaper</option>
+                                <option value="Auto Mechanic">Auto Mechanic</option>
+                                <option value="Cleaner">Cleaner</option>
+                                <option value="HVAC Technician">HVAC Technician</option>
+                                <option value="Mover">Mover</option>
+                                <option value="Security">Security</option>
+                                <option value="Mason">Mason</option>
+                                <option value="Welder">Welder</option>
+                                <option value="Tiler">Tiler</option>
+                                <option value="Pest Control">Pest Control</option>
+                                <option value="Pool Service">Pool Service</option>
+                                <option value="Appliance Repair">Appliance Repair</option>
+                                <option value="Catering">Catering</option>
+                                <option value="Photography">Photography</option>
+                                <option value="DJ & Entertainment">DJ & Entertainment</option>
+                                <option value="Hair & Beauty">Hair & Beauty</option>
+                                <option value="Barber">Barber</option>
+                                <option value="Makeup Artist">Makeup Artist</option>
+                                <option value="Tailor">Tailor</option>
+                                <option value="IT & Tech Support">IT & Tech Support</option>
+                                <option value="Tutor">Tutor</option>
+                                <option value="Personal Trainer">Personal Trainer</option>
+                                <option value="Pet Services">Pet Services</option>
+                                <option value="Event Planning">Event Planning</option>
+                                <option value="Interior Design">Interior Design</option>
+                                <option value="Window Tinting">Window Tinting</option>
+                                <option value="Solar Installation">Solar Installation</option>
+                                <option value="Flooring">Flooring</option>
+                                <option value="Fencing">Fencing</option>
+                                <option value="Pressure Washing">Pressure Washing</option>
+                                <option value="Handyman">Handyman</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Location *</label>
+                            <select class="form-select" id="profileLocation" required>
+                                <option value="">Select location</option>
+                                <option value="Anguilla">Anguilla</option>
+                                <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+                                <option value="Aruba">Aruba</option>
+                                <option value="Bahamas">Bahamas</option>
+                                <option value="Barbados">Barbados</option>
+                                <option value="Bermuda">Bermuda</option>
+                                <option value="Bonaire">Bonaire</option>
+                                <option value="British Virgin Islands">British Virgin Islands</option>
+                                <option value="Cayman Islands">Cayman Islands</option>
+                                <option value="Cuba">Cuba</option>
+                                <option value="Curacao">Curacao</option>
+                                <option value="Dominica">Dominica</option>
+                                <option value="Dominican Republic">Dominican Republic</option>
+                                <option value="Grenada">Grenada</option>
+                                <option value="Guadeloupe">Guadeloupe</option>
+                                <option value="Haiti">Haiti</option>
+                                <option value="Jamaica">Jamaica</option>
+                                <option value="Martinique">Martinique</option>
+                                <option value="Montserrat">Montserrat</option>
+                                <option value="Puerto Rico">Puerto Rico</option>
+                                <option value="Saba">Saba</option>
+                                <option value="St. Barthelemy">St. Barthelemy</option>
+                                <option value="St. Eustatius">St. Eustatius</option>
+                                <option value="St. Kitts & Nevis">St. Kitts & Nevis</option>
+                                <option value="St. Lucia">St. Lucia</option>
+                                <option value="St. Maarten">St. Maarten</option>
+                                <option value="St. Vincent & Grenadines">St. Vincent & Grenadines</option>
+                                <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                                <option value="Turks & Caicos">Turks & Caicos</option>
+                                <option value="US Virgin Islands">US Virgin Islands</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">About Your Business</label>
+                        <textarea class="form-textarea" id="profileBio" rows="4" placeholder="Describe your experience, skills, and services..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Hourly Rate (XCD)</label>
+                        <input type="number" class="form-input" id="profileRate" style="max-width: 200px;" min="0" step="5">
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Changes</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <h2 class="section-title">Notifications</h2>
+                <div class="settings-item">
+                    <div class="settings-item-info">
+                        <h4>New Job Requests</h4>
+                        <p>Get notified when new jobs match your skills</p>
+                    </div>
+                    <div class="toggle-switch active" onclick="toggleSetting(this, 'newJobs')"></div>
+                </div>
+                <div class="settings-item">
+                    <div class="settings-item-info">
+                        <h4>Quote Accepted</h4>
+                        <p>Notifications when your quotes are accepted</p>
+                    </div>
+                    <div class="toggle-switch active" onclick="toggleSetting(this, 'quoteAccepted')"></div>
+                </div>
+                <div class="settings-item">
+                    <div class="settings-item-info">
+                        <h4>Messages</h4>
+                        <p>New message notifications</p>
+                    </div>
+                    <div class="toggle-switch active" onclick="toggleSetting(this, 'messages')"></div>
+                </div>
+                <div class="settings-item">
+                    <div class="settings-item-info">
+                        <h4>Payment Received</h4>
+                        <p>Get notified when payments are processed</p>
+                    </div>
+                    <div class="toggle-switch active" onclick="toggleSetting(this, 'payments')"></div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">Payout Settings</h2>
+                <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">Choose how you want to receive your earnings.</p>
+                <div id="payoutSettingsDisplay" style="padding: 1.5rem; background: var(--bg); border-radius: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <i class="fas fa-wallet" id="payoutMethodIcon" style="font-size: 2rem; color: #666;"></i>
+                            <div>
+                                <div style="font-weight: 600;" id="payoutMethodName">Not configured</div>
+                                <div style="font-size: 0.85rem; color: #666;" id="payoutMethodDetail">Set up your payout method to receive payments</div>
+                            </div>
+                        </div>
+                        <span id="payoutStatus" style="color: #999;"><i class="fas fa-exclamation-circle"></i> Not set</span>
+                    </div>
+                    <button class="btn btn-primary btn-small" onclick="openPayoutSettings()">
+                        <i class="fas fa-cog"></i> Configure Payout Method
+                    </button>
+                </div>
+                <div style="margin-top: 1rem; padding: 1rem; background: #fff3e0; border-radius: 10px; border-left: 4px solid #FF9800;">
+                    <div style="font-weight: 600; color: #e65100; margin-bottom: 0.5rem;"><i class="fas fa-info-circle"></i> Platform Fee</div>
+                    <p style="font-size: 0.85rem; color: #666; margin: 0;">CariCom Pros charges a 10% platform fee on all completed jobs. You receive 90% of the job amount.</p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">Security</h2>
+                <div class="settings-item">
+                    <div class="settings-item-info">
+                        <h4>Change Password</h4>
+                        <p>Update your account password</p>
+                    </div>
+                    <button class="btn btn-outline btn-small" onclick="showChangePasswordModal()">Change</button>
+                </div>
+                <div class="settings-item">
+                    <div class="settings-item-info">
+                        <h4>Two-Factor Authentication</h4>
+                        <p>Add extra security to your account</p>
+                    </div>
+                    <button class="btn btn-primary btn-small" onclick="setup2FA()">Enable</button>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">Availability</h2>
+                <div class="settings-item">
+                    <div class="settings-item-info">
+                        <h4>Currently Available</h4>
+                        <p>Show as available for new jobs</p>
+                    </div>
+                    <div class="toggle-switch active" id="availabilityToggle" onclick="toggleAvailability(this)"></div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                <button class="btn btn-danger" onclick="deleteAccount()"><i class="fas fa-trash"></i> Delete Account</button>
+            </div>
+        </section>
+
+        <!-- My Listings Section (Marketplace) -->
+        <section id="my-listings-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">My Listings</h2>
+                    <button class="btn btn-primary" onclick="openCreateListingModal()">
+                        <i class="fas fa-plus"></i> New Listing
+                    </button>
+                </div>
+                <!-- Listings Stats -->
+                <div class="stats-grid" style="margin-bottom: 1.5rem;">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(45deg, var(--success), #66BB6A); color: white;">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-details">
+                            <div class="stat-value" id="activeListingsCount">0</div>
+                            <div class="stat-label">Active Listings</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(45deg, var(--info), #42A5F5); color: white;">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="stat-details">
+                            <div class="stat-value" id="soldListingsCount">0</div>
+                            <div class="stat-label">Sold Items</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(45deg, var(--accent), var(--accent-light)); color: var(--primary);">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-details">
+                            <div class="stat-value" id="totalListingViews">0</div>
+                            <div class="stat-label">Total Views</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listings Grid -->
+                <div id="myListingsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <!-- Listings will be loaded here -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="noListingsState" class="empty-state" style="display: none;">
+                    <i class="fas fa-store"></i>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">No listings yet</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Start selling by creating your first listing!</p>
+                    <button class="btn btn-primary" onclick="openCreateListingModal()">
+                        <i class="fas fa-plus"></i> Create Listing
+                    </button>
+                </div>
+
+                <!-- Loading State -->
+                <div id="listingsLoading" class="empty-state">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading your listings...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Create Listing Modal -->
+    <div class="modal" id="createListingModal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2><i class="fas fa-plus-circle" style="color: var(--accent);"></i> Create New Listing</h2>
+                <button class="modal-close" onclick="closeCreateListingModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="createListingForm" onsubmit="submitListing(event)">
+                    <div class="form-group">
+                        <label class="form-label">Title *</label>
+                        <input type="text" class="form-input" id="listingTitle" placeholder="What are you selling?" maxlength="100" required>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Price (XCD) *</label>
+                            <input type="number" class="form-input" id="listingPrice" placeholder="0 for free" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Category *</label>
+                            <select class="form-select" id="listingCategory" required>
+                                <option value="">Select category</option>
+                                <option value="Electronics & Phones">Electronics & Phones</option>
+                                <option value="Vehicles & Parts">Vehicles & Parts</option>
+                                <option value="Furniture & Home">Furniture & Home</option>
+                                <option value="Clothing & Accessories">Clothing & Accessories</option>
+                                <option value="Sports & Outdoors">Sports & Outdoors</option>
+                                <option value="Baby & Kids">Baby & Kids</option>
+                                <option value="Garden & Tools">Garden & Tools</option>
+                                <option value="Free Stuff">Free Stuff</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Condition *</label>
+                            <select class="form-select" id="listingCondition" required>
+                                <option value="">Select condition</option>
+                                <option value="New">New</option>
+                                <option value="Like New">Like New</option>
+                                <option value="Good">Good</option>
+                                <option value="Fair">Fair</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Location *</label>
+                            <select class="form-select" id="listingLocation" required>
+                                <option value="">Select location</option>
+                                <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+                                <option value="Anguilla">Anguilla</option>
+                                <option value="Bahamas">Bahamas</option>
+                                <option value="Barbados">Barbados</option>
+                                <option value="British Virgin Islands">British Virgin Islands</option>
+                                <option value="Cayman Islands">Cayman Islands</option>
+                                <option value="Dominica">Dominica</option>
+                                <option value="Dominican Republic">Dominican Republic</option>
+                                <option value="Grenada">Grenada</option>
+                                <option value="Jamaica">Jamaica</option>
+                                <option value="Puerto Rico">Puerto Rico</option>
+                                <option value="St. Kitts & Nevis">St. Kitts & Nevis</option>
+                                <option value="St. Lucia">St. Lucia</option>
+                                <option value="St. Maarten">St. Maarten</option>
+                                <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                                <option value="Turks & Caicos">Turks & Caicos</option>
+                                <option value="US Virgin Islands">US Virgin Islands</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Description *</label>
+                        <textarea class="form-textarea" id="listingDescription" rows="4" placeholder="Describe your item in detail..." maxlength="2000" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Photos (max 5)</label>
+                        <div class="upload-area" onclick="document.getElementById('listingImages').click()">
+                            <i class="fas fa-camera"></i>
+                            <p style="margin: 0; color: var(--text-light);">Click to add photos</p>
+                            <p style="margin: 0.25rem 0 0; font-size: 0.85rem; color: #999;">PNG, JPG up to 5MB each</p>
+                        </div>
+                        <input type="file" id="listingImages" multiple accept="image/*" style="display: none;" onchange="handleListingImageUpload(event)">
+                        <div id="listingImagePreview" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem; margin-top: 1rem;"></div>
+                    </div>
+
+                    <div class="modal-footer" style="padding: 0; border: none; margin-top: 1.5rem;">
+                        <button type="button" class="btn btn-outline" onclick="closeCreateListingModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="submitListingBtn">
+                            <i class="fas fa-check"></i> Create Listing
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Listing Modal -->
+    <div class="modal" id="editListingModal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit" style="color: var(--accent);"></i> Edit Listing</h2>
+                <button class="modal-close" onclick="closeEditListingModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editListingForm" onsubmit="updateListing(event)">
+                    <input type="hidden" id="editListingId">
+                    <div class="form-group">
+                        <label class="form-label">Title *</label>
+                        <input type="text" class="form-input" id="editListingTitle" maxlength="100" required>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Price (XCD) *</label>
+                            <input type="number" class="form-input" id="editListingPrice" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Category *</label>
+                            <select class="form-select" id="editListingCategory" required>
+                                <option value="">Select category</option>
+                                <option value="Electronics & Phones">Electronics & Phones</option>
+                                <option value="Vehicles & Parts">Vehicles & Parts</option>
+                                <option value="Furniture & Home">Furniture & Home</option>
+                                <option value="Clothing & Accessories">Clothing & Accessories</option>
+                                <option value="Sports & Outdoors">Sports & Outdoors</option>
+                                <option value="Baby & Kids">Baby & Kids</option>
+                                <option value="Garden & Tools">Garden & Tools</option>
+                                <option value="Free Stuff">Free Stuff</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Condition *</label>
+                            <select class="form-select" id="editListingCondition" required>
+                                <option value="">Select condition</option>
+                                <option value="New">New</option>
+                                <option value="Like New">Like New</option>
+                                <option value="Good">Good</option>
+                                <option value="Fair">Fair</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Location *</label>
+                            <select class="form-select" id="editListingLocation" required>
+                                <option value="">Select location</option>
+                                <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+                                <option value="Anguilla">Anguilla</option>
+                                <option value="Bahamas">Bahamas</option>
+                                <option value="Barbados">Barbados</option>
+                                <option value="British Virgin Islands">British Virgin Islands</option>
+                                <option value="Cayman Islands">Cayman Islands</option>
+                                <option value="Dominica">Dominica</option>
+                                <option value="Dominican Republic">Dominican Republic</option>
+                                <option value="Grenada">Grenada</option>
+                                <option value="Jamaica">Jamaica</option>
+                                <option value="Puerto Rico">Puerto Rico</option>
+                                <option value="St. Kitts & Nevis">St. Kitts & Nevis</option>
+                                <option value="St. Lucia">St. Lucia</option>
+                                <option value="St. Maarten">St. Maarten</option>
+                                <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                                <option value="Turks & Caicos">Turks & Caicos</option>
+                                <option value="US Virgin Islands">US Virgin Islands</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Description *</label>
+                        <textarea class="form-textarea" id="editListingDescription" rows="4" maxlength="2000" required></textarea>
+                    </div>
+
+                    <div class="modal-footer" style="padding: 0; border: none; margin-top: 1.5rem;">
+                        <button type="button" class="btn btn-outline" onclick="closeEditListingModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="updateListingBtn">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- CariCom Pros API Service -->
+    <script src="https://web.squarecdn.com/v1/square.js"></script>
+    <script src="js/api-service.js"></script>
+    <script src="js/payment-service.js"></script>
+    <script src="js/contractor-dashboard-script.js"></script>
+</body>
+</html>

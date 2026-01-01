@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="renoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="renoGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#renoBg)"/>
+
+  <!-- Top accent -->
+  <rect width="1080" height="6" fill="url(#renoGold)"/>
+
+  <!-- Badge -->
+  <g transform="translate(290, 80)">
+    <rect width="500" height="50" rx="25" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+    <text x="250" y="33" font-family="Arial, sans-serif" font-size="18" fill="#ffd700" text-anchor="middle">🏗️ REMOTE RENOVATION MADE EASY</text>
+  </g>
+
+  <!-- Before/After Visual -->
+  <g transform="translate(140, 180)">
+    <!-- Before -->
+    <g>
+      <rect width="380" height="280" rx="20" fill="#16213e"/>
+      <text x="190" y="35" font-family="Arial" font-size="16" fill="#888888" text-anchor="middle">BEFORE</text>
+      <rect x="20" y="50" width="340" height="180" rx="10" fill="#0f1628"/>
+      <text x="190" y="160" font-size="80" text-anchor="middle">🏚️</text>
+      <text x="190" y="260" font-family="Arial" font-size="14" fill="#666666" text-anchor="middle">Needs work...</text>
+    </g>
+
+    <!-- Arrow -->
+    <g transform="translate(400, 120)">
+      <text font-size="50" fill="#ffd700">→</text>
+    </g>
+
+    <!-- After -->
+    <g transform="translate(420, 0)">
+      <rect width="380" height="280" rx="20" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="190" y="35" font-family="Arial" font-size="16" fill="#ffd700" text-anchor="middle">AFTER</text>
+      <rect x="20" y="50" width="340" height="180" rx="10" fill="#1a2e1a"/>
+      <text x="190" y="160" font-size="80" text-anchor="middle">🏡</text>
+      <text x="190" y="260" font-family="Arial" font-size="14" fill="#ffd700" text-anchor="middle">Done by CariCom Pros!</text>
+    </g>
+  </g>
+
+  <!-- Headline -->
+  <text x="540" y="540" font-family="Arial, sans-serif" font-size="46" font-weight="bold" fill="#ffffff" text-anchor="middle">Renovate Your Property</text>
+  <text x="540" y="600" font-family="Arial, sans-serif" font-size="46" font-weight="bold" fill="url(#renoGold)" text-anchor="middle">From Abroad</text>
+
+  <!-- Subtext -->
+  <text x="540" y="670" font-family="Arial, sans-serif" font-size="22" fill="#888888" text-anchor="middle">Get quotes, track progress, and pay securely</text>
+  <text x="540" y="705" font-family="Arial, sans-serif" font-size="22" fill="#888888" text-anchor="middle">— all from your phone</text>
+
+  <!-- Services they can hire -->
+  <g transform="translate(100, 760)" font-family="Arial, sans-serif">
+    <g>
+      <rect width="170" height="120" rx="15" fill="#16213e"/>
+      <text x="85" y="55" font-size="36" text-anchor="middle">🔨</text>
+      <text x="85" y="95" font-size="14" fill="#ffffff" text-anchor="middle">Contractors</text>
+    </g>
+    <g transform="translate(190, 0)">
+      <rect width="170" height="120" rx="15" fill="#16213e"/>
+      <text x="85" y="55" font-size="36" text-anchor="middle">🎨</text>
+      <text x="85" y="95" font-size="14" fill="#ffffff" text-anchor="middle">Painters</text>
+    </g>
+    <g transform="translate(380, 0)">
+      <rect width="170" height="120" rx="15" fill="#16213e"/>
+      <text x="85" y="55" font-size="36" text-anchor="middle">🔧</text>
+      <text x="85" y="95" font-size="14" fill="#ffffff" text-anchor="middle">Plumbers</text>
+    </g>
+    <g transform="translate(570, 0)">
+      <rect width="170" height="120" rx="15" fill="#16213e"/>
+      <text x="85" y="55" font-size="36" text-anchor="middle">⚡</text>
+      <text x="85" y="95" font-size="14" fill="#ffffff" text-anchor="middle">Electricians</text>
+    </g>
+    <g transform="translate(760, 0)">
+      <rect width="170" height="120" rx="15" fill="#16213e"/>
+      <text x="85" y="55" font-size="36" text-anchor="middle">🏠</text>
+      <text x="85" y="95" font-size="14" fill="#ffffff" text-anchor="middle">Roofers</text>
+    </g>
+  </g>
+
+  <!-- Trust bar -->
+  <g transform="translate(200, 920)" font-family="Arial, sans-serif">
+    <text font-size="16" fill="#ffd700">🔒 Escrow Protection</text>
+    <text x="220" font-size="16" fill="#888888">•</text>
+    <text x="250" font-size="16" fill="#ffd700">📸 Photo Updates</text>
+    <text x="450" font-size="16" fill="#888888">•</text>
+    <text x="480" font-size="16" fill="#ffd700">✓ Verified Pros</text>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(290, 970)">
+    <rect width="500" height="70" rx="35" fill="url(#renoGold)"/>
+    <text x="250" y="46" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Start Your Project Today</text>
+  </g>
+
+  <!-- Website -->
+  <text x="540" y="1060" font-family="Arial, sans-serif" font-size="18" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+</svg>

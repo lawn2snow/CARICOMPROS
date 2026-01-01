@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="trustBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="trustGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+    <linearGradient id="trustGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00b894"/>
+      <stop offset="100%" style="stop-color:#55efc4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1080" fill="url(#trustBg)"/>
+
+  <!-- Shield Icon -->
+  <g transform="translate(440, 60)">
+    <path d="M100 0 L200 40 L200 120 C200 180 150 220 100 240 C50 220 0 180 0 120 L0 40 Z" fill="url(#trustGold)"/>
+    <text x="100" y="140" font-size="60" text-anchor="middle">🛡️</text>
+  </g>
+
+  <!-- Header -->
+  <text x="540" y="340" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="#ffffff" text-anchor="middle">Your Safety is</text>
+  <text x="540" y="400" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="url(#trustGold)" text-anchor="middle">Our Priority</text>
+
+  <text x="540" y="460" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">Built-in protections for every transaction</text>
+
+  <!-- Trust Features Grid -->
+  <g transform="translate(80, 510)">
+    <!-- Row 1 -->
+    <g>
+      <rect width="280" height="150" rx="15" fill="#16213e" stroke="#00b894" stroke-width="2"/>
+      <text x="140" y="55" font-size="36" text-anchor="middle">🔒</text>
+      <text x="140" y="95" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Escrow Protection</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="12" fill="#888888" text-anchor="middle">Funds held securely until</text>
+      <text x="140" y="138" font-family="Arial, sans-serif" font-size="12" fill="#888888" text-anchor="middle">job is complete</text>
+    </g>
+
+    <g transform="translate(310, 0)">
+      <rect width="280" height="150" rx="15" fill="#16213e" stroke="#00b894" stroke-width="2"/>
+      <text x="140" y="55" font-size="36" text-anchor="middle">✓</text>
+      <text x="140" y="95" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Verified Pros</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="12" fill="#888888" text-anchor="middle">ID and background</text>
+      <text x="140" y="138" font-family="Arial, sans-serif" font-size="12" fill="#888888" text-anchor="middle">checks completed</text>
+    </g>
+
+    <g transform="translate(620, 0)">
+      <rect width="280" height="150" rx="15" fill="#16213e" stroke="#00b894" stroke-width="2"/>
+      <text x="140" y="55" font-size="36" text-anchor="middle">⭐</text>
+      <text x="140" y="95" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Real Reviews</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="12" fill="#888888" text-anchor="middle">Only verified customers</text>
+      <text x="140" y="138" font-family="Arial, sans-serif" font-size="12" fill="#888888" text-anchor="middle">can leave reviews</text>
+    </g>
+
+    <!-- Row 2 -->
+    <g transform="translate(0, 180)">
+      <rect width="280" height="150" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="140" y="55" font-size="36" text-anchor="middle">💬</text>
+      <text x="140" y="95" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">In-App Messaging</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="12" fill="#888888" text-anchor="middle">All communication</text>
+      <text x="140" y="138" font-family="Arial, sans-serif" font-size="12" fill="#888888" text-anchor="middle">tracked and saved</text>
+    </g>
+
+    <g transform="translate(310, 180)">
+      <rect width="280" height="150" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="140" y="55" font-size="36" text-anchor="middle">🆘</text>
+      <text x="140" y="95" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Dispute Support</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="12" fill="#888888" text-anchor="middle">24/7 help if any</text>
+      <text x="140" y="138" font-family="Arial, sans-serif" font-size="12" fill="#888888" text-anchor="middle">issues arise</text>
+    </g>
+
+    <g transform="translate(620, 180)">
+      <rect width="280" height="150" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="140" y="55" font-size="36" text-anchor="middle">📋</text>
+      <text x="140" y="95" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Job Tracking</text>
+      <text x="140" y="120" font-family="Arial, sans-serif" font-size="12" fill="#888888" text-anchor="middle">Complete visibility</text>
+      <text x="140" y="138" font-family="Arial, sans-serif" font-size="12" fill="#888888" text-anchor="middle">of all job details</text>
+    </g>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(290, 920)">
+    <rect width="500" height="65" rx="32" fill="url(#trustGold)"/>
+    <text x="250" y="43" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Hire with Confidence</text>
+  </g>
+
+  <text x="540" y="1030" font-family="Arial, sans-serif" font-size="20" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+</svg>

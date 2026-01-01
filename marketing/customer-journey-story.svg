@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="custJBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="50%" style="stop-color:#16213e"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="custJGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1920" fill="url(#custJBg)"/>
+
+  <!-- Header -->
+  <g transform="translate(290, 80)">
+    <rect width="500" height="55" rx="27" fill="url(#custJGold)"/>
+    <text x="250" y="37" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e" text-anchor="middle">YOUR CUSTOMER JOURNEY</text>
+  </g>
+
+  <text x="540" y="200" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle">From Problem</text>
+  <text x="540" y="260" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="url(#custJGold)" text-anchor="middle">to Solution</text>
+
+  <!-- Journey Steps -->
+  <g transform="translate(100, 320)">
+    <!-- Step 1 -->
+    <g>
+      <circle cx="50" cy="100" r="50" fill="url(#custJGold)"/>
+      <text x="50" y="115" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#1a1a2e" text-anchor="middle">1</text>
+      <rect x="120" width="760" height="180" rx="25" fill="#16213e"/>
+      <text x="500" y="50" font-size="60" text-anchor="middle">🚿</text>
+      <text x="500" y="100" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle">You Have a Problem</text>
+      <text x="500" y="140" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">"My bathroom faucet is leaking and I need</text>
+      <text x="500" y="165" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">a plumber fast!"</text>
+    </g>
+
+    <!-- Connector -->
+    <line x1="50" y1="170" x2="50" y2="240" stroke="#ffd700" stroke-width="3" stroke-dasharray="8,4"/>
+
+    <!-- Step 2 -->
+    <g transform="translate(0, 220)">
+      <circle cx="50" cy="100" r="50" fill="url(#custJGold)"/>
+      <text x="50" y="115" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#1a1a2e" text-anchor="middle">2</text>
+      <rect x="120" width="760" height="180" rx="25" fill="#16213e"/>
+      <text x="500" y="50" font-size="60" text-anchor="middle">📝</text>
+      <text x="500" y="100" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle">Post Your Job</text>
+      <text x="500" y="140" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">Describe the issue in 2 minutes. Add photos</text>
+      <text x="500" y="165" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">if you want. It's free to post!</text>
+    </g>
+
+    <line x1="50" y1="390" x2="50" y2="460" stroke="#ffd700" stroke-width="3" stroke-dasharray="8,4"/>
+
+    <!-- Step 3 -->
+    <g transform="translate(0, 440)">
+      <circle cx="50" cy="100" r="50" fill="url(#custJGold)"/>
+      <text x="50" y="115" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#1a1a2e" text-anchor="middle">3</text>
+      <rect x="120" width="760" height="180" rx="25" fill="#16213e"/>
+      <text x="500" y="50" font-size="60" text-anchor="middle">💰</text>
+      <text x="500" y="100" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle">Receive Quotes</text>
+      <text x="500" y="140" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">Verified plumbers send you quotes.</text>
+      <text x="500" y="165" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">Compare prices, reviews, and availability.</text>
+    </g>
+
+    <line x1="50" y1="610" x2="50" y2="680" stroke="#ffd700" stroke-width="3" stroke-dasharray="8,4"/>
+
+    <!-- Step 4 -->
+    <g transform="translate(0, 660)">
+      <circle cx="50" cy="100" r="50" fill="url(#custJGold)"/>
+      <text x="50" y="115" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#1a1a2e" text-anchor="middle">4</text>
+      <rect x="120" width="760" height="180" rx="25" fill="#16213e"/>
+      <text x="500" y="50" font-size="60" text-anchor="middle">🤝</text>
+      <text x="500" y="100" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle">Choose &amp; Book</text>
+      <text x="500" y="140" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">Pick the best pro for you. Chat to confirm</text>
+      <text x="500" y="165" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">details. Pay securely through the platform.</text>
+    </g>
+
+    <line x1="50" y1="830" x2="50" y2="900" stroke="#ffd700" stroke-width="3" stroke-dasharray="8,4"/>
+
+    <!-- Step 5 -->
+    <g transform="translate(0, 880)">
+      <circle cx="50" cy="100" r="50" fill="url(#custJGold)"/>
+      <text x="50" y="115" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#1a1a2e" text-anchor="middle">5</text>
+      <rect x="120" width="760" height="180" rx="25" fill="#16213e"/>
+      <text x="500" y="50" font-size="60" text-anchor="middle">🔧</text>
+      <text x="500" y="100" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffffff" text-anchor="middle">Job Gets Done</text>
+      <text x="500" y="140" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">Your pro arrives and fixes the problem.</text>
+      <text x="500" y="165" font-family="Arial, sans-serif" font-size="18" fill="#888888" text-anchor="middle">Track progress through the app.</text>
+    </g>
+
+    <line x1="50" y1="1050" x2="50" y2="1120" stroke="#ffd700" stroke-width="3" stroke-dasharray="8,4"/>
+
+    <!-- Step 6 - Success -->
+    <g transform="translate(0, 1100)">
+      <circle cx="50" cy="100" r="50" fill="url(#custJGold)"/>
+      <text x="50" y="115" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#1a1a2e" text-anchor="middle">✓</text>
+      <rect x="120" width="760" height="180" rx="25" fill="url(#custJGold)"/>
+      <text x="500" y="50" font-size="60" text-anchor="middle">😊</text>
+      <text x="500" y="100" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Problem Solved!</text>
+      <text x="500" y="140" font-family="Arial, sans-serif" font-size="18" fill="#1a1a2e" text-anchor="middle">Confirm satisfaction, leave a review,</text>
+      <text x="500" y="165" font-family="Arial, sans-serif" font-size="18" fill="#1a1a2e" text-anchor="middle">payment released to pro. Easy!</text>
+    </g>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(140, 1720)">
+    <rect width="800" height="90" rx="45" fill="url(#custJGold)"/>
+    <text x="400" y="58" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Start Your Journey</text>
+  </g>
+
+  <text x="540" y="1870" font-family="Arial, sans-serif" font-size="24" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+</svg>

@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="countryBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#0f1628"/>
+    </linearGradient>
+    <linearGradient id="countryGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#countryBg)"/>
+
+  <!-- Header -->
+  <text x="540" y="90" font-family="Arial, sans-serif" font-size="22" fill="#ffd700" text-anchor="middle" letter-spacing="4">WHEREVER YOU ARE</text>
+
+  <!-- Main headline -->
+  <text x="540" y="170" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle">We Connect You</text>
+  <text x="540" y="230" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="url(#countryGold)" text-anchor="middle">Back Home</text>
+
+  <!-- Country cards -->
+  <g transform="translate(90, 290)" font-family="Arial, sans-serif">
+    <!-- USA -->
+    <g>
+      <rect width="280" height="180" rx="20" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="140" y="70" font-size="60" text-anchor="middle">🇺🇸</text>
+      <text x="140" y="115" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">United States</text>
+      <text x="140" y="145" font-size="14" fill="#888888" text-anchor="middle">New York • Miami • Atlanta</text>
+      <text x="140" y="165" font-size="14" fill="#ffd700" text-anchor="middle">→ Caribbean</text>
+    </g>
+
+    <!-- UK -->
+    <g transform="translate(310, 0)">
+      <rect width="280" height="180" rx="20" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="140" y="70" font-size="60" text-anchor="middle">🇬🇧</text>
+      <text x="140" y="115" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">United Kingdom</text>
+      <text x="140" y="145" font-size="14" fill="#888888" text-anchor="middle">London • Birmingham • Manchester</text>
+      <text x="140" y="165" font-size="14" fill="#ffd700" text-anchor="middle">→ Caribbean</text>
+    </g>
+
+    <!-- Canada -->
+    <g transform="translate(620, 0)">
+      <rect width="280" height="180" rx="20" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="140" y="70" font-size="60" text-anchor="middle">🇨🇦</text>
+      <text x="140" y="115" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">Canada</text>
+      <text x="140" y="145" font-size="14" fill="#888888" text-anchor="middle">Toronto • Montreal • Calgary</text>
+      <text x="140" y="165" font-size="14" fill="#ffd700" text-anchor="middle">→ Caribbean</text>
+    </g>
+  </g>
+
+  <!-- Arrow down -->
+  <text x="540" y="530" font-size="50" fill="#ffd700" text-anchor="middle">↓</text>
+
+  <!-- Caribbean destinations -->
+  <g transform="translate(140, 570)" font-family="Arial, sans-serif">
+    <rect width="800" height="300" rx="30" fill="#16213e"/>
+    <rect width="800" height="6" rx="3" fill="url(#countryGold)"/>
+
+    <text x="400" y="60" font-size="24" fill="#ffd700" text-anchor="middle" letter-spacing="3">30+ CARIBBEAN ISLANDS</text>
+
+    <!-- Island flags grid -->
+    <g transform="translate(50, 100)">
+      <g>
+        <text font-size="36">🇯🇲</text>
+        <text x="50" y="0" font-size="14" fill="#ffffff">Jamaica</text>
+      </g>
+      <g transform="translate(175, 0)">
+        <text font-size="36">🇹🇹</text>
+        <text x="50" y="0" font-size="14" fill="#ffffff">Trinidad</text>
+      </g>
+      <g transform="translate(350, 0)">
+        <text font-size="36">🇧🇧</text>
+        <text x="50" y="0" font-size="14" fill="#ffffff">Barbados</text>
+      </g>
+      <g transform="translate(525, 0)">
+        <text font-size="36">🇬🇾</text>
+        <text x="50" y="0" font-size="14" fill="#ffffff">Guyana</text>
+      </g>
+
+      <g transform="translate(0, 70)">
+        <text font-size="36">🇧🇸</text>
+        <text x="50" y="0" font-size="14" fill="#ffffff">Bahamas</text>
+      </g>
+      <g transform="translate(175, 70)">
+        <text font-size="36">🇱🇨</text>
+        <text x="50" y="0" font-size="14" fill="#ffffff">St. Lucia</text>
+      </g>
+      <g transform="translate(350, 70)">
+        <text font-size="36">🇦🇬</text>
+        <text x="50" y="0" font-size="14" fill="#ffffff">Antigua</text>
+      </g>
+      <g transform="translate(525, 70)">
+        <text font-size="36">🇬🇩</text>
+        <text x="50" y="0" font-size="14" fill="#ffffff">Grenada</text>
+      </g>
+    </g>
+
+    <text x="400" y="270" font-size="14" fill="#888888" text-anchor="middle">+ Dominica, St. Kitts, St. Vincent, Cayman Islands & more...</text>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(290, 920)">
+    <rect width="500" height="70" rx="35" fill="url(#countryGold)"/>
+    <text x="250" y="46" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Find a Pro Back Home</text>
+  </g>
+
+  <!-- Website -->
+  <text x="540" y="1040" font-family="Arial, sans-serif" font-size="20" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+</svg>

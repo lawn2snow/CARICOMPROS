@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="proBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#16213e"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="proGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+    <filter id="proGlow">
+      <feGaussianBlur stdDeviation="15" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#proBg)"/>
+
+  <!-- Gold accent top -->
+  <rect width="1080" height="8" fill="url(#proGold)"/>
+
+  <!-- Decorative elements -->
+  <circle cx="950" cy="150" r="200" fill="#ffd700" opacity="0.03"/>
+  <circle cx="130" cy="950" r="200" fill="#ffd700" opacity="0.03"/>
+
+  <!-- Header Badge -->
+  <g transform="translate(290, 80)">
+    <rect width="500" height="60" rx="30" fill="url(#proGold)"/>
+    <text x="250" y="40" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">🔨 NOW RECRUITING PROS</text>
+  </g>
+
+  <!-- Main Headline -->
+  <text x="540" y="240" font-family="Arial, sans-serif" font-size="58" font-weight="bold" fill="#ffffff" text-anchor="middle">Grow Your</text>
+  <text x="540" y="310" font-family="Arial, sans-serif" font-size="58" font-weight="bold" fill="url(#proGold)" text-anchor="middle">Business</text>
+  <text x="540" y="380" font-family="Arial, sans-serif" font-size="58" font-weight="bold" fill="#ffffff" text-anchor="middle">With Us</text>
+
+  <!-- Sub headline -->
+  <text x="540" y="440" font-family="Arial, sans-serif" font-size="24" fill="#888888" text-anchor="middle">Join verified professionals on CariCom Pros</text>
+
+  <!-- Benefits -->
+  <g transform="translate(140, 500)">
+    <!-- Benefit 1 -->
+    <g>
+      <rect width="380" height="120" rx="20" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <circle cx="60" cy="60" r="35" fill="url(#proGold)"/>
+      <text x="60" y="70" font-size="28" text-anchor="middle">💰</text>
+      <text x="120" y="50" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">More Customers</text>
+      <text x="120" y="80" font-family="Arial, sans-serif" font-size="14" fill="#888888">Get matched with local jobs</text>
+    </g>
+    <!-- Benefit 2 -->
+    <g transform="translate(420, 0)">
+      <rect width="380" height="120" rx="20" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <circle cx="60" cy="60" r="35" fill="url(#proGold)"/>
+      <text x="60" y="70" font-size="28" text-anchor="middle">📱</text>
+      <text x="120" y="50" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Easy Quoting</text>
+      <text x="120" y="80" font-family="Arial, sans-serif" font-size="14" fill="#888888">Quote jobs from your phone</text>
+    </g>
+    <!-- Benefit 3 -->
+    <g transform="translate(0, 140)">
+      <rect width="380" height="120" rx="20" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <circle cx="60" cy="60" r="35" fill="url(#proGold)"/>
+      <text x="60" y="70" font-size="28" text-anchor="middle">🔒</text>
+      <text x="120" y="50" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Secure Payments</text>
+      <text x="120" y="80" font-family="Arial, sans-serif" font-size="14" fill="#888888">Get paid safely, every time</text>
+    </g>
+    <!-- Benefit 4 -->
+    <g transform="translate(420, 140)">
+      <rect width="380" height="120" rx="20" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <circle cx="60" cy="60" r="35" fill="url(#proGold)"/>
+      <text x="60" y="70" font-size="28" text-anchor="middle">⭐</text>
+      <text x="120" y="50" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Build Reviews</text>
+      <text x="120" y="80" font-family="Arial, sans-serif" font-size="14" fill="#888888">Grow your reputation</text>
+    </g>
+  </g>
+
+  <!-- Stats -->
+  <g transform="translate(200, 800)" font-family="Arial, sans-serif">
+    <g text-anchor="middle">
+      <text x="0" y="0" font-size="48" font-weight="bold" fill="#ffd700">30+</text>
+      <text x="0" y="30" font-size="16" fill="#888888">Islands</text>
+    </g>
+    <g text-anchor="middle" transform="translate(220, 0)">
+      <text x="0" y="0" font-size="48" font-weight="bold" fill="#ffd700">50+</text>
+      <text x="0" y="30" font-size="16" fill="#888888">Categories</text>
+    </g>
+    <g text-anchor="middle" transform="translate(440, 0)">
+      <text x="0" y="0" font-size="48" font-weight="bold" fill="#ffd700">FREE</text>
+      <text x="0" y="30" font-size="16" fill="#888888">To Join</text>
+    </g>
+  </g>
+
+  <!-- CTA Button -->
+  <g transform="translate(240, 910)">
+    <rect width="600" height="90" rx="45" fill="url(#proGold)" filter="url(#proGlow)"/>
+    <text x="300" y="58" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Join as a Pro Today</text>
+  </g>
+
+  <!-- Website -->
+  <text x="540" y="1050" font-family="Arial, sans-serif" font-size="22" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+</svg>

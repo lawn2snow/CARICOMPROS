@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Contractors - CariCom Pros</title>
+    <meta name="description" content="Find verified contractors across the Caribbean. Browse professionals for plumbing, electrical, cleaning, and more.">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #ffd700;
+            --accent-light: #ffed4e;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --error: #f44336;
+            --text: #333;
+            --text-light: #666;
+            --bg: #f8f9fa;
+            --white: #ffffff;
+            --shadow: rgba(0,0,0,0.1);
+            --radius: 15px;
+            --verified: #00bfa5;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--primary);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--white);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0;
+        }
+        .logo-image {
+            height: 120px !important;
+            max-width: 90vw !important;
+            width: auto !important;
+            object-fit: contain;
+        }
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            color: var(--primary);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        /* Main Content */
+        .main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 2rem;
+        }
+        .page-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .page-subtitle {
+            color: var(--text-light);
+        }
+
+        /* Search/Filter Bar */
+        .filter-bar {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 10px var(--shadow);
+            margin-bottom: 2rem;
+        }
+        .filter-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .form-input, .form-select {
+            padding: 0.875rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .form-input { flex: 1; min-width: 200px; }
+        .form-select { min-width: 180px; }
+
+        /* Contractors Grid */
+        .contractors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .contractor-card {
+            background: var(--white);
+            border: 1px solid #e9ecef;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        .contractor-card:hover {
+            box-shadow: 0 8px 30px var(--shadow);
+            transform: translateY(-5px);
+        }
+        .contractor-header {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .contractor-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        .contractor-info { flex: 1; }
+        .contractor-name {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .verified-badge {
+            background: var(--verified);
+            color: var(--white);
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .contractor-category {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .contractor-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .stars { color: var(--accent); }
+        .rating-text { font-size: 0.85rem; color: var(--text-light); }
+        .contractor-stats {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-top: 1px solid #e9ecef;
+            border-bottom: 1px solid #e9ecef;
+            margin: 1rem 0;
+        }
+        .stat { text-align: center; }
+        .stat-value { font-weight: 600; color: var(--primary); }
+        .stat-label { font-size: 0.8rem; color: var(--text-light); }
+        .contractor-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .service-tag {
+            background: var(--bg);
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+        .contractor-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+        .contractor-actions .btn { flex: 1; justify-content: center; }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            grid-column: 1 / -1;
+        }
+        .empty-icon { font-size: 4rem; color: #ddd; margin-bottom: 1rem; }
+        .empty-title { font-size: 1.5rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .empty-text { color: var(--text-light); margin-bottom: 1.5rem; }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            grid-column: 1 / -1;
+        }
+        .loading i { font-size: 2rem; color: var(--accent); margin-bottom: 1rem; }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: var(--white);
+            border-radius: var(--radius);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-title { font-size: 1.25rem; font-weight: 600; color: var(--primary); }
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        .modal-body { padding: 1.5rem; }
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header { padding: 1rem; }
+            .header-actions .btn-outline { display: none; }
+            .main { padding: 1rem; }
+            .page-title { font-size: 1.5rem; }
+            .filter-row { flex-direction: column; }
+            .form-input, .form-select { width: 100%; }
+            .contractors-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo" style="display: flex; align-items: center; justify-content: center;">
+                <img src="/images/caricompros-logo.png" alt="CariCom Pros" class="logo-image" style="height: 55px; width: auto;">
+            </a>
+            <div class="header-actions">
+                <a href="/" class="btn btn-outline btn-small">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="/customers" class="btn btn-primary btn-small" id="dashboardBtn">
+                    <i class="fas fa-user"></i> Sign In
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title" id="pageTitle">Find Contractors</h1>
+            <p class="page-subtitle" id="pageSubtitle">Browse verified professionals across the Caribbean</p>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <div class="filter-row">
+                <input type="text" class="form-input" id="searchInput" placeholder="Search by name or service...">
+                <select class="form-select" id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option>General Contractor</option>
+                    <option>Electrician</option>
+                    <option>Plumber</option>
+                    <option>Carpenter</option>
+                    <option>Painter</option>
+                    <option>Roofer</option>
+                    <option>Landscaper</option>
+                    <option>Auto Mechanic</option>
+                    <option>Cleaner</option>
+                    <option>HVAC Technician</option>
+                    <option>Mover</option>
+                    <option>Security</option>
+                    <option>Mason</option>
+                    <option>Welder</option>
+                    <option>Tiler</option>
+                    <option>Pest Control</option>
+                    <option>Pool Service</option>
+                    <option>Appliance Repair</option>
+                    <option>Catering</option>
+                    <option>Photography</option>
+                    <option>DJ & Entertainment</option>
+                    <option>Hair & Beauty</option>
+                    <option>Barber</option>
+                    <option>Makeup Artist</option>
+                    <option>Tailor</option>
+                    <option>IT & Tech Support</option>
+                    <option>Tutor</option>
+                    <option>Personal Trainer</option>
+                    <option>Pet Services</option>
+                    <option>Event Planning</option>
+                    <option>Interior Design</option>
+                    <option>Window Tinting</option>
+                    <option>Solar Installation</option>
+                    <option>Flooring</option>
+                    <option>Fencing</option>
+                    <option>Pressure Washing</option>
+                    <option>Handyman</option>
+                </select>
+                <select class="form-select" id="locationFilter">
+                    <option value="">All Locations</option>
+                    <option>Anguilla</option>
+                    <option>Antigua & Barbuda</option>
+                    <option>Aruba</option>
+                    <option>Bahamas</option>
+                    <option>Barbados</option>
+                    <option>Bermuda</option>
+                    <option>Bonaire</option>
+                    <option>British Virgin Islands</option>
+                    <option>Cayman Islands</option>
+                    <option>Cuba</option>
+                    <option>Curacao</option>
+                    <option>Dominica</option>
+                    <option>Dominican Republic</option>
+                    <option>Grenada</option>
+                    <option>Guadeloupe</option>
+                    <option>Haiti</option>
+                    <option>Jamaica</option>
+                    <option>Martinique</option>
+                    <option>Montserrat</option>
+                    <option>Puerto Rico</option>
+                    <option>Saba</option>
+                    <option>St. Barthelemy</option>
+                    <option>St. Eustatius</option>
+                    <option>St. Kitts & Nevis</option>
+                    <option>St. Lucia</option>
+                    <option>St. Maarten</option>
+                    <option>St. Vincent & Grenadines</option>
+                    <option>Trinidad & Tobago</option>
+                    <option>Turks & Caicos</option>
+                    <option>US Virgin Islands</option>
+                </select>
+                <button class="btn btn-primary" onclick="searchContractors()">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </div>
+
+        <!-- Contractors Grid -->
+        <div class="contractors-grid" id="contractorsGrid">
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading contractors...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Profile Modal -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalContractorName">Contractor Name</h3>
+                <button class="modal-close" onclick="closeModal('profileModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Populated by JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('profileModal')">Close</button>
+                <button class="btn btn-primary" id="modalQuoteBtn">
+                    <i class="fas fa-paper-plane"></i> Request Quote
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api-service.js"></script>
+    <script>
+        let contractors = [];
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('Browse page initialized');
+
+            // Check for stored filters
+            const storedCategory = localStorage.getItem('hk_search_category');
+            const storedSearch = localStorage.getItem('hk_search_term');
+
+            if (storedCategory) {
+                document.getElementById('categoryFilter').value = storedCategory;
+                document.getElementById('pageTitle').textContent = storedCategory + ' Contractors';
+                localStorage.removeItem('hk_search_category');
+            }
+
+            if (storedSearch) {
+                document.getElementById('searchInput').value = storedSearch;
+                localStorage.removeItem('hk_search_term');
+            }
+
+            // Check if logged in
+            if (CariComProsAPI.isLoggedIn()) {
+                const userType = CariComProsAPI.getUserType();
+                const dashBtn = document.getElementById('dashboardBtn');
+                dashBtn.href = userType === 'contractor' ? '/contractors' : '/customers';
+                dashBtn.innerHTML = '<i class="fas fa-tachometer-alt"></i> Dashboard';
+            }
+
+            // Load contractors
+            await loadContractors();
+        });
+
+        async function loadContractors() {
+            const grid = document.getElementById('contractorsGrid');
+            grid.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i><p>Loading contractors...</p></div>';
+
+            try {
+                const filters = {
+                    category: document.getElementById('categoryFilter').value,
+                    location: document.getElementById('locationFilter').value,
+                    search: document.getElementById('searchInput').value.trim()
+                };
+
+                // Clean empty filters
+                Object.keys(filters).forEach(k => { if (!filters[k]) delete filters[k]; });
+
+                const result = await CariComProsAPI.getContractors(filters);
+
+                if (result.success) {
+                    contractors = result.contractors || [];
+                    renderContractors(contractors);
+
+                    // Update page title if filtered
+                    if (filters.category) {
+                        document.getElementById('pageTitle').textContent = filters.category + ' Contractors';
+                        document.getElementById('pageSubtitle').textContent = `${contractors.length} professional${contractors.length !== 1 ? 's' : ''} found`;
+                    } else {
+                        document.getElementById('pageSubtitle').textContent = `${contractors.length} professional${contractors.length !== 1 ? 's' : ''} available`;
+                    }
+                } else {
+                    renderContractors([]);
+                }
+            } catch (error) {
+                console.error('Error loading contractors:', error);
+                renderContractors([]);
+            }
+        }
+
+        function renderContractors(list) {
+            const grid = document.getElementById('contractorsGrid');
+            const category = document.getElementById('categoryFilter').value;
+
+            if (list.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon"><i class="fas fa-users"></i></div>
+                        <h3 class="empty-title">No contractors found${category ? ' for ' + category : ''}</h3>
+                        <p class="empty-text">Be the first ${category || 'service'} provider in your area!</p>
+                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                            <button class="btn btn-outline" onclick="clearFilters()">
+                                <i class="fas fa-th-large"></i> View All
+                            </button>
+                            <a href="/" class="btn btn-primary">
+                                <i class="fas fa-hard-hat"></i> Become a Pro
+                            </a>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = list.map(c => {
+                const initials = getInitials(c.Name);
+                const rating = parseFloat(c.Rating) || 0;
+                const isVerified = c.Verified === 'Verified';
+
+                return `
+                    <div class="contractor-card">
+                        <div class="contractor-header">
+                            <div class="contractor-avatar">${initials}</div>
+                            <div class="contractor-info">
+                                <div class="contractor-name">
+                                    ${c.Name || 'Unknown'}
+                                    ${isVerified ? '<span class="verified-badge"><i class="fas fa-check"></i> Verified</span>' : ''}
+                                </div>
+                                <div class="contractor-category">${c.Category || 'General Services'}</div>
+                                <div class="contractor-rating">
+                                    <span class="stars">${renderStars(rating)}</span>
+                                    <span class="rating-text">${rating.toFixed(1)} (${c.JobsCompleted || 0} jobs)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contractor-stats">
+                            <div class="stat">
+                                <div class="stat-value">${c.JobsCompleted || 0}</div>
+                                <div class="stat-label">Jobs</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">${c.Experience || 'N/A'}</div>
+                                <div class="stat-label">Experience</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">${c.Location?.split(',')[0] || 'Caribbean'}</div>
+                                <div class="stat-label">Location</div>
+                            </div>
+                        </div>
+                        ${c.Services ? `
+                            <div class="contractor-services">
+                                ${c.Services.split(',').slice(0, 3).map(s => `<span class="service-tag">${s.trim()}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                        <div class="contractor-actions">
+                            <button class="btn btn-outline btn-small" onclick="viewProfile('${c.ID}')">
+                                <i class="fas fa-user"></i> Profile
+                            </button>
+                            <button class="btn btn-primary btn-small" onclick="requestQuote('${c.ID}', '${c.Name}', '${c.Category}')">
+                                <i class="fas fa-paper-plane"></i> Request Quote
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderStars(rating) {
+            const full = Math.floor(rating);
+            const half = rating % 1 >= 0.5;
+            let html = '';
+            for (let i = 0; i < full; i++) html += '<i class="fas fa-star"></i>';
+            if (half) html += '<i class="fas fa-star-half-alt"></i>';
+            for (let i = full + (half ? 1 : 0); i < 5; i++) html += '<i class="far fa-star"></i>';
+            return html;
+        }
+
+        function getInitials(name) {
+            if (!name) return '?';
+            return name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+        }
+
+        function searchContractors() {
+            loadContractors();
+        }
+
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('categoryFilter').selectedIndex = 0;
+            document.getElementById('locationFilter').selectedIndex = 0;
+            document.getElementById('pageTitle').textContent = 'Find Contractors';
+            loadContractors();
+        }
+
+        function viewProfile(contractorId) {
+            const c = contractors.find(x => x.ID === contractorId);
+            if (!c) return;
+
+            document.getElementById('modalContractorName').textContent = c.Name;
+            document.getElementById('modalBody').innerHTML = `
+                <div style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(45deg, #ffd700, #ffed4e); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.75rem; font-weight: bold; color: #1a1a2e;">
+                        ${getInitials(c.Name)}
+                    </div>
+                    <div>
+                        <h3 style="margin: 0 0 0.5rem;">${c.Name}</h3>
+                        ${c.BusinessName ? `<p style="color: #666; margin: 0 0 0.25rem;">${c.BusinessName}</p>` : ''}
+                        <p style="color: #666; margin: 0;"><i class="fas fa-map-marker-alt"></i> ${c.Location || 'Caribbean'}</p>
+                        ${c.Verified === 'Verified' ? '<span class="verified-badge" style="display: inline-block; margin-top: 0.5rem;"><i class="fas fa-check"></i> Verified Professional</span>' : ''}
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 10px; margin-bottom: 1.5rem;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #ffd700;">${parseFloat(c.Rating || 0).toFixed(1)}</div>
+                        <div style="font-size: 0.8rem; color: #666;">Rating</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #1a1a2e;">${c.JobsCompleted || 0}</div>
+                        <div style="font-size: 0.8rem; color: #666;">Jobs Done</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #1a1a2e;">${c.Experience || 'N/A'}</div>
+                        <div style="font-size: 0.8rem; color: #666;">Experience</div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <h4 style="margin-bottom: 0.75rem;">Services</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <span style="background: #e3f2fd; color: #1976d2; padding: 0.5rem 1rem; border-radius: 20px;">${c.Category}</span>
+                        ${c.Services ? c.Services.split(',').map(s => `<span style="background: #f5f5f5; color: #666; padding: 0.5rem 1rem; border-radius: 20px;">${s.trim()}</span>`).join('') : ''}
+                    </div>
+                </div>
+                ${c.Bio ? `<div><h4 style="margin-bottom: 0.75rem;">About</h4><p style="color: #666; line-height: 1.6;">${c.Bio}</p></div>` : ''}
+            `;
+            document.getElementById('modalQuoteBtn').onclick = () => { closeModal('profileModal'); requestQuote(c.ID, c.Name, c.Category); };
+            document.getElementById('profileModal').classList.add('active');
+        }
+
+        function requestQuote(contractorId, contractorName, category) {
+            if (!CariComProsAPI.isLoggedIn()) {
+                CariComProsAPI.showToast('Please sign in to request a quote', 'warning');
+                localStorage.setItem('hk_selected_contractor', JSON.stringify({ id: contractorId, name: contractorName, category }));
+                setTimeout(() => window.location.href = '/', 1500);
+                return;
+            }
+            localStorage.setItem('hk_selected_contractor', JSON.stringify({ id: contractorId, name: contractorName, category }));
+            window.location.href = '/customers#post-job';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        // Close modal on outside click
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal')) e.target.classList.remove('active');
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#bgGrad)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="900" cy="150" r="200" fill="#ffd700" opacity="0.05"/>
+  <circle cx="100" cy="900" r="250" fill="#ffd700" opacity="0.05"/>
+  <circle cx="540" cy="540" r="400" fill="none" stroke="#ffd700" stroke-width="1" opacity="0.1"/>
+
+  <!-- Top Badge -->
+  <g transform="translate(340, 80)">
+    <rect width="400" height="50" rx="25" fill="url(#goldGrad)"/>
+    <text x="200" y="34" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e" text-anchor="middle">THE CARIBBEAN'S #1 MARKETPLACE</text>
+  </g>
+
+  <!-- Main Icon/Logo Area -->
+  <g transform="translate(390, 180)">
+    <rect width="300" height="300" rx="60" fill="#16213e" stroke="url(#goldGrad)" stroke-width="4"/>
+    <text x="150" y="200" font-size="150" text-anchor="middle">🏝️</text>
+  </g>
+
+  <!-- Brand Name -->
+  <text x="540" y="560" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="#ffffff" text-anchor="middle">CariCom</text>
+  <text x="540" y="640" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="url(#goldGrad)" text-anchor="middle">PROS</text>
+
+  <!-- Tagline -->
+  <text x="540" y="710" font-family="Arial, sans-serif" font-size="28" fill="#888888" text-anchor="middle">Find Trusted Service Professionals</text>
+
+  <!-- Feature Cards -->
+  <g transform="translate(90, 770)">
+    <!-- Card 1 -->
+    <g>
+      <rect width="280" height="90" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="20" y="45" font-size="32">✓</text>
+      <text x="60" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Verified Pros</text>
+      <text x="60" y="65" font-family="Arial, sans-serif" font-size="14" fill="#888888">Background checked</text>
+    </g>
+    <!-- Card 2 -->
+    <g transform="translate(300, 0)">
+      <rect width="280" height="90" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="20" y="45" font-size="32">🔒</text>
+      <text x="60" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Secure Payments</text>
+      <text x="60" y="65" font-family="Arial, sans-serif" font-size="14" fill="#888888">Escrow protection</text>
+    </g>
+    <!-- Card 3 -->
+    <g transform="translate(600, 0)">
+      <rect width="280" height="90" rx="15" fill="#16213e" stroke="#ffd700" stroke-width="2"/>
+      <text x="20" y="45" font-size="32">⭐</text>
+      <text x="60" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Quality Guarantee</text>
+      <text x="60" y="65" font-family="Arial, sans-serif" font-size="14" fill="#888888">Satisfaction assured</text>
+    </g>
+  </g>
+
+  <!-- CTA Button -->
+  <g transform="translate(290, 910)">
+    <rect width="500" height="80" rx="40" fill="url(#goldGrad)" filter="url(#glow)"/>
+    <text x="250" y="52" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Find Your Pro Today</text>
+  </g>
+
+  <!-- Bottom Stats -->
+  <g transform="translate(180, 1020)" font-family="Arial, sans-serif">
+    <text font-size="18" fill="#ffd700">Verified Pros</text>
+    <text x="240" font-size="18" fill="#888888">•</text>
+    <text x="280" font-size="18" fill="#ffd700">30+ Islands</text>
+    <text x="460" font-size="18" fill="#888888">•</text>
+    <text x="500" font-size="18" fill="#ffd700">50+ Services</text>
+  </g>
+</svg>

@@ -1,0 +1,2502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard - CariCom Pros</title>
+    <meta name="description" content="Manage your service requests, track jobs, and connect with verified contractors across the Caribbean.">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #ffd700;
+            --accent-light: #ffed4e;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --error: #f44336;
+            --info: #2196F3;
+            --text: #333;
+            --text-light: #666;
+            --bg: #f8f9fa;
+            --white: #ffffff;
+            --shadow: rgba(0,0,0,0.1);
+            --radius: 15px;
+            --verified: #00bfa5;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--primary);
+            color: var(--white);
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            padding: 0;
+        }
+
+        .logo-image {
+            height: 100px !important;
+            max-width: 100% !important;
+            width: auto !important;
+            object-fit: contain;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--info), #42A5F5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .user-info h3 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .user-info span {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .sidebar-nav {
+            padding: 1rem 0;
+        }
+
+        .nav-section {
+            margin-bottom: 1rem;
+        }
+
+        .nav-section-title {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.5;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .nav-item.active {
+            background: rgba(255, 215, 0, 0.15);
+            border-left: 4px solid var(--accent);
+        }
+
+        .nav-icon {
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            background: var(--error);
+            color: var(--white);
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 10px var(--shadow);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .top-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .notification-btn {
+            position: relative;
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: var(--text);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--error);
+            color: var(--white);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #e9ecef;
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 10px var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .stat-icon.active { background: linear-gradient(45deg, var(--info), #42A5F5); color: var(--white); }
+        .stat-icon.completed { background: linear-gradient(45deg, var(--success), #66BB6A); color: var(--white); }
+        .stat-icon.quotes { background: linear-gradient(45deg, var(--accent), var(--accent-light)); color: var(--primary); }
+        .stat-icon.spent { background: linear-gradient(45deg, #9c27b0, #ba68c8); color: var(--white); }
+
+        .stat-details {
+            flex: 1;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: 0 2px 10px var(--shadow);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .section-body {
+            padding: 1.5rem;
+        }
+
+        /* Job Post Form */
+        .job-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            padding: 0.875rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Photo Upload */
+        .photo-upload {
+            border: 2px dashed #e9ecef;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .photo-upload:hover {
+            border-color: var(--accent);
+            background: rgba(255, 215, 0, 0.03);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            color: var(--text-light);
+        }
+
+        .upload-hint {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+
+        .photo-preview {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .preview-item {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            background: var(--bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .preview-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 24px;
+            height: 24px;
+            background: var(--error);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+
+        /* Job Cards */
+        .jobs-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .job-card {
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.3s;
+        }
+
+        .job-card:hover {
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .job-title {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .job-category {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .job-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-open { background: #e3f2fd; color: var(--info); }
+        .status-quoted { background: #fff3e0; color: var(--warning); }
+        .status-in-progress { background: #f3e5f5; color: #9c27b0; }
+        .status-completed { background: #e8f5e9; color: var(--success); }
+        .status-cancelled { background: #ffebee; color: var(--error); }
+
+        .job-details {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .job-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .job-actions {
+            display: flex;
+            gap: 0.75rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        /* Quotes Section */
+        .quotes-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .quote-card {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.3s;
+        }
+
+        .quote-card:hover {
+            border-color: var(--accent);
+        }
+
+        .quote-card.recommended {
+            border-color: var(--success);
+            background: rgba(76, 175, 80, 0.03);
+        }
+
+        .quote-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .contractor-info {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .contractor-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .contractor-details h4 {
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .verified-badge {
+            background: var(--verified);
+            color: var(--white);
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .contractor-specialty {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .quote-price {
+            text-align: right;
+        }
+
+        .price-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .price-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .quote-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 10px;
+        }
+
+        .quote-stat {
+            text-align: center;
+        }
+
+        .quote-stat-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .quote-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .quote-message {
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .quote-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        /* Contractor Browser */
+        .contractors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contractor-card {
+            background: var(--white);
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .contractor-card:hover {
+            box-shadow: 0 8px 25px var(--shadow);
+            transform: translateY(-3px);
+        }
+
+        .contractor-header {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contractor-avatar-lg {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .contractor-name {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contractor-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .stars {
+            color: var(--accent);
+        }
+
+        .rating-text {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .contractor-stats {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-top: 1px solid #e9ecef;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 1rem;
+        }
+
+        .contractor-stat {
+            text-align: center;
+        }
+
+        .contractor-stat-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .contractor-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .contractor-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-tag {
+            background: var(--bg);
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text);
+        }
+
+        .contractor-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        /* Reviews */
+        .reviews-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .review-card {
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .review-job {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .review-rating {
+            color: var(--accent);
+        }
+
+        .review-contractor {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .review-text {
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .review-date {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+
+        /* Payment Section */
+        .payment-summary {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .payment-row:last-child {
+            border-bottom: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-method {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-method:hover,
+        .payment-method.selected {
+            border-color: var(--accent);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .payment-method i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mobile Toggle */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 2000;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.25rem;
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: var(--radius);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+            padding: 0 1.5rem;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-light);
+            position: relative;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            color: var(--primary);
+        }
+
+        .tab.active {
+            color: var(--primary);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+
+        .empty-title {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-text {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .top-bar {
+                margin-top: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .job-details {
+                flex-wrap: wrap;
+            }
+
+            .quote-stats {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .contractors-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+
+        /* Overlay for mobile */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* Spinner Animation */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Marketplace Listing Cards */
+        .listing-card {
+            background: var(--white);
+            border: 1px solid #e9ecef;
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .listing-card:hover {
+            box-shadow: 0 8px 25px var(--shadow);
+            transform: translateY(-3px);
+        }
+
+        .listing-image {
+            width: 100%;
+            height: 180px;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .listing-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .listing-image i {
+            font-size: 3rem;
+            color: #ccc;
+        }
+
+        .listing-content {
+            padding: 1rem;
+        }
+
+        .listing-price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .listing-title {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .listing-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .listing-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .listing-status.active {
+            background: #e8f5e9;
+            color: var(--success);
+        }
+
+        .listing-status.sold {
+            background: #e3f2fd;
+            color: var(--info);
+        }
+
+        .listing-actions {
+            display: flex;
+            gap: 0.5rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .listing-actions button {
+            flex: 1;
+            padding: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        /* Image Upload Preview */
+        .image-upload-area {
+            border: 2px dashed #e9ecef;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .image-upload-area:hover {
+            border-color: var(--accent);
+            background: rgba(255, 215, 0, 0.03);
+        }
+
+        .image-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .image-preview-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--bg);
+        }
+
+        .image-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-preview-remove {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 20px;
+            height: 20px;
+            background: var(--error);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Alert/Toast */
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .alert-success {
+            background: #e8f5e9;
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .alert-warning {
+            background: #fff3e0;
+            color: var(--warning);
+            border: 1px solid var(--warning);
+        }
+
+        .alert-error {
+            background: #ffebee;
+            color: var(--error);
+            border: 1px solid var(--error);
+        }
+
+        .alert-info {
+            background: #e3f2fd;
+            color: var(--info);
+            border: 1px solid var(--info);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo" style="display: flex; align-items: center; justify-content: center;">
+                <img src="/images/caricompros-logo.png" alt="CariCom Pros" class="logo-image" style="height: 55px; width: auto;">
+            </div>
+            <div class="user-profile">
+                <div class="user-avatar">MJ</div>
+                <div class="user-info">
+                    <h3>Maria Johnson</h3>
+                    <span>St. John's, Antigua</span>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <a class="nav-item active" onclick="showSection('dashboard')">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span>Dashboard</span>
+                </a>
+                <a class="nav-item" onclick="showSection('post-job')">
+                    <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+                    <span>Post a Job</span>
+                </a>
+                <a class="nav-item" onclick="showSection('my-jobs')">
+                    <span class="nav-icon"><i class="fas fa-briefcase"></i></span>
+                    <span>My Jobs</span>
+                    <span class="nav-badge">3</span>
+                </a>
+                <a class="nav-item" onclick="showSection('quotes')">
+                    <span class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <span>Quotes</span>
+                    <span class="nav-badge">5</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Explore</div>
+                <a class="nav-item" onclick="showSection('contractors')">
+                    <span class="nav-icon"><i class="fas fa-hard-hat"></i></span>
+                    <span>Find Contractors</span>
+                </a>
+                <a class="nav-item" onclick="showSection('categories')">
+                    <span class="nav-icon"><i class="fas fa-th-large"></i></span>
+                    <span>Categories</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Marketplace</div>
+                <a class="nav-item" href="marketplace.html">
+                    <span class="nav-icon"><i class="fas fa-store"></i></span>
+                    <span>Browse Marketplace</span>
+                </a>
+                <a class="nav-item" onclick="showSection('my-listings')">
+                    <span class="nav-icon"><i class="fas fa-tags"></i></span>
+                    <span>My Listings</span>
+                    <span id="nav-listings-count" class="nav-badge" style="background: var(--success);">0</span>
+                </a>
+                <a class="nav-item" onclick="openCreateListingModal()">
+                    <span class="nav-icon"><i class="fas fa-plus-circle" style="color: var(--accent);"></i></span>
+                    <span>Sell Something</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a class="nav-item" onclick="CariComProsPayments.openBuyCoinsModal()">
+                    <span class="nav-icon"><i class="fas fa-coins" style="color: #ffd700;"></i></span>
+                    <span>HK Coins</span>
+                    <span id="nav-coin-balance" class="nav-badge" style="background: #ffd700; color: #1a1a2e;">0</span>
+                </a>
+                <a class="nav-item" onclick="showSection('payments')">
+                    <span class="nav-icon"><i class="fas fa-credit-card"></i></span>
+                    <span>Payments</span>
+                </a>
+                <a class="nav-item" onclick="showSection('reviews')">
+                    <span class="nav-icon"><i class="fas fa-star"></i></span>
+                    <span>My Reviews</span>
+                </a>
+                <a class="nav-item" onclick="showSection('messages')">
+                    <span class="nav-icon"><i class="fas fa-comment-dots"></i></span>
+                    <span>Messages</span>
+                    <span class="nav-badge">2</span>
+                </a>
+                <a class="nav-item" onclick="showSection('settings')">
+                    <span class="nav-icon"><i class="fas fa-cog"></i></span>
+                    <span>Settings</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <a class="nav-item" href="index.html">
+                    <span class="nav-icon"><i class="fas fa-globe"></i></span>
+                    <span>Back to Website</span>
+                </a>
+                <a class="nav-item" style="color: var(--warning);">
+                    <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <h1 class="page-title" id="pageTitle">Dashboard</h1>
+            <div class="top-actions">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">4</span>
+                </button>
+                <button class="btn btn-primary" onclick="showSection('post-job')">
+                    <i class="fas fa-plus"></i> Post New Job
+                </button>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="section-content active">
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon active">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Active Jobs</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon completed">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Completed Jobs</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon quotes">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Pending Quotes</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon spent">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-value">$2,450</div>
+                        <div class="stat-label">Total Spent</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Jobs</h2>
+                    <a href="#" onclick="showSection('my-jobs')" class="btn btn-outline btn-small">View All</a>
+                </div>
+                <div class="section-body">
+                    <div class="jobs-list">
+                        <div class="job-card">
+                            <div class="job-header">
+                                <div>
+                                    <div class="job-title">Kitchen Sink Repair</div>
+                                    <div class="job-category">Plumbing</div>
+                                </div>
+                                <span class="job-status status-in-progress">In Progress</span>
+                            </div>
+                            <div class="job-details">
+                                <div class="job-detail">
+                                    <i class="fas fa-user"></i>
+                                    <span>Robert Brown</span>
+                                </div>
+                                <div class="job-detail">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Dec 28, 2024</span>
+                                </div>
+                                <div class="job-detail">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$150</span>
+                                </div>
+                            </div>
+                            <div class="job-actions">
+                                <button class="btn btn-outline btn-small">Message</button>
+                                <button class="btn btn-primary btn-small">Track Job</button>
+                            </div>
+                        </div>
+
+                        <div class="job-card">
+                            <div class="job-header">
+                                <div>
+                                    <div class="job-title">Lawn Maintenance</div>
+                                    <div class="job-category">Landscaping</div>
+                                </div>
+                                <span class="job-status status-quoted">3 Quotes</span>
+                            </div>
+                            <div class="job-details">
+                                <div class="job-detail">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Posted 2 days ago</span>
+                                </div>
+                                <div class="job-detail">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>Budget: $200-300</span>
+                                </div>
+                            </div>
+                            <div class="job-actions">
+                                <button class="btn btn-primary btn-small" onclick="showSection('quotes')">View Quotes</button>
+                            </div>
+                        </div>
+
+                        <div class="job-card">
+                            <div class="job-header">
+                                <div>
+                                    <div class="job-title">AC Unit Service</div>
+                                    <div class="job-category">HVAC</div>
+                                </div>
+                                <span class="job-status status-completed">Completed</span>
+                            </div>
+                            <div class="job-details">
+                                <div class="job-detail">
+                                    <i class="fas fa-user"></i>
+                                    <span>Lisa Williams</span>
+                                </div>
+                                <div class="job-detail">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>Dec 20, 2024</span>
+                                </div>
+                                <div class="job-detail">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>$280</span>
+                                </div>
+                            </div>
+                            <div class="job-actions">
+                                <button class="btn btn-outline btn-small">View Details</button>
+                                <button class="btn btn-success btn-small">Leave Review</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommended Contractors -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Top Rated Contractors Near You</h2>
+                    <a href="#" onclick="showSection('contractors')" class="btn btn-outline btn-small">Browse All</a>
+                </div>
+                <div class="section-body">
+                    <div class="contractors-grid">
+                        <div class="contractor-card">
+                            <div class="contractor-header">
+                                <div class="contractor-avatar-lg">JD</div>
+                                <div>
+                                    <div class="contractor-name">
+                                        John Davis
+                                        <span class="verified-badge"><i class="fas fa-check"></i> Verified</span>
+                                    </div>
+                                    <div class="contractor-specialty">Master Electrician</div>
+                                    <div class="contractor-rating">
+                                        <span class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </span>
+                                        <span class="rating-text">5.0 (234 reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contractor-stats">
+                                <div class="contractor-stat">
+                                    <div class="contractor-stat-value">456</div>
+                                    <div class="contractor-stat-label">Jobs</div>
+                                </div>
+                                <div class="contractor-stat">
+                                    <div class="contractor-stat-value">98%</div>
+                                    <div class="contractor-stat-label">On Time</div>
+                                </div>
+                                <div class="contractor-stat">
+                                    <div class="contractor-stat-value">5 yrs</div>
+                                    <div class="contractor-stat-label">Experience</div>
+                                </div>
+                            </div>
+                            <div class="contractor-services">
+                                <span class="service-tag">Wiring</span>
+                                <span class="service-tag">Panel Upgrades</span>
+                                <span class="service-tag">Smart Home</span>
+                            </div>
+                            <div class="contractor-actions">
+                                <button class="btn btn-outline btn-small">View Profile</button>
+                                <button class="btn btn-primary btn-small">Request Quote</button>
+                            </div>
+                        </div>
+
+                        <div class="contractor-card">
+                            <div class="contractor-header">
+                                <div class="contractor-avatar-lg">SM</div>
+                                <div>
+                                    <div class="contractor-name">
+                                        Sarah Mitchell
+                                        <span class="verified-badge"><i class="fas fa-check"></i> Verified</span>
+                                    </div>
+                                    <div class="contractor-specialty">Cleaning Services</div>
+                                    <div class="contractor-rating">
+                                        <span class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </span>
+                                        <span class="rating-text">4.8 (189 reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contractor-stats">
+                                <div class="contractor-stat">
+                                    <div class="contractor-stat-value">312</div>
+                                    <div class="contractor-stat-label">Jobs</div>
+                                </div>
+                                <div class="contractor-stat">
+                                    <div class="contractor-stat-value">99%</div>
+                                    <div class="contractor-stat-label">On Time</div>
+                                </div>
+                                <div class="contractor-stat">
+                                    <div class="contractor-stat-value">3 yrs</div>
+                                    <div class="contractor-stat-label">Experience</div>
+                                </div>
+                            </div>
+                            <div class="contractor-services">
+                                <span class="service-tag">Deep Clean</span>
+                                <span class="service-tag">Move Out</span>
+                                <span class="service-tag">Commercial</span>
+                            </div>
+                            <div class="contractor-actions">
+                                <button class="btn btn-outline btn-small">View Profile</button>
+                                <button class="btn btn-primary btn-small">Request Quote</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Post Job Section -->
+        <section id="post-job-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Post a New Job</h2>
+                </div>
+                <div class="section-body">
+                    <form class="job-form" onsubmit="submitJob(event)">
+                        <div class="form-group">
+                            <label class="form-label">Job Title *</label>
+                            <input type="text" class="form-input" placeholder="e.g., Kitchen Sink Repair" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Service Category *</label>
+                                <select class="form-select" required>
+                                    <option value="">Select a category</option>
+                                    <option>Plumbing</option>
+                                    <option>Electrical</option>
+                                    <option>HVAC</option>
+                                    <option>Cleaning</option>
+                                    <option>Landscaping</option>
+                                    <option>Painting</option>
+                                    <option>Construction</option>
+                                    <option>Auto Repair</option>
+                                    <option>Car Detailing</option>
+                                    <option>Pressure Washing</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Location *</label>
+                                <select class="form-select" required>
+                                    <option value="">Select location</option>
+                                    <option>St. John's</option>
+                                    <option>English Harbour</option>
+                                    <option>Jolly Harbour</option>
+                                    <option>Dickenson Bay</option>
+                                    <option>All Saints</option>
+                                    <option>Barbuda</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Job Description *</label>
+                            <textarea class="form-textarea" placeholder="Describe the job in detail. Include any specific requirements, materials needed, or special considerations..." required></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Budget Range</label>
+                                <div style="display: flex; gap: 1rem; align-items: center;">
+                                    <input type="number" class="form-input" placeholder="Min" style="width: 120px;">
+                                    <span>to</span>
+                                    <input type="number" class="form-input" placeholder="Max" style="width: 120px;">
+                                    <span>XCD</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Timeline *</label>
+                                <select class="form-select" required>
+                                    <option value="">When do you need this done?</option>
+                                    <option>Urgent - Within 24 hours</option>
+                                    <option>This week</option>
+                                    <option>Within 2 weeks</option>
+                                    <option>Flexible</option>
+                                    <option>Specific date</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Add Photos (Optional)</label>
+                            <div class="photo-upload" onclick="document.getElementById('photoInput').click()">
+                                <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                <div class="upload-text">Click to upload or drag and drop</div>
+                                <div class="upload-hint">PNG, JPG up to 10MB each (max 5 photos)</div>
+                            </div>
+                            <input type="file" id="photoInput" multiple accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)">
+                            <div class="photo-preview" id="photoPreview"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Contact Preference</label>
+                            <div style="display: flex; gap: 1.5rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" checked> Messages on Platform
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox"> WhatsApp
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox"> Phone Call
+                                </label>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button type="button" class="btn btn-secondary">Save as Draft</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Post Job
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Jobs Section -->
+        <section id="my-jobs-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <div class="tabs">
+                    <button class="tab active" onclick="showJobTab('active')">Active (3)</button>
+                    <button class="tab" onclick="showJobTab('open')">Open (2)</button>
+                    <button class="tab" onclick="showJobTab('completed')">Completed (12)</button>
+                    <button class="tab" onclick="showJobTab('cancelled')">Cancelled (1)</button>
+                </div>
+                <div class="section-body">
+                    <div id="active-jobs" class="tab-content active">
+                        <div class="jobs-list">
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div>
+                                        <div class="job-title">Kitchen Sink Repair</div>
+                                        <div class="job-category">Plumbing</div>
+                                    </div>
+                                    <span class="job-status status-in-progress">In Progress</span>
+                                </div>
+                                <div class="job-details">
+                                    <div class="job-detail">
+                                        <i class="fas fa-user"></i>
+                                        <span>Robert Brown</span>
+                                    </div>
+                                    <div class="job-detail">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>Dec 28, 2024</span>
+                                    </div>
+                                    <div class="job-detail">
+                                        <i class="fas fa-dollar-sign"></i>
+                                        <span>$150</span>
+                                    </div>
+                                    <div class="job-detail">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>St. John's</span>
+                                    </div>
+                                </div>
+                                <div class="job-actions">
+                                    <button class="btn btn-outline btn-small">Message Contractor</button>
+                                    <button class="btn btn-outline btn-small">View Details</button>
+                                    <button class="btn btn-success btn-small">Mark Complete</button>
+                                </div>
+                            </div>
+
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div>
+                                        <div class="job-title">Home Deep Cleaning</div>
+                                        <div class="job-category">Cleaning</div>
+                                    </div>
+                                    <span class="job-status status-in-progress">Scheduled</span>
+                                </div>
+                                <div class="job-details">
+                                    <div class="job-detail">
+                                        <i class="fas fa-user"></i>
+                                        <span>Sarah Mitchell</span>
+                                    </div>
+                                    <div class="job-detail">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>Dec 30, 2024</span>
+                                    </div>
+                                    <div class="job-detail">
+                                        <i class="fas fa-dollar-sign"></i>
+                                        <span>$200</span>
+                                    </div>
+                                </div>
+                                <div class="job-actions">
+                                    <button class="btn btn-outline btn-small">Message</button>
+                                    <button class="btn btn-outline btn-small">Reschedule</button>
+                                    <button class="btn btn-outline btn-small" style="color: var(--error);">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quotes Section -->
+        <section id="quotes-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Pending Quotes</h2>
+                </div>
+                <div class="section-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <span>You have 5 new quotes waiting for your review. Compare prices and choose the best contractor for your job.</span>
+                    </div>
+
+                    <h3 style="margin: 1.5rem 0 1rem; color: var(--primary);">Lawn Maintenance - 3 Quotes</h3>
+                    <div class="quotes-list">
+                        <div class="quote-card recommended">
+                            <div style="background: var(--success); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; position: absolute; top: 1rem; right: 1rem;">
+                                Best Value
+                            </div>
+                            <div class="quote-header">
+                                <div class="contractor-info">
+                                    <div class="contractor-avatar">MB</div>
+                                    <div class="contractor-details">
+                                        <h4>
+                                            Marcus Brown
+                                            <span class="verified-badge"><i class="fas fa-check"></i></span>
+                                        </h4>
+                                        <div class="contractor-specialty">Landscaping Expert</div>
+                                    </div>
+                                </div>
+                                <div class="quote-price">
+                                    <div class="price-amount">$180</div>
+                                    <div class="price-label">Fixed Price</div>
+                                </div>
+                            </div>
+                            <div class="quote-stats">
+                                <div class="quote-stat">
+                                    <div class="quote-stat-value">4.9 <i class="fas fa-star" style="color: var(--accent); font-size: 0.8rem;"></i></div>
+                                    <div class="quote-stat-label">Rating</div>
+                                </div>
+                                <div class="quote-stat">
+                                    <div class="quote-stat-value">234</div>
+                                    <div class="quote-stat-label">Jobs Done</div>
+                                </div>
+                                <div class="quote-stat">
+                                    <div class="quote-stat-value">98%</div>
+                                    <div class="quote-stat-label">On Time</div>
+                                </div>
+                                <div class="quote-stat">
+                                    <div class="quote-stat-value">Dec 29</div>
+                                    <div class="quote-stat-label">Available</div>
+                                </div>
+                            </div>
+                            <div class="quote-message">
+                                "Hi! I can handle your lawn maintenance. I'll bring all necessary equipment including a professional mower, trimmer, and blower. The price includes mowing, edging, and cleanup. Available this Saturday morning!"
+                            </div>
+                            <div class="quote-actions">
+                                <button class="btn btn-outline btn-small">Message</button>
+                                <button class="btn btn-outline btn-small">View Profile</button>
+                                <button class="btn btn-success btn-small">Accept Quote</button>
+                            </div>
+                        </div>
+
+                        <div class="quote-card">
+                            <div class="quote-header">
+                                <div class="contractor-info">
+                                    <div class="contractor-avatar">TJ</div>
+                                    <div class="contractor-details">
+                                        <h4>
+                                            Thomas James
+                                            <span class="verified-badge"><i class="fas fa-check"></i></span>
+                                        </h4>
+                                        <div class="contractor-specialty">Lawn Care Specialist</div>
+                                    </div>
+                                </div>
+                                <div class="quote-price">
+                                    <div class="price-amount">$220</div>
+                                    <div class="price-label">Fixed Price</div>
+                                </div>
+                            </div>
+                            <div class="quote-stats">
+                                <div class="quote-stat">
+                                    <div class="quote-stat-value">5.0 <i class="fas fa-star" style="color: var(--accent); font-size: 0.8rem;"></i></div>
+                                    <div class="quote-stat-label">Rating</div>
+                                </div>
+                                <div class="quote-stat">
+                                    <div class="quote-stat-value">567</div>
+                                    <div class="quote-stat-label">Jobs Done</div>
+                                </div>
+                                <div class="quote-stat">
+                                    <div class="quote-stat-value">99%</div>
+                                    <div class="quote-stat-label">On Time</div>
+                                </div>
+                                <div class="quote-stat">
+                                    <div class="quote-stat-value">Dec 30</div>
+                                    <div class="quote-stat-label">Available</div>
+                                </div>
+                            </div>
+                            <div class="quote-message">
+                                "Professional lawn service including mowing, trimming, edging, and debris removal. I use commercial-grade equipment for the best results. Can also add fertilizer treatment for extra $40."
+                            </div>
+                            <div class="quote-actions">
+                                <button class="btn btn-outline btn-small">Message</button>
+                                <button class="btn btn-outline btn-small">View Profile</button>
+                                <button class="btn btn-primary btn-small">Accept Quote</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contractors Section -->
+        <section id="contractors-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Find Contractors</h2>
+                </div>
+                <div class="section-body">
+                    <!-- Search Filters -->
+                    <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <input type="text" class="form-input" id="contractorSearchInput" placeholder="Search by name or service..." style="flex: 1; min-width: 200px;">
+                        <select class="form-select" id="contractorCategoryFilter" style="width: 200px;">
+                            <option value="">All Categories</option>
+                            <option>General Contractor</option>
+                            <option>Electrician</option>
+                            <option>Plumber</option>
+                            <option>Carpenter</option>
+                            <option>Painter</option>
+                            <option>Roofer</option>
+                            <option>Landscaper</option>
+                            <option>Auto Mechanic</option>
+                            <option>Cleaner</option>
+                            <option>HVAC Technician</option>
+                            <option>Mover</option>
+                            <option>Security</option>
+                            <option>Mason</option>
+                            <option>Welder</option>
+                            <option>Tiler</option>
+                            <option>Pest Control</option>
+                            <option>Pool Service</option>
+                            <option>Appliance Repair</option>
+                            <option>Catering</option>
+                            <option>Photography</option>
+                            <option>DJ & Entertainment</option>
+                            <option>Hair & Beauty</option>
+                            <option>Barber</option>
+                            <option>Makeup Artist</option>
+                            <option>Tailor</option>
+                            <option>IT & Tech Support</option>
+                            <option>Tutor</option>
+                            <option>Personal Trainer</option>
+                            <option>Pet Services</option>
+                            <option>Event Planning</option>
+                            <option>Interior Design</option>
+                            <option>Window Tinting</option>
+                            <option>Solar Installation</option>
+                            <option>Flooring</option>
+                            <option>Fencing</option>
+                            <option>Pressure Washing</option>
+                            <option>Handyman</option>
+                        </select>
+                        <select class="form-select" id="contractorLocationFilter" style="width: 200px;">
+                            <option value="">All Locations</option>
+                            <option>Anguilla</option>
+                            <option>Antigua & Barbuda</option>
+                            <option>Aruba</option>
+                            <option>Bahamas</option>
+                            <option>Barbados</option>
+                            <option>Bermuda</option>
+                            <option>Bonaire</option>
+                            <option>British Virgin Islands</option>
+                            <option>Cayman Islands</option>
+                            <option>Cuba</option>
+                            <option>Curacao</option>
+                            <option>Dominica</option>
+                            <option>Dominican Republic</option>
+                            <option>Grenada</option>
+                            <option>Guadeloupe</option>
+                            <option>Haiti</option>
+                            <option>Jamaica</option>
+                            <option>Martinique</option>
+                            <option>Montserrat</option>
+                            <option>Puerto Rico</option>
+                            <option>Saba</option>
+                            <option>St. Barthelemy</option>
+                            <option>St. Eustatius</option>
+                            <option>St. Kitts & Nevis</option>
+                            <option>St. Lucia</option>
+                            <option>St. Maarten</option>
+                            <option>St. Vincent & Grenadines</option>
+                            <option>Trinidad & Tobago</option>
+                            <option>Turks & Caicos</option>
+                            <option>US Virgin Islands</option>
+                        </select>
+                        <button class="btn btn-primary" onclick="searchContractors()">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+
+                    <!-- Contractors Grid - Loaded dynamically from API -->
+                    <div class="contractors-grid">
+                        <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                            <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #ffd700; margin-bottom: 1rem;"></i>
+                            <p style="color: #666;">Loading contractors...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payments Section -->
+        <section id="payments-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Payment History</h2>
+                </div>
+                <div class="section-body">
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: var(--bg);">
+                                    <th style="padding: 1rem; text-align: left; font-weight: 600;">Date</th>
+                                    <th style="padding: 1rem; text-align: left; font-weight: 600;">Job</th>
+                                    <th style="padding: 1rem; text-align: left; font-weight: 600;">Contractor</th>
+                                    <th style="padding: 1rem; text-align: right; font-weight: 600;">Amount</th>
+                                    <th style="padding: 1rem; text-align: center; font-weight: 600;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid #e9ecef;">
+                                    <td style="padding: 1rem;">Dec 20, 2024</td>
+                                    <td style="padding: 1rem;">AC Unit Service</td>
+                                    <td style="padding: 1rem;">Lisa Williams</td>
+                                    <td style="padding: 1rem; text-align: right;">$280.00</td>
+                                    <td style="padding: 1rem; text-align: center;">
+                                        <span class="job-status status-completed">Paid</span>
+                                    </td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e9ecef;">
+                                    <td style="padding: 1rem;">Dec 15, 2024</td>
+                                    <td style="padding: 1rem;">Electrical Repair</td>
+                                    <td style="padding: 1rem;">John Davis</td>
+                                    <td style="padding: 1rem; text-align: right;">$450.00</td>
+                                    <td style="padding: 1rem; text-align: center;">
+                                        <span class="job-status status-completed">Paid</span>
+                                    </td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e9ecef;">
+                                    <td style="padding: 1rem;">Dec 10, 2024</td>
+                                    <td style="padding: 1rem;">House Cleaning</td>
+                                    <td style="padding: 1rem;">Sarah Mitchell</td>
+                                    <td style="padding: 1rem; text-align: right;">$150.00</td>
+                                    <td style="padding: 1rem; text-align: center;">
+                                        <span class="job-status status-completed">Paid</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">My Reviews</h2>
+                </div>
+                <div class="section-body">
+                    <div class="reviews-list">
+                        <div class="review-card">
+                            <div class="review-header">
+                                <span class="review-job">AC Unit Service</span>
+                                <span class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <div class="review-contractor">Contractor: Lisa Williams</div>
+                            <p class="review-text">Excellent service! Lisa was professional, arrived on time, and fixed our AC quickly. Very knowledgeable and explained everything clearly. Highly recommend!</p>
+                            <div class="review-date">December 20, 2024</div>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="review-header">
+                                <span class="review-job">Electrical Repair</span>
+                                <span class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <div class="review-contractor">Contractor: John Davis</div>
+                            <p class="review-text">John did an amazing job upgrading our electrical panel. Clean work, fair pricing, and great communication throughout the project. Will definitely hire again!</p>
+                            <div class="review-date">December 15, 2024</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Listings Section (Marketplace) -->
+        <section id="my-listings-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">My Listings</h2>
+                    <button class="btn btn-primary" onclick="openCreateListingModal()">
+                        <i class="fas fa-plus"></i> New Listing
+                    </button>
+                </div>
+                <div class="section-body">
+                    <!-- Listings Stats -->
+                    <div class="stats-grid" style="margin-bottom: 1.5rem;">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: linear-gradient(45deg, var(--success), #66BB6A); color: white;">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-details">
+                                <div class="stat-value" id="activeListingsCount">0</div>
+                                <div class="stat-label">Active Listings</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: linear-gradient(45deg, var(--info), #42A5F5); color: white;">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <div class="stat-details">
+                                <div class="stat-value" id="soldListingsCount">0</div>
+                                <div class="stat-label">Sold Items</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: linear-gradient(45deg, var(--accent), var(--accent-light)); color: var(--primary);">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="stat-details">
+                                <div class="stat-value" id="totalListingViews">0</div>
+                                <div class="stat-label">Total Views</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Listings Grid -->
+                    <div id="myListingsGrid" class="listings-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+                        <!-- Listings will be loaded here -->
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="noListingsState" class="empty-state" style="display: none;">
+                        <div class="empty-icon"><i class="fas fa-store"></i></div>
+                        <h3 class="empty-title">No listings yet</h3>
+                        <p class="empty-text">Start selling by creating your first listing!</p>
+                        <button class="btn btn-primary" onclick="openCreateListingModal()">
+                            <i class="fas fa-plus"></i> Create Listing
+                        </button>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="listingsLoading" class="empty-state">
+                        <div class="spinner" style="width: 40px; height: 40px; border: 4px solid #f0f0f0; border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div>
+                        <p>Loading your listings...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Messages Section -->
+        <section id="messages-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Messages</h2>
+                </div>
+                <div class="section-body">
+                    <div class="empty-state">
+                        <div class="empty-icon"><i class="fas fa-comments"></i></div>
+                        <h3 class="empty-title">No messages yet</h3>
+                        <p class="empty-text">Start a conversation by messaging a contractor about a job.</p>
+                        <button class="btn btn-primary" onclick="showSection('contractors')">
+                            <i class="fas fa-search"></i> Find Contractors
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings-section" class="section-content" style="display: none;">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Account Settings</h2>
+                </div>
+                <div class="section-body">
+                    <form class="job-form">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary);">Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-input" value="Maria Johnson">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-input" value="maria.johnson@email.com">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-input" value="+1 (268) 555-0123">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Location</label>
+                                <select class="form-select">
+                                    <option selected>St. John's, Antigua</option>
+                                    <option>English Harbour</option>
+                                    <option>Jolly Harbour</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <h3 style="margin: 2rem 0 1rem; color: var(--primary);">Notification Preferences</h3>
+                        <div style="display: grid; gap: 1rem;">
+                            <label style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--bg); border-radius: 10px;">
+                                <span>Email notifications for new quotes</span>
+                                <input type="checkbox" checked>
+                            </label>
+                            <label style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--bg); border-radius: 10px;">
+                                <span>SMS notifications for job updates</span>
+                                <input type="checkbox" checked>
+                            </label>
+                            <label style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--bg); border-radius: 10px;">
+                                <span>WhatsApp notifications</span>
+                                <input type="checkbox">
+                            </label>
+                            <label style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--bg); border-radius: 10px;">
+                                <span>Marketing emails</span>
+                                <input type="checkbox">
+                            </label>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                            <button type="button" class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Create Listing Modal -->
+    <div class="modal" id="createListingModal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-plus-circle" style="color: var(--accent);"></i> Create New Listing</h3>
+                <button class="modal-close" onclick="closeCreateListingModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="createListingForm" onsubmit="submitListing(event)">
+                    <div class="form-group">
+                        <label class="form-label">Title *</label>
+                        <input type="text" class="form-input" id="listingTitle" placeholder="What are you selling?" maxlength="100" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Price (XCD) *</label>
+                            <input type="number" class="form-input" id="listingPrice" placeholder="0 for free" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Category *</label>
+                            <select class="form-select" id="listingCategory" required>
+                                <option value="">Select category</option>
+                                <option value="Electronics & Phones">Electronics & Phones</option>
+                                <option value="Vehicles & Parts">Vehicles & Parts</option>
+                                <option value="Furniture & Home">Furniture & Home</option>
+                                <option value="Clothing & Accessories">Clothing & Accessories</option>
+                                <option value="Sports & Outdoors">Sports & Outdoors</option>
+                                <option value="Baby & Kids">Baby & Kids</option>
+                                <option value="Garden & Tools">Garden & Tools</option>
+                                <option value="Free Stuff">Free Stuff</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Condition *</label>
+                            <select class="form-select" id="listingCondition" required>
+                                <option value="">Select condition</option>
+                                <option value="New">New</option>
+                                <option value="Like New">Like New</option>
+                                <option value="Good">Good</option>
+                                <option value="Fair">Fair</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Location *</label>
+                            <select class="form-select" id="listingLocation" required>
+                                <option value="">Select location</option>
+                                <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+                                <option value="Anguilla">Anguilla</option>
+                                <option value="Bahamas">Bahamas</option>
+                                <option value="Barbados">Barbados</option>
+                                <option value="British Virgin Islands">British Virgin Islands</option>
+                                <option value="Cayman Islands">Cayman Islands</option>
+                                <option value="Dominica">Dominica</option>
+                                <option value="Dominican Republic">Dominican Republic</option>
+                                <option value="Grenada">Grenada</option>
+                                <option value="Guadeloupe">Guadeloupe</option>
+                                <option value="Haiti">Haiti</option>
+                                <option value="Jamaica">Jamaica</option>
+                                <option value="Martinique">Martinique</option>
+                                <option value="Montserrat">Montserrat</option>
+                                <option value="Puerto Rico">Puerto Rico</option>
+                                <option value="St. Kitts & Nevis">St. Kitts & Nevis</option>
+                                <option value="St. Lucia">St. Lucia</option>
+                                <option value="St. Maarten">St. Maarten</option>
+                                <option value="St. Vincent & Grenadines">St. Vincent & Grenadines</option>
+                                <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                                <option value="Turks & Caicos">Turks & Caicos</option>
+                                <option value="US Virgin Islands">US Virgin Islands</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Description *</label>
+                        <textarea class="form-textarea" id="listingDescription" placeholder="Describe your item in detail. Include brand, model, size, color, and any defects..." maxlength="2000" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Photos (max 5)</label>
+                        <div class="image-upload-area" onclick="document.getElementById('listingImages').click()">
+                            <i class="fas fa-camera" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 0.75rem;"></i>
+                            <p style="margin: 0; color: var(--text-light);">Click to add photos</p>
+                            <p style="margin: 0.25rem 0 0; font-size: 0.85rem; color: #999;">PNG, JPG up to 5MB each</p>
+                        </div>
+                        <input type="file" id="listingImages" multiple accept="image/*" style="display: none;" onchange="handleListingImageUpload(event)">
+                        <div class="image-preview-grid" id="listingImagePreview"></div>
+                    </div>
+
+                    <div class="modal-footer" style="padding: 0; border: none; margin-top: 1.5rem;">
+                        <button type="button" class="btn btn-secondary" onclick="closeCreateListingModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="submitListingBtn">
+                            <i class="fas fa-check"></i> Create Listing
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Listing Modal -->
+    <div class="modal" id="editListingModal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-edit" style="color: var(--accent);"></i> Edit Listing</h3>
+                <button class="modal-close" onclick="closeEditListingModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editListingForm" onsubmit="updateListing(event)">
+                    <input type="hidden" id="editListingId">
+                    <div class="form-group">
+                        <label class="form-label">Title *</label>
+                        <input type="text" class="form-input" id="editListingTitle" placeholder="What are you selling?" maxlength="100" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Price (XCD) *</label>
+                            <input type="number" class="form-input" id="editListingPrice" placeholder="0 for free" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Category *</label>
+                            <select class="form-select" id="editListingCategory" required>
+                                <option value="">Select category</option>
+                                <option value="Electronics & Phones">Electronics & Phones</option>
+                                <option value="Vehicles & Parts">Vehicles & Parts</option>
+                                <option value="Furniture & Home">Furniture & Home</option>
+                                <option value="Clothing & Accessories">Clothing & Accessories</option>
+                                <option value="Sports & Outdoors">Sports & Outdoors</option>
+                                <option value="Baby & Kids">Baby & Kids</option>
+                                <option value="Garden & Tools">Garden & Tools</option>
+                                <option value="Free Stuff">Free Stuff</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Condition *</label>
+                            <select class="form-select" id="editListingCondition" required>
+                                <option value="">Select condition</option>
+                                <option value="New">New</option>
+                                <option value="Like New">Like New</option>
+                                <option value="Good">Good</option>
+                                <option value="Fair">Fair</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Location *</label>
+                            <select class="form-select" id="editListingLocation" required>
+                                <option value="">Select location</option>
+                                <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+                                <option value="Anguilla">Anguilla</option>
+                                <option value="Bahamas">Bahamas</option>
+                                <option value="Barbados">Barbados</option>
+                                <option value="British Virgin Islands">British Virgin Islands</option>
+                                <option value="Cayman Islands">Cayman Islands</option>
+                                <option value="Dominica">Dominica</option>
+                                <option value="Dominican Republic">Dominican Republic</option>
+                                <option value="Grenada">Grenada</option>
+                                <option value="Guadeloupe">Guadeloupe</option>
+                                <option value="Haiti">Haiti</option>
+                                <option value="Jamaica">Jamaica</option>
+                                <option value="Martinique">Martinique</option>
+                                <option value="Montserrat">Montserrat</option>
+                                <option value="Puerto Rico">Puerto Rico</option>
+                                <option value="St. Kitts & Nevis">St. Kitts & Nevis</option>
+                                <option value="St. Lucia">St. Lucia</option>
+                                <option value="St. Maarten">St. Maarten</option>
+                                <option value="St. Vincent & Grenadines">St. Vincent & Grenadines</option>
+                                <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                                <option value="Turks & Caicos">Turks & Caicos</option>
+                                <option value="US Virgin Islands">US Virgin Islands</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Description *</label>
+                        <textarea class="form-textarea" id="editListingDescription" placeholder="Describe your item in detail..." maxlength="2000" required></textarea>
+                    </div>
+
+                    <div class="modal-footer" style="padding: 0; border: none; margin-top: 1.5rem;">
+                        <button type="button" class="btn btn-secondary" onclick="closeEditListingModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="updateListingBtn">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // This file uses external scripts - see js/customer-dashboard-script.js
+        // All functions are defined there to avoid conflicts
+    </script>
+    <!-- Square Web Payments SDK -->
+    <script src="https://web.squarecdn.com/v1/square.js"></script>
+    <!-- CariCom Pros API Service -->
+    <script src="js/api-service.js"></script>
+    <script src="js/payment-service.js"></script>
+    <script src="js/customer-dashboard-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="gold2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+    <clipPath id="cardClip">
+      <rect width="280" height="240" rx="20"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#bg2)"/>
+
+  <!-- Grid Pattern -->
+  <g opacity="0.03">
+    <pattern id="grid2" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#ffd700" stroke-width="1"/>
+    </pattern>
+    <rect width="1080" height="1080" fill="url(#grid2)"/>
+  </g>
+
+  <!-- Header -->
+  <text x="540" y="100" font-family="Arial, sans-serif" font-size="28" fill="#ffd700" text-anchor="middle" letter-spacing="4">POPULAR SERVICES</text>
+
+  <!-- Services Grid 3x3 -->
+  <g transform="translate(90, 150)">
+    <!-- Row 1 -->
+    <g>
+      <rect width="280" height="240" rx="20" fill="#16213e"/>
+      <rect y="180" width="280" height="60" fill="url(#gold2)" opacity="0.9"/>
+      <text x="140" y="100" font-size="70" text-anchor="middle">⚡</text>
+      <text x="140" y="220" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Electrician</text>
+    </g>
+    <g transform="translate(300, 0)">
+      <rect width="280" height="240" rx="20" fill="#16213e"/>
+      <rect y="180" width="280" height="60" fill="url(#gold2)" opacity="0.9"/>
+      <text x="140" y="100" font-size="70" text-anchor="middle">🔧</text>
+      <text x="140" y="220" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Plumber</text>
+    </g>
+    <g transform="translate(600, 0)">
+      <rect width="280" height="240" rx="20" fill="#16213e"/>
+      <rect y="180" width="280" height="60" fill="url(#gold2)" opacity="0.9"/>
+      <text x="140" y="100" font-size="70" text-anchor="middle">🎨</text>
+      <text x="140" y="220" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Painter</text>
+    </g>
+
+    <!-- Row 2 -->
+    <g transform="translate(0, 260)">
+      <rect width="280" height="240" rx="20" fill="#16213e"/>
+      <rect y="180" width="280" height="60" fill="url(#gold2)" opacity="0.9"/>
+      <text x="140" y="100" font-size="70" text-anchor="middle">🔨</text>
+      <text x="140" y="220" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Contractor</text>
+    </g>
+    <g transform="translate(300, 260)">
+      <rect width="280" height="240" rx="20" fill="#16213e"/>
+      <rect y="180" width="280" height="60" fill="url(#gold2)" opacity="0.9"/>
+      <text x="140" y="100" font-size="70" text-anchor="middle">❄️</text>
+      <text x="140" y="220" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">HVAC Tech</text>
+    </g>
+    <g transform="translate(600, 260)">
+      <rect width="280" height="240" rx="20" fill="#16213e"/>
+      <rect y="180" width="280" height="60" fill="url(#gold2)" opacity="0.9"/>
+      <text x="140" y="100" font-size="70" text-anchor="middle">🧹</text>
+      <text x="140" y="220" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Cleaner</text>
+    </g>
+
+    <!-- Row 3 -->
+    <g transform="translate(0, 520)">
+      <rect width="280" height="240" rx="20" fill="#16213e"/>
+      <rect y="180" width="280" height="60" fill="url(#gold2)" opacity="0.9"/>
+      <text x="140" y="100" font-size="70" text-anchor="middle">🌿</text>
+      <text x="140" y="220" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Landscaper</text>
+    </g>
+    <g transform="translate(300, 520)">
+      <rect width="280" height="240" rx="20" fill="#16213e"/>
+      <rect y="180" width="280" height="60" fill="url(#gold2)" opacity="0.9"/>
+      <text x="140" y="100" font-size="70" text-anchor="middle">🏠</text>
+      <text x="140" y="220" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Roofer</text>
+    </g>
+    <g transform="translate(600, 520)">
+      <rect width="280" height="240" rx="20" fill="#16213e"/>
+      <rect y="180" width="280" height="60" fill="url(#gold2)" opacity="0.9"/>
+      <text x="140" y="100" font-size="70" text-anchor="middle">🛠️</text>
+      <text x="140" y="220" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Handyman</text>
+    </g>
+  </g>
+
+  <!-- Bottom CTA -->
+  <g transform="translate(190, 940)">
+    <rect width="700" height="80" rx="40" fill="url(#gold2)"/>
+    <text x="350" y="52" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#1a1a2e" text-anchor="middle">+ 40 More Service Categories</text>
+  </g>
+
+  <!-- Website -->
+  <text x="540" y="1050" font-family="Arial, sans-serif" font-size="24" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+</svg>

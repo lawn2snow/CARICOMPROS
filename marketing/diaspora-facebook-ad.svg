@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="fbDiaBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f1628"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="fbDiaGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#fbDiaBg)"/>
+
+  <!-- Left gold accent -->
+  <rect width="8" height="630" fill="url(#fbDiaGold)"/>
+
+  <!-- Connection visual -->
+  <g opacity="0.15">
+    <line x1="100" y1="100" x2="600" y2="315" stroke="#ffd700" stroke-width="2" stroke-dasharray="10,5"/>
+    <line x1="150" y1="530" x2="600" y2="315" stroke="#ffd700" stroke-width="2" stroke-dasharray="10,5"/>
+    <circle cx="100" cy="100" r="30" fill="#ffd700"/>
+    <circle cx="150" cy="530" r="30" fill="#ffd700"/>
+  </g>
+
+  <!-- Left content -->
+  <g transform="translate(60, 100)">
+    <!-- Flags -->
+    <g>
+      <text font-size="36">🇺🇸</text>
+      <text x="50" font-size="36">🇬🇧</text>
+      <text x="100" font-size="36">🇨🇦</text>
+    </g>
+
+    <!-- Headline -->
+    <text y="100" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff">Living Abroad?</text>
+    <text y="160" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="url(#fbDiaGold)">Hire Pros</text>
+    <text y="220" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="url(#fbDiaGold)">Back Home</text>
+
+    <!-- Subtext -->
+    <text y="280" font-family="Arial, sans-serif" font-size="20" fill="#888888">Get repairs, renovations & maintenance done</text>
+    <text y="310" font-family="Arial, sans-serif" font-size="20" fill="#888888">in the Caribbean from anywhere in the world</text>
+
+    <!-- Trust points -->
+    <g transform="translate(0, 350)" font-family="Arial, sans-serif">
+      <text font-size="16" fill="#ffd700">✓ Verified Professionals</text>
+      <text y="30" font-size="16" fill="#ffd700">✓ Secure International Payments</text>
+      <text y="60" font-size="16" fill="#ffd700">✓ Photo Updates & Direct Chat</text>
+    </g>
+
+    <!-- CTA -->
+    <g transform="translate(0, 440)">
+      <rect width="280" height="60" rx="30" fill="url(#fbDiaGold)"/>
+      <text x="140" y="40" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Find a Pro Now</text>
+    </g>
+  </g>
+
+  <!-- Right side - Caribbean visual -->
+  <g transform="translate(700, 100)">
+    <rect width="420" height="420" rx="40" fill="#16213e" stroke="url(#fbDiaGold)" stroke-width="3"/>
+
+    <!-- Central island -->
+    <circle cx="210" cy="180" r="100" fill="url(#fbDiaGold)" opacity="0.1"/>
+    <text x="210" y="200" font-size="100" text-anchor="middle">🏝️</text>
+
+    <!-- Services around -->
+    <g transform="translate(50, 300)">
+      <text font-size="30">🔨</text>
+      <text x="80" font-size="30">⚡</text>
+      <text x="160" font-size="30">🔧</text>
+      <text x="240" font-size="30">🎨</text>
+      <text x="320" font-size="30">🧹</text>
+    </g>
+
+    <text x="210" y="390" font-family="Arial, sans-serif" font-size="18" fill="#ffd700" text-anchor="middle">30+ Caribbean Islands</text>
+  </g>
+
+  <!-- Bottom stats bar -->
+  <rect y="570" width="1200" height="60" fill="#16213e"/>
+  <g transform="translate(0, 570)" font-family="Arial, sans-serif">
+    <text x="200" y="40" font-size="18" fill="#ffd700" text-anchor="middle">Verified Pros</text>
+    <text x="420" y="40" font-size="18" fill="#888888" text-anchor="middle">•</text>
+    <text x="600" y="40" font-size="18" fill="#ffd700" text-anchor="middle">50+ Service Categories</text>
+    <text x="780" y="40" font-size="18" fill="#888888" text-anchor="middle">•</text>
+    <text x="1000" y="40" font-size="18" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+  </g>
+</svg>

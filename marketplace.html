@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace - CariCom Pros</title>
+    <meta name="description" content="Buy and sell locally in the Caribbean. Find electronics, vehicles, furniture, and more on the CariCom Pros Marketplace.">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="images/icon-192.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #ffd700;
+            --accent-light: #ffed4e;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --error: #f44336;
+            --info: #2196F3;
+            --text: #333;
+            --text-light: #666;
+            --bg: #f8f9fa;
+            --white: #ffffff;
+            --shadow: rgba(0,0,0,0.1);
+            --radius: 15px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--primary);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--white);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0;
+        }
+
+        .logo-image {
+            height: 120px !important;
+            max-width: 90vw !important;
+            width: auto !important;
+            object-fit: contain;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: var(--accent);
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Categories Bar */
+        .categories-bar {
+            background: var(--white);
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+            position: sticky;
+            top: 60px;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .categories-scroll {
+            display: flex;
+            gap: 0.75rem;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+            scrollbar-width: none;
+        }
+
+        .categories-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            background: var(--white);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .category-chip:hover {
+            border-color: var(--accent);
+            color: var(--primary);
+        }
+
+        .category-chip.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--primary);
+        }
+
+        .category-chip i {
+            font-size: 1rem;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            padding: 1.5rem 0;
+            background: var(--white);
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .search-group {
+            display: flex;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .search-group .form-input {
+            border-radius: 10px 0 0 10px;
+            border-right: none;
+        }
+
+        .search-group .btn {
+            border-radius: 0 10px 10px 0;
+        }
+
+        .filter-group {
+            min-width: 150px;
+        }
+
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .price-range .form-input {
+            width: 100px;
+        }
+
+        /* Listings Section */
+        .listings-section {
+            padding: 2rem 0;
+        }
+
+        .listings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .listings-header h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .listings-header h2 span {
+            color: var(--text-light);
+            font-weight: normal;
+            font-size: 1rem;
+        }
+
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Listing Card */
+        .listing-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 2px 10px var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .listing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        .listing-card-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .listing-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .listing-card:hover .listing-card-image img {
+            transform: scale(1.05);
+        }
+
+        .listing-card-image .no-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+            font-size: 3rem;
+        }
+
+        .sold-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .listing-card-content {
+            padding: 1rem;
+        }
+
+        .listing-card-price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .listing-card-price.free {
+            color: var(--success);
+        }
+
+        .listing-card-title {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .listing-card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .listing-card-meta .condition {
+            background: #f0f0f0;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-light);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f0f0f0;
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Social Share Buttons */
+        .share-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .share-section h4 {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            color: white;
+        }
+
+        .share-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .share-btn.facebook { background: #1877f2; }
+        .share-btn.twitter { background: #000000; }
+        .share-btn.whatsapp { background: #25d366; }
+        .share-btn.telegram { background: #0088cc; }
+        .share-btn.linkedin { background: #0077b5; }
+        .share-btn.copy-link { background: var(--primary); }
+
+        .share-btn.copy-link.copied {
+            background: var(--success);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: var(--radius);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-large {
+            max-width: 900px;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.75rem;
+            cursor: pointer;
+            color: var(--text-light);
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--error);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        /* Image Upload */
+        .image-upload-area {
+            border: 2px dashed #e9ecef;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .image-upload-area:hover {
+            border-color: var(--accent);
+            background: rgba(255, 215, 0, 0.03);
+        }
+
+        .image-previews {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .image-preview {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-image {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: var(--error);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Listing Detail */
+        .listing-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .listing-gallery {
+            position: relative;
+        }
+
+        .gallery-main {
+            width: 100%;
+            height: 350px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .gallery-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-thumbs {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .gallery-thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .gallery-thumb.active {
+            border-color: var(--accent);
+        }
+
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .listing-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .listing-info .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .listing-info .price.free {
+            color: var(--success);
+        }
+
+        .listing-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta-badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .meta-badge.condition {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .meta-badge.location {
+            background: #e3f2fd;
+            color: var(--info);
+        }
+
+        .meta-badge.views {
+            background: #f0f0f0;
+            color: var(--text-light);
+        }
+
+        .listing-description {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .seller-card {
+            background: #f8f9fa;
+            border-radius: var(--radius);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .seller-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .seller-details h4 {
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .seller-details p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .listing-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .listing-actions .btn {
+            flex: 1;
+            justify-content: center;
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Mobile Menu Drawer */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 320px;
+            height: 100%;
+            background: var(--white);
+            z-index: 9999;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            background: var(--primary);
+            padding: 1.25rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-menu-header .logo-text {
+            color: var(--white);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .mobile-menu-header .logo-text span {
+            color: var(--accent);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            line-height: 1;
+        }
+
+        .mobile-menu-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0;
+        }
+
+        .mobile-menu-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-menu-nav li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .mobile-menu-nav a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .mobile-menu-nav a:hover,
+        .mobile-menu-nav a:active {
+            background: var(--bg);
+        }
+
+        .mobile-menu-nav a.active {
+            color: var(--accent);
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid var(--accent);
+        }
+
+        .mobile-menu-nav a i {
+            width: 24px;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .mobile-menu-nav a.active i {
+            color: var(--accent);
+        }
+
+        .mobile-menu-section {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+            background: var(--bg);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .mobile-menu-footer {
+            padding: 1rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .mobile-menu-footer .btn {
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-menu-footer .btn:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.75rem 1rem;
+            }
+
+            .header-nav {
+                display: none;
+            }
+
+            .logo-text {
+                font-size: 1.25rem;
+            }
+
+            .logo-icon {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .categories-bar {
+                top: 52px;
+                padding: 0.75rem 0;
+            }
+
+            .category-chip {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0.75rem;
+            }
+
+            .search-group {
+                width: 100%;
+            }
+
+            .filter-group {
+                width: 100%;
+            }
+
+            .filter-group .form-select {
+                flex: 1;
+            }
+
+            .price-range {
+                width: 100%;
+            }
+
+            .price-range .form-input {
+                flex: 1;
+            }
+
+            .listings-header {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
+
+            .listings-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+                gap: 1rem;
+            }
+
+            .listing-card-image {
+                height: 140px;
+            }
+
+            .listing-card-content {
+                padding: 0.75rem;
+            }
+
+            .listing-card-price {
+                font-size: 1rem;
+            }
+
+            .listing-card-title {
+                font-size: 0.85rem;
+            }
+
+            .listing-card-meta {
+                font-size: 0.75rem;
+            }
+
+            .listing-detail {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-main {
+                height: 250px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 0;
+                border-radius: 0;
+                max-height: 100vh;
+                height: 100%;
+            }
+
+            .modal-content.modal-large {
+                max-width: 100%;
+            }
+
+            .modal-header {
+                padding: 1rem;
+                position: sticky;
+                top: 0;
+                background: var(--white);
+                z-index: 10;
+            }
+
+            .modal-header h2 {
+                font-size: 1.1rem;
+            }
+
+            .modal-body {
+                padding: 1rem;
+            }
+
+            .share-buttons {
+                justify-content: center;
+            }
+
+            .btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .image-previews {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 375px) {
+            .listings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .listing-card-image {
+                height: 180px;
+            }
+
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+
+            .category-chip {
+                padding: 0.4rem 0.75rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-btn {
+            display: none;
+            background: var(--accent);
+            border: none;
+            color: var(--primary);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.75rem;
+            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+        }
+
+        /* Prevent body scroll when menu is open */
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        /* ID Verification Styles */
+        .verification-banner {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+            border: 1px solid #ffc107;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .verification-banner i {
+            font-size: 1.5rem;
+            color: #856404;
+        }
+
+        .verification-banner-content h4 {
+            color: #856404;
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .verification-banner-content p {
+            color: #856404;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .verified-badge i {
+            font-size: 0.7rem;
+        }
+
+        .pending-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: #FF9800;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .seller-verified {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.25rem;
+        }
+
+        .id-upload-section {
+            border: 2px dashed #dee2e6;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            background: #f8f9fa;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .id-upload-section:hover {
+            border-color: var(--accent);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .id-upload-section.has-file {
+            border-color: var(--success);
+            background: rgba(76, 175, 80, 0.05);
+        }
+
+        .id-upload-section i {
+            font-size: 3rem;
+            color: #adb5bd;
+            margin-bottom: 1rem;
+        }
+
+        .id-upload-section.has-file i {
+            color: var(--success);
+        }
+
+        .id-upload-section h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .id-upload-section p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .id-preview {
+            max-width: 300px;
+            max-height: 200px;
+            margin: 1rem auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .id-preview img {
+            width: 100%;
+            height: auto;
+        }
+
+        .id-type-select {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .id-type-option {
+            padding: 1rem;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .id-type-option:hover {
+            border-color: var(--accent);
+        }
+
+        .id-type-option.selected {
+            border-color: var(--accent);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .id-type-option i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .id-type-option span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .verification-steps {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .verification-step {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+
+        .verification-step.active {
+            background: rgba(255, 215, 0, 0.15);
+        }
+
+        .verification-step.completed {
+            background: rgba(76, 175, 80, 0.15);
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #dee2e6;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .verification-step.active .step-number {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .verification-step.completed .step-number {
+            background: var(--success);
+        }
+
+        .verification-step span {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .verification-step.active span,
+        .verification-step.completed span {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .trust-badge {
+            text-align: center;
+        }
+
+        .trust-badge i {
+            font-size: 1.5rem;
+            color: var(--success);
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-badge span {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .id-type-select {
+                grid-template-columns: 1fr;
+            }
+
+            .verification-steps {
+                flex-direction: column;
+            }
+
+            .trust-badges {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; justify-content: center;">
+                <img src="/images/caricompros-logo.png" alt="CariCom Pros" class="logo-image" style="height: 55px; width: auto;">
+            </a>
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="browse.html" class="nav-link">Find Contractors</a>
+                <a href="marketplace.html" class="nav-link" style="color: var(--accent);">Marketplace</a>
+                <button id="authBtn" class="btn btn-outline" onclick="handleAuthClick()">Sign In</button>
+            </nav>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Mobile Menu Drawer -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <span class="logo-text" style="display: flex; justify-content: center;"><img src="/images/caricompros-logo.png" alt="CariCom Pros" style="height: 50px; width: auto;"></span>
+            <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-body">
+            <div class="mobile-menu-section">Navigation</div>
+            <ul class="mobile-menu-nav">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="browse.html"><i class="fas fa-search"></i> Find Contractors</a></li>
+                <li><a href="marketplace.html" class="active"><i class="fas fa-store"></i> Marketplace</a></li>
+            </ul>
+            <div class="mobile-menu-section">Categories</div>
+            <ul class="mobile-menu-nav">
+                <li><a href="#" onclick="selectCategoryAndClose('Electronics')"><i class="fas fa-laptop"></i> Electronics</a></li>
+                <li><a href="#" onclick="selectCategoryAndClose('Vehicles')"><i class="fas fa-car"></i> Vehicles</a></li>
+                <li><a href="#" onclick="selectCategoryAndClose('Furniture')"><i class="fas fa-couch"></i> Furniture</a></li>
+                <li><a href="#" onclick="selectCategoryAndClose('Clothing')"><i class="fas fa-tshirt"></i> Clothing</a></li>
+                <li><a href="#" onclick="selectCategoryAndClose('Sports')"><i class="fas fa-futbol"></i> Sports</a></li>
+                <li><a href="#" onclick="selectCategoryAndClose('Baby & Kids')"><i class="fas fa-baby"></i> Baby & Kids</a></li>
+                <li><a href="#" onclick="selectCategoryAndClose('Garden & Tools')"><i class="fas fa-tools"></i> Garden & Tools</a></li>
+                <li><a href="#" onclick="selectCategoryAndClose('Free Stuff')"><i class="fas fa-gift"></i> Free Stuff</a></li>
+            </ul>
+            <div class="mobile-menu-section">Account</div>
+            <ul class="mobile-menu-nav" id="mobileAccountNav">
+                <li><a href="index.html#login" onclick="closeMobileMenu()"><i class="fas fa-sign-in-alt"></i> Sign In</a></li>
+                <li><a href="index.html#signup" onclick="closeMobileMenu()"><i class="fas fa-user-plus"></i> Sign Up</a></li>
+            </ul>
+        </div>
+        <div class="mobile-menu-footer">
+            <button class="btn btn-primary" onclick="openCreateListingModal(); closeMobileMenu();">
+                <i class="fas fa-plus"></i> Sell Something
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Caribbean <span>Marketplace</span></h1>
+        <p>Buy and sell locally across the islands</p>
+        <button class="btn btn-primary" onclick="openCreateListingModal()">
+            <i class="fas fa-plus"></i> Sell Something
+        </button>
+    </section>
+
+    <!-- Categories Bar -->
+    <section class="categories-bar">
+        <div class="container">
+            <div class="categories-scroll" id="categoriesBar">
+                <button class="category-chip active" data-category="all">
+                    <i class="fas fa-th"></i> All
+                </button>
+                <button class="category-chip" data-category="Electronics">
+                    <i class="fas fa-laptop"></i> Electronics
+                </button>
+                <button class="category-chip" data-category="Vehicles">
+                    <i class="fas fa-car"></i> Vehicles
+                </button>
+                <button class="category-chip" data-category="Furniture">
+                    <i class="fas fa-couch"></i> Furniture
+                </button>
+                <button class="category-chip" data-category="Clothing">
+                    <i class="fas fa-tshirt"></i> Clothing
+                </button>
+                <button class="category-chip" data-category="Sports">
+                    <i class="fas fa-futbol"></i> Sports
+                </button>
+                <button class="category-chip" data-category="Baby & Kids">
+                    <i class="fas fa-baby"></i> Baby & Kids
+                </button>
+                <button class="category-chip" data-category="Garden & Tools">
+                    <i class="fas fa-tools"></i> Garden & Tools
+                </button>
+                <button class="category-chip" data-category="Free Stuff">
+                    <i class="fas fa-gift"></i> Free Stuff
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-bar">
+                <div class="search-group">
+                    <input type="text" id="searchInput" class="form-input" placeholder="Search marketplace...">
+                    <button class="btn btn-primary" onclick="applyFilters()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <div class="filter-group">
+                    <select id="locationFilter" class="form-input">
+                        <option value="">All Locations</option>
+                        <option value="Antigua">Antigua & Barbuda</option>
+                        <option value="Bahamas">Bahamas</option>
+                        <option value="Barbados">Barbados</option>
+                        <option value="Dominica">Dominica</option>
+                        <option value="Grenada">Grenada</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="St. Kitts">St. Kitts & Nevis</option>
+                        <option value="St. Lucia">St. Lucia</option>
+                        <option value="St. Vincent">St. Vincent</option>
+                        <option value="Trinidad">Trinidad & Tobago</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <select id="conditionFilter" class="form-input">
+                        <option value="">Any Condition</option>
+                        <option value="New">New</option>
+                        <option value="Like New">Like New</option>
+                        <option value="Good">Good</option>
+                        <option value="Fair">Fair</option>
+                    </select>
+                </div>
+
+                <div class="price-range">
+                    <input type="number" id="minPrice" class="form-input" placeholder="Min $" min="0">
+                    <span>-</span>
+                    <input type="number" id="maxPrice" class="form-input" placeholder="Max $" min="0">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Listings Section -->
+    <section class="listings-section">
+        <div class="container">
+            <div class="listings-header">
+                <h2>Available Items <span id="listingsCount"></span></h2>
+                <div class="sort-options">
+                    <select id="sortBy" class="form-input" onchange="applyFilters()">
+                        <option value="newest">Newest First</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="listingsGrid" class="listings-grid">
+                <!-- Listings will be loaded here -->
+            </div>
+
+            <div id="emptyState" class="empty-state hidden">
+                <i class="fas fa-search"></i>
+                <h3>No items found</h3>
+                <p>Try adjusting your filters or search terms</p>
+                <button class="btn btn-primary" onclick="resetFilters()" style="margin-top: 1rem;">
+                    <i class="fas fa-redo"></i> Reset Filters
+                </button>
+            </div>
+
+            <div id="loadingSpinner" class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Loading listings...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Create Listing Modal -->
+    <div id="createListingModal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2><i class="fas fa-plus-circle"></i> Create New Listing</h2>
+                <button class="modal-close" onclick="closeModal('createListingModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="createListingForm" onsubmit="submitListing(event)">
+                    <div class="form-group">
+                        <label class="form-label">Title *</label>
+                        <input type="text" name="title" class="form-input" required maxlength="100"
+                               placeholder="What are you selling?">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Category *</label>
+                            <select name="category" class="form-input" required>
+                                <option value="">Select category</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Vehicles">Vehicles</option>
+                                <option value="Furniture">Furniture</option>
+                                <option value="Clothing">Clothing</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Baby & Kids">Baby & Kids</option>
+                                <option value="Garden & Tools">Garden & Tools</option>
+                                <option value="Free Stuff">Free Stuff</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Price ($) *</label>
+                            <input type="number" name="price" class="form-input" required min="0" step="0.01"
+                                   placeholder="0 for free items">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Condition *</label>
+                            <select name="condition" class="form-input" required>
+                                <option value="New">New</option>
+                                <option value="Like New">Like New</option>
+                                <option value="Good" selected>Good</option>
+                                <option value="Fair">Fair</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Location *</label>
+                            <select name="location" class="form-input" required>
+                                <option value="">Select location</option>
+                                <option value="Antigua">Antigua & Barbuda</option>
+                                <option value="Bahamas">Bahamas</option>
+                                <option value="Barbados">Barbados</option>
+                                <option value="Dominica">Dominica</option>
+                                <option value="Grenada">Grenada</option>
+                                <option value="Jamaica">Jamaica</option>
+                                <option value="St. Kitts">St. Kitts & Nevis</option>
+                                <option value="St. Lucia">St. Lucia</option>
+                                <option value="St. Vincent">St. Vincent</option>
+                                <option value="Trinidad">Trinidad & Tobago</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Description *</label>
+                        <textarea name="description" class="form-textarea" required
+                                  maxlength="2000" rows="4"
+                                  placeholder="Describe your item - include details like brand, size, condition notes..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Photos (up to 5)</label>
+                        <div class="image-upload-area">
+                            <input type="file" id="imageInput" multiple accept="image/*"
+                                   onchange="handleImageUpload(event)" hidden>
+                            <div class="image-previews" id="imagePreviews"></div>
+                            <button type="button" class="btn btn-outline" onclick="document.getElementById('imageInput').click()">
+                                <i class="fas fa-camera"></i> Add Photos
+                            </button>
+                            <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem;">
+                                JPG, PNG - Max 10MB each
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" style="border: none; padding: 0; margin-top: 1rem;">
+                        <button type="button" class="btn btn-outline" onclick="closeModal('createListingModal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check"></i> Post Listing
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Listing Detail Modal -->
+    <div id="listingDetailModal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="detailTitle">Listing Title</h2>
+                <button class="modal-close" onclick="closeModal('listingDetailModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="listing-detail">
+                    <div class="listing-gallery">
+                        <div class="gallery-main" id="galleryMain">
+                            <div class="no-image"><i class="fas fa-image"></i></div>
+                        </div>
+                        <div class="gallery-thumbs" id="galleryThumbs"></div>
+                    </div>
+                    <div class="listing-info">
+                        <div class="price" id="detailPrice">$0</div>
+                        <div class="listing-meta-row">
+                            <span class="meta-badge condition" id="detailCondition">New</span>
+                            <span class="meta-badge location" id="detailLocation">
+                                <i class="fas fa-map-marker-alt"></i> Location
+                            </span>
+                            <span class="meta-badge views" id="detailViews">
+                                <i class="fas fa-eye"></i> 0 views
+                            </span>
+                        </div>
+                        <p class="listing-description" id="detailDescription">
+                            Description goes here...
+                        </p>
+                        <div class="seller-card" id="sellerCard">
+                            <div class="seller-avatar" id="sellerAvatar">?</div>
+                            <div class="seller-details">
+                                <h4 id="sellerName">Seller Name</h4>
+                                <p id="sellerMeta">Member</p>
+                            </div>
+                        </div>
+                        <div class="listing-actions">
+                            <button class="btn btn-primary" onclick="contactSeller()">
+                                <i class="fas fa-envelope"></i> Contact Seller
+                            </button>
+                        </div>
+
+                        <!-- Social Share Section -->
+                        <div class="share-section">
+                            <h4><i class="fas fa-share-alt"></i> Share this listing</h4>
+                            <div class="share-buttons">
+                                <button class="share-btn facebook" onclick="shareListing('facebook')" title="Share on Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+                                <button class="share-btn twitter" onclick="shareListing('twitter')" title="Share on X (Twitter)">
+                                    <i class="fab fa-x-twitter"></i>
+                                </button>
+                                <button class="share-btn whatsapp" onclick="shareListing('whatsapp')" title="Share on WhatsApp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </button>
+                                <button class="share-btn telegram" onclick="shareListing('telegram')" title="Share on Telegram">
+                                    <i class="fab fa-telegram-plane"></i>
+                                </button>
+                                <button class="share-btn linkedin" onclick="shareListing('linkedin')" title="Share on LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </button>
+                                <button class="share-btn copy-link" onclick="copyListingLink()" title="Copy Link" id="copyLinkBtn">
+                                    <i class="fas fa-link"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Required Modal -->
+    <div id="loginRequiredModal" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <h2>Login Required</h2>
+                <button class="modal-close" onclick="closeModal('loginRequiredModal')">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <i class="fas fa-user-lock" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
+                <p style="margin-bottom: 1.5rem;">You need to be logged in to perform this action.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="index.html#login" class="btn btn-primary">Sign In</a>
+                    <a href="index.html#signup" class="btn btn-outline" style="border-color: var(--primary); color: var(--primary);">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ID Verification Modal -->
+    <div id="verificationModal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2><i class="fas fa-shield-alt" style="color: var(--success);"></i> Verify Your Identity</h2>
+                <button class="modal-close" onclick="closeModal('verificationModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Verification Steps Progress -->
+                <div class="verification-steps">
+                    <div class="verification-step active" id="step1">
+                        <div class="step-number">1</div>
+                        <span>Select ID Type</span>
+                    </div>
+                    <div class="verification-step" id="step2">
+                        <div class="step-number">2</div>
+                        <span>Upload ID</span>
+                    </div>
+                    <div class="verification-step" id="step3">
+                        <div class="step-number">3</div>
+                        <span>Confirm</span>
+                    </div>
+                </div>
+
+                <!-- Why Verification Banner -->
+                <div class="verification-banner">
+                    <i class="fas fa-info-circle"></i>
+                    <div class="verification-banner-content">
+                        <h4>Why do we need this?</h4>
+                        <p>ID verification helps protect buyers from scams and builds trust in our marketplace. Verified sellers get a badge and more visibility.</p>
+                    </div>
+                </div>
+
+                <form id="verificationForm" onsubmit="submitVerification(event)">
+                    <!-- Step 1: ID Type Selection -->
+                    <div id="verificationStep1">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary);">Select your ID type</h3>
+                        <div class="id-type-select">
+                            <div class="id-type-option" data-type="drivers-license" onclick="selectIdType(this)">
+                                <i class="fas fa-id-card"></i>
+                                <span>Driver's License</span>
+                            </div>
+                            <div class="id-type-option" data-type="national-id" onclick="selectIdType(this)">
+                                <i class="fas fa-passport"></i>
+                                <span>National ID</span>
+                            </div>
+                            <div class="id-type-option" data-type="passport" onclick="selectIdType(this)">
+                                <i class="fas fa-passport"></i>
+                                <span>Passport</span>
+                            </div>
+                            <div class="id-type-option" data-type="other" onclick="selectIdType(this)">
+                                <i class="fas fa-file-alt"></i>
+                                <span>Other Gov't ID</span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedIdType" name="idType" required>
+                        <button type="button" class="btn btn-primary" onclick="goToStep(2)" style="width: 100%;" id="step1NextBtn" disabled>
+                            Continue <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Step 2: Upload ID -->
+                    <div id="verificationStep2" style="display: none;">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary);">Upload your <span id="selectedIdTypeName">ID</span></h3>
+
+                        <div class="id-upload-section" id="idUploadSection" onclick="document.getElementById('idFileInput').click()">
+                            <input type="file" id="idFileInput" accept="image/*" onchange="handleIdUpload(event)" hidden>
+                            <i class="fas fa-cloud-upload-alt" id="uploadIcon"></i>
+                            <h4 id="uploadText">Click or tap to upload</h4>
+                            <p id="uploadSubtext">JPG, PNG - Make sure all text is clearly visible</p>
+                            <div class="id-preview" id="idPreview" style="display: none;"></div>
+                        </div>
+
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; margin-bottom: 1rem;">
+                            <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--primary);">
+                                <i class="fas fa-check-circle" style="color: var(--success);"></i> Tips for a good photo:
+                            </h4>
+                            <ul style="font-size: 0.85rem; color: var(--text-light); margin: 0; padding-left: 1.5rem;">
+                                <li>Place ID on a flat, dark surface</li>
+                                <li>Ensure all four corners are visible</li>
+                                <li>Avoid glare or shadows</li>
+                                <li>Photo and text must be clearly readable</li>
+                            </ul>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem;">
+                            <button type="button" class="btn btn-outline" onclick="goToStep(1)" style="flex: 1; border-color: var(--primary); color: var(--primary);">
+                                <i class="fas fa-arrow-left"></i> Back
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="goToStep(3)" style="flex: 1;" id="step2NextBtn" disabled>
+                                Continue <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Confirm -->
+                    <div id="verificationStep3" style="display: none;">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary);">Confirm your information</h3>
+
+                        <div class="form-group">
+                            <label class="form-label">Full Name (as shown on ID) *</label>
+                            <input type="text" id="verifyFullName" class="form-input" required placeholder="Enter your full legal name">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">ID Number *</label>
+                                <input type="text" id="verifyIdNumber" class="form-input" required placeholder="License/ID number">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Expiry Date *</label>
+                                <input type="date" id="verifyExpiry" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Country/Territory of Issue *</label>
+                            <select id="verifyCountry" class="form-input" required>
+                                <option value="">Select country</option>
+                                <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                <option value="Bahamas">Bahamas</option>
+                                <option value="Barbados">Barbados</option>
+                                <option value="Dominica">Dominica</option>
+                                <option value="Grenada">Grenada</option>
+                                <option value="Jamaica">Jamaica</option>
+                                <option value="St. Kitts and Nevis">St. Kitts and Nevis</option>
+                                <option value="St. Lucia">St. Lucia</option>
+                                <option value="St. Vincent and the Grenadines">St. Vincent and the Grenadines</option>
+                                <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                <option value="Other">Other Caribbean Territory</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer;">
+                                <input type="checkbox" id="verifyConsent" required style="margin-top: 0.25rem;">
+                                <span style="font-size: 0.9rem; color: var(--text-light);">
+                                    I confirm that the information provided is accurate and matches my government-issued ID.
+                                    I consent to CariCom Pros storing this information securely for verification purposes.
+                                </span>
+                            </label>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem;">
+                            <button type="button" class="btn btn-outline" onclick="goToStep(2)" style="flex: 1; border-color: var(--primary); color: var(--primary);">
+                                <i class="fas fa-arrow-left"></i> Back
+                            </button>
+                            <button type="submit" class="btn btn-success" style="flex: 1;">
+                                <i class="fas fa-shield-alt"></i> Submit for Verification
+                            </button>
+                        </div>
+
+                        <!-- Trust Badges -->
+                        <div class="trust-badges">
+                            <div class="trust-badge">
+                                <i class="fas fa-lock"></i>
+                                <span>Encrypted Storage</span>
+                            </div>
+                            <div class="trust-badge">
+                                <i class="fas fa-user-shield"></i>
+                                <span>Privacy Protected</span>
+                            </div>
+                            <div class="trust-badge">
+                                <i class="fas fa-clock"></i>
+                                <span>24hr Review</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verification Pending Modal -->
+    <div id="verificationPendingModal" class="modal">
+        <div class="modal-content" style="max-width: 450px;">
+            <div class="modal-header">
+                <h2><i class="fas fa-clock" style="color: #FF9800;"></i> Verification Pending</h2>
+                <button class="modal-close" onclick="closeModal('verificationPendingModal')">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <div style="width: 80px; height: 80px; background: rgba(255, 152, 0, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                    <i class="fas fa-hourglass-half" style="font-size: 2rem; color: #FF9800;"></i>
+                </div>
+                <h3 style="margin-bottom: 0.5rem; color: var(--primary);">Your ID is being reviewed</h3>
+                <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+                    We're verifying your identity. This usually takes less than 24 hours.
+                    You'll receive an email once your verification is complete.
+                </p>
+                <p style="font-size: 0.9rem; color: var(--text-light);">
+                    <i class="fas fa-info-circle"></i> You can still browse the marketplace while waiting.
+                </p>
+                <button class="btn btn-primary" onclick="closeModal('verificationPendingModal')" style="margin-top: 1rem;">
+                    Got it
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verification Required Modal (shown when unverified user tries to list) -->
+    <div id="verificationRequiredModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h2><i class="fas fa-exclamation-triangle" style="color: #FF9800;"></i> Verification Required</h2>
+                <button class="modal-close" onclick="closeModal('verificationRequiredModal')">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <div style="width: 80px; height: 80px; background: rgba(255, 152, 0, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                    <i class="fas fa-id-card" style="font-size: 2rem; color: #FF9800;"></i>
+                </div>
+                <h3 style="margin-bottom: 0.5rem; color: var(--primary);">Verify your identity to sell</h3>
+                <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+                    To protect our community from scams, we require sellers to verify their identity with a government-issued ID before creating listings.
+                </p>
+
+                <div style="background: #f8f9fa; border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem; text-align: left;">
+                    <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--primary);">Benefits of verification:</h4>
+                    <ul style="margin: 0; padding-left: 1.25rem; color: var(--text-light); font-size: 0.9rem;">
+                        <li><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Verified seller badge on your listings</li>
+                        <li><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> More trust from buyers</li>
+                        <li><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Priority placement in search results</li>
+                        <li><i class="fas fa-check" style="color: var(--success); margin-right: 0.5rem;"></i> Access to premium features</li>
+                    </ul>
+                </div>
+
+                <div style="display: flex; gap: 1rem;">
+                    <button class="btn btn-outline" onclick="closeModal('verificationRequiredModal')" style="flex: 1; border-color: var(--primary); color: var(--primary);">
+                        Maybe Later
+                    </button>
+                    <button class="btn btn-primary" onclick="closeModal('verificationRequiredModal'); openVerificationModal();" style="flex: 1;">
+                        <i class="fas fa-shield-alt"></i> Verify Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api-service.js"></script>
+    <script src="js/marketplace.js"></script>
+</body>
+</html>

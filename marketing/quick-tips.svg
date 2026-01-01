@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="tipsBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="tipsGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1080" fill="url(#tipsBg)"/>
+
+  <!-- Header -->
+  <g transform="translate(290, 50)">
+    <rect width="500" height="50" rx="25" fill="url(#tipsGold)"/>
+    <text x="250" y="34" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1a1a2e" text-anchor="middle">💡 PRO TIPS</text>
+  </g>
+
+  <text x="540" y="160" font-family="Arial, sans-serif" font-size="40" font-weight="bold" fill="#ffffff" text-anchor="middle">Get the Best Results</text>
+  <text x="540" y="210" font-family="Arial, sans-serif" font-size="40" font-weight="bold" fill="url(#tipsGold)" text-anchor="middle">on CariCom Pros</text>
+
+  <!-- Tips List -->
+  <g transform="translate(100, 270)">
+    <!-- Tip 1 -->
+    <g>
+      <rect width="880" height="110" rx="15" fill="#16213e"/>
+      <circle cx="60" cy="55" r="35" fill="url(#tipsGold)"/>
+      <text x="60" y="65" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1a1a2e" text-anchor="middle">1</text>
+      <text x="120" y="45" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Be Specific in Your Job Description</text>
+      <text x="120" y="75" font-family="Arial, sans-serif" font-size="14" fill="#888888">Include measurements, photos, and exact requirements.</text>
+      <text x="120" y="95" font-family="Arial, sans-serif" font-size="14" fill="#888888">The more detail, the more accurate your quotes.</text>
+    </g>
+
+    <!-- Tip 2 -->
+    <g transform="translate(0, 130)">
+      <rect width="880" height="110" rx="15" fill="#16213e"/>
+      <circle cx="60" cy="55" r="35" fill="url(#tipsGold)"/>
+      <text x="60" y="65" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1a1a2e" text-anchor="middle">2</text>
+      <text x="120" y="45" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Compare Multiple Quotes</text>
+      <text x="120" y="75" font-family="Arial, sans-serif" font-size="14" fill="#888888">Wait for at least 3 quotes before making a decision.</text>
+      <text x="120" y="95" font-family="Arial, sans-serif" font-size="14" fill="#888888">Compare prices, reviews, and availability.</text>
+    </g>
+
+    <!-- Tip 3 -->
+    <g transform="translate(0, 260)">
+      <rect width="880" height="110" rx="15" fill="#16213e"/>
+      <circle cx="60" cy="55" r="35" fill="url(#tipsGold)"/>
+      <text x="60" y="65" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1a1a2e" text-anchor="middle">3</text>
+      <text x="120" y="45" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Check Reviews Carefully</text>
+      <text x="120" y="75" font-family="Arial, sans-serif" font-size="14" fill="#888888">Read what past customers say about quality and reliability.</text>
+      <text x="120" y="95" font-family="Arial, sans-serif" font-size="14" fill="#888888">Look for pros with consistent 5-star ratings.</text>
+    </g>
+
+    <!-- Tip 4 -->
+    <g transform="translate(0, 390)">
+      <rect width="880" height="110" rx="15" fill="#16213e"/>
+      <circle cx="60" cy="55" r="35" fill="url(#tipsGold)"/>
+      <text x="60" y="65" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1a1a2e" text-anchor="middle">4</text>
+      <text x="120" y="45" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Use In-App Messaging</text>
+      <text x="120" y="75" font-family="Arial, sans-serif" font-size="14" fill="#888888">Keep all communication through the platform for safety.</text>
+      <text x="120" y="95" font-family="Arial, sans-serif" font-size="14" fill="#888888">All chats are saved for your protection.</text>
+    </g>
+
+    <!-- Tip 5 -->
+    <g transform="translate(0, 520)">
+      <rect width="880" height="110" rx="15" fill="#16213e"/>
+      <circle cx="60" cy="55" r="35" fill="url(#tipsGold)"/>
+      <text x="60" y="65" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1a1a2e" text-anchor="middle">5</text>
+      <text x="120" y="45" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Leave a Review When Done</text>
+      <text x="120" y="75" font-family="Arial, sans-serif" font-size="14" fill="#888888">Help other customers find great pros.</text>
+      <text x="120" y="95" font-family="Arial, sans-serif" font-size="14" fill="#888888">Your feedback keeps the community trustworthy.</text>
+    </g>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(290, 940)">
+    <rect width="500" height="65" rx="32" fill="url(#tipsGold)"/>
+    <text x="250" y="43" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Start Your Project Today</text>
+  </g>
+
+  <text x="540" y="1050" font-family="Arial, sans-serif" font-size="18" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+</svg>

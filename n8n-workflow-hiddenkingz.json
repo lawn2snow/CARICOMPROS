@@ -1,0 +1,1285 @@
+{
+  "name": "Hidden Kingz - Complete Platform Automation",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-start",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/job/create",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-job-create",
+      "name": "Webhook - Create Job",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 500],
+      "webhookId": "job-create-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/contractor/register",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-contractor-register",
+      "name": "Webhook - Contractor Register",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 700],
+      "webhookId": "contractor-register-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/customer/register",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-customer-register",
+      "name": "Webhook - Customer Register",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 900],
+      "webhookId": "customer-register-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/quote/submit",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-quote-submit",
+      "name": "Webhook - Submit Quote",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 1100],
+      "webhookId": "quote-submit-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/quote/accept",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-quote-accept",
+      "name": "Webhook - Accept Quote",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 1300],
+      "webhookId": "quote-accept-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/job/complete",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-job-complete",
+      "name": "Webhook - Complete Job",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 1500],
+      "webhookId": "job-complete-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "hiddenkingz/contractors",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-get-contractors",
+      "name": "Webhook - Get Contractors",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 1700],
+      "webhookId": "get-contractors-webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "hiddenkingz/jobs",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-get-jobs",
+      "name": "Webhook - Get Jobs",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 1900],
+      "webhookId": "get-jobs-webhook"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "17mZaSGUY_XvE_ipiI1IgsvTm7xIpr0KRbYzMK7bKyyc",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Jobs",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "JobID": "={{ 'JOB' + $now.format('yyyyMMddHHmmss') }}",
+            "CustomerID": "={{ $json.customer_id }}",
+            "CustomerName": "={{ $json.customer_name }}",
+            "CustomerEmail": "={{ $json.customer_email }}",
+            "CustomerPhone": "={{ $json.customer_phone }}",
+            "Title": "={{ $json.title }}",
+            "Description": "={{ $json.description }}",
+            "Category": "={{ $json.category }}",
+            "Location": "={{ $json.location }}",
+            "Budget": "={{ $json.budget }}",
+            "Urgency": "={{ $json.urgency }}",
+            "Status": "Open",
+            "CreatedAt": "={{ $now.toISO() }}",
+            "AssignedContractor": "",
+            "QuotesReceived": "0"
+          }
+        },
+        "options": {}
+      },
+      "id": "sheets-create-job",
+      "name": "Google Sheets - Create Job",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [500, 500],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-cred",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "17mZaSGUY_XvE_ipiI1IgsvTm7xIpr0KRbYzMK7bKyyc",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Contractors",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ 'CONT' + $now.format('yyyyMMddHHmmss') }}",
+            "Name": "={{ $json.name }}",
+            "Email": "={{ $json.email }}",
+            "Phone": "={{ $json.phone }}",
+            "Category": "={{ $json.category }}",
+            "Location": "={{ $json.location }}",
+            "Rating": "0",
+            "Jobs": "0",
+            "Earnings": "0",
+            "Status": "Active",
+            "Verified": "Pending",
+            "Joined": "={{ $now.format('yyyy-MM-dd') }}",
+            "BusinessName": "={{ $json.business_name }}",
+            "Experience": "={{ $json.experience }}",
+            "Bio": "={{ $json.bio }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "sheets-register-contractor",
+      "name": "Google Sheets - Register Contractor",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [500, 700],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-cred",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "17mZaSGUY_XvE_ipiI1IgsvTm7xIpr0KRbYzMK7bKyyc",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Customers",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "CustomerID": "={{ 'CUST' + $now.format('yyyyMMddHHmmss') }}",
+            "Name": "={{ $json.name }}",
+            "Email": "={{ $json.email }}",
+            "Phone": "={{ $json.phone }}",
+            "Location": "={{ $json.location }}",
+            "Status": "Active",
+            "Joined": "={{ $now.format('yyyy-MM-dd') }}",
+            "TotalJobs": "0",
+            "TotalSpent": "0"
+          }
+        },
+        "options": {}
+      },
+      "id": "sheets-register-customer",
+      "name": "Google Sheets - Register Customer",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [500, 900],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-cred",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "17mZaSGUY_XvE_ipiI1IgsvTm7xIpr0KRbYzMK7bKyyc",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Quotes",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "QuoteID": "={{ 'QUOTE' + $now.format('yyyyMMddHHmmss') }}",
+            "JobID": "={{ $json.job_id }}",
+            "ContractorID": "={{ $json.contractor_id }}",
+            "ContractorName": "={{ $json.contractor_name }}",
+            "Amount": "={{ $json.amount }}",
+            "Message": "={{ $json.message }}",
+            "Timeline": "={{ $json.timeline }}",
+            "Status": "Pending",
+            "SubmittedAt": "={{ $now.toISO() }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "sheets-submit-quote",
+      "name": "Google Sheets - Submit Quote",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [500, 1100],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-cred",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "17mZaSGUY_XvE_ipiI1IgsvTm7xIpr0KRbYzMK7bKyyc",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Contractors",
+          "mode": "name"
+        },
+        "options": {
+          "outputFormatting": {
+            "values": "UNFORMATTED_VALUE"
+          }
+        }
+      },
+      "id": "sheets-get-contractors",
+      "name": "Google Sheets - Get Contractors",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [500, 1700],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-cred",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "17mZaSGUY_XvE_ipiI1IgsvTm7xIpr0KRbYzMK7bKyyc",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Jobs",
+          "mode": "name"
+        },
+        "options": {
+          "outputFormatting": {
+            "values": "UNFORMATTED_VALUE"
+          }
+        }
+      },
+      "id": "sheets-get-jobs",
+      "name": "Google Sheets - Get Jobs",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [500, 1900],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-cred",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@hiddenkingz.com",
+        "toEmail": "={{ $json.customer_email }}",
+        "subject": "Job Posted Successfully - Hidden Kingz",
+        "emailType": "html",
+        "html": "<!DOCTYPE html><html><body style=\"font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px;\"><div style=\"max-width: 600px; margin: 0 auto; background: white; border-radius: 15px; overflow: hidden;\"><div style=\"background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 30px; text-align: center;\"><h1 style=\"margin: 0; color: #ffd700;\">Hidden Kingz</h1><p>Caribbean's Trusted Service Marketplace</p></div><div style=\"padding: 30px;\"><h2>Your Job Has Been Posted!</h2><p>Hi {{ $json.customer_name }},</p><p>Your job request has been successfully posted. Here are the details:</p><div style=\"background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;\"><p><strong>Job Title:</strong> {{ $json.title }}</p><p><strong>Category:</strong> {{ $json.category }}</p><p><strong>Location:</strong> {{ $json.location }}</p><p><strong>Budget:</strong> ${{ $json.budget }}</p></div><p>Verified contractors in your area will start sending quotes soon. You'll receive notifications when new quotes arrive.</p><a href=\"https://hiddenkingz.com/customer-dashboard.html\" style=\"display: inline-block; background: linear-gradient(45deg, #ffd700, #ffed4e); color: #1a1a2e; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold;\">View Your Dashboard</a></div><div style=\"background: #1a1a2e; color: white; padding: 20px; text-align: center;\"><p style=\"margin: 0; opacity: 0.8;\">© 2024 Hidden Kingz. Serving the Caribbean with pride.</p></div></div></body></html>"
+      },
+      "id": "email-job-created",
+      "name": "Email - Job Created Confirmation",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [760, 500],
+      "credentials": {
+        "smtp": {
+          "id": "smtp-cred",
+          "name": "SMTP Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@hiddenkingz.com",
+        "toEmail": "={{ $json.email }}",
+        "subject": "Welcome to Hidden Kingz - Contractor Registration",
+        "emailType": "html",
+        "html": "<!DOCTYPE html><html><body style=\"font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px;\"><div style=\"max-width: 600px; margin: 0 auto; background: white; border-radius: 15px; overflow: hidden;\"><div style=\"background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 30px; text-align: center;\"><h1 style=\"margin: 0; color: #ffd700;\">Hidden Kingz</h1><p>Caribbean's Trusted Service Marketplace</p></div><div style=\"padding: 30px;\"><h2>Welcome, {{ $json.name }}!</h2><p>Thank you for registering as a contractor on Hidden Kingz.</p><div style=\"background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 20px 0;\"><h3 style=\"color: #2e7d32; margin-top: 0;\">Next Steps to Get Verified:</h3><ul><li>Complete your profile information</li><li>Upload your certifications/licenses</li><li>Complete identity verification</li><li>Pass background check</li></ul></div><p>Once verified, you'll be able to:</p><ul><li>Browse and bid on local jobs</li><li>Receive direct job requests</li><li>Build your reputation with reviews</li><li>Earn with secure escrow payments</li></ul><a href=\"https://hiddenkingz.com/contractor-dashboard.html\" style=\"display: inline-block; background: linear-gradient(45deg, #ffd700, #ffed4e); color: #1a1a2e; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold;\">Complete Your Profile</a></div><div style=\"background: #1a1a2e; color: white; padding: 20px; text-align: center;\"><p style=\"margin: 0; opacity: 0.8;\">© 2024 Hidden Kingz. Serving the Caribbean with pride.</p></div></div></body></html>"
+      },
+      "id": "email-contractor-welcome",
+      "name": "Email - Contractor Welcome",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [760, 700],
+      "credentials": {
+        "smtp": {
+          "id": "smtp-cred",
+          "name": "SMTP Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@hiddenkingz.com",
+        "toEmail": "={{ $json.email }}",
+        "subject": "Welcome to Hidden Kingz!",
+        "emailType": "html",
+        "html": "<!DOCTYPE html><html><body style=\"font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px;\"><div style=\"max-width: 600px; margin: 0 auto; background: white; border-radius: 15px; overflow: hidden;\"><div style=\"background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 30px; text-align: center;\"><h1 style=\"margin: 0; color: #ffd700;\">Hidden Kingz</h1><p>Caribbean's Trusted Service Marketplace</p></div><div style=\"padding: 30px;\"><h2>Welcome, {{ $json.name }}!</h2><p>Your account has been created successfully. You're now part of the Caribbean's most trusted service marketplace.</p><div style=\"background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;\"><h3>What you can do:</h3><ul><li>Post jobs and get quotes from verified professionals</li><li>Browse contractors by category and location</li><li>Pay securely with escrow protection</li><li>Leave reviews and ratings</li></ul></div><a href=\"https://hiddenkingz.com/customer-dashboard.html\" style=\"display: inline-block; background: linear-gradient(45deg, #ffd700, #ffed4e); color: #1a1a2e; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold;\">Post Your First Job</a></div><div style=\"background: #1a1a2e; color: white; padding: 20px; text-align: center;\"><p style=\"margin: 0; opacity: 0.8;\">© 2024 Hidden Kingz. Serving the Caribbean with pride.</p></div></div></body></html>"
+      },
+      "id": "email-customer-welcome",
+      "name": "Email - Customer Welcome",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [760, 900],
+      "credentials": {
+        "smtp": {
+          "id": "smtp-cred",
+          "name": "SMTP Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Job created successfully', job_id: 'JOB' + $now.format('yyyyMMddHHmmss') }) }}"
+      },
+      "id": "respond-job-created",
+      "name": "Respond - Job Created",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, 500]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Contractor registered successfully', contractor_id: 'CONT' + $now.format('yyyyMMddHHmmss') }) }}"
+      },
+      "id": "respond-contractor-registered",
+      "name": "Respond - Contractor Registered",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, 700]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Customer registered successfully', customer_id: 'CUST' + $now.format('yyyyMMddHHmmss') }) }}"
+      },
+      "id": "respond-customer-registered",
+      "name": "Respond - Customer Registered",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, 900]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Quote submitted successfully', quote_id: 'QUOTE' + $now.format('yyyyMMddHHmmss') }) }}"
+      },
+      "id": "respond-quote-submitted",
+      "name": "Respond - Quote Submitted",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [760, 1100]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, contractors: $json }) }}"
+      },
+      "id": "respond-contractors-list",
+      "name": "Respond - Contractors List",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [760, 1700]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, jobs: $json }) }}"
+      },
+      "id": "respond-jobs-list",
+      "name": "Respond - Jobs List",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [760, 1900]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "17mZaSGUY_XvE_ipiI1IgsvTm7xIpr0KRbYzMK7bKyyc",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Quotes",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "QuoteID": "={{ $json.quote_id }}",
+            "Status": "Accepted"
+          }
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED"
+        }
+      },
+      "id": "sheets-accept-quote",
+      "name": "Google Sheets - Accept Quote",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [500, 1300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-cred",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "17mZaSGUY_XvE_ipiI1IgsvTm7xIpr0KRbYzMK7bKyyc",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Jobs",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "JobID": "={{ $json.job_id }}",
+            "Status": "In Progress",
+            "AssignedContractor": "={{ $json.contractor_id }}"
+          }
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED"
+        }
+      },
+      "id": "sheets-update-job-accepted",
+      "name": "Google Sheets - Update Job Status",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [760, 1300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-cred",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Quote accepted, job is now in progress' }) }}"
+      },
+      "id": "respond-quote-accepted",
+      "name": "Respond - Quote Accepted",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, 1300]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "17mZaSGUY_XvE_ipiI1IgsvTm7xIpr0KRbYzMK7bKyyc",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Jobs",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "JobID": "={{ $json.job_id }}",
+            "Status": "Completed",
+            "CompletedAt": "={{ $now.toISO() }}"
+          }
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED"
+        }
+      },
+      "id": "sheets-complete-job",
+      "name": "Google Sheets - Complete Job",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [500, 1500],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-cred",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Calculate platform fee (10%) and contractor payout\nconst jobAmount = $input.first().json.amount || 0;\nconst platformFee = jobAmount * 0.10;\nconst contractorPayout = jobAmount * 0.90;\n\nreturn [{\n  json: {\n    ...$input.first().json,\n    jobAmount: jobAmount,\n    platformFee: platformFee,\n    contractorPayout: contractorPayout,\n    payoutDate: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "code-calculate-payout",
+      "name": "Calculate Payout (10% Fee)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 1500]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "17mZaSGUY_XvE_ipiI1IgsvTm7xIpr0KRbYzMK7bKyyc",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Payments",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "PaymentID": "={{ 'PAY' + $now.format('yyyyMMddHHmmss') }}",
+            "JobID": "={{ $json.job_id }}",
+            "ContractorID": "={{ $json.contractor_id }}",
+            "TotalAmount": "={{ $json.jobAmount }}",
+            "PlatformFee": "={{ $json.platformFee }}",
+            "ContractorPayout": "={{ $json.contractorPayout }}",
+            "Status": "Completed",
+            "ProcessedAt": "={{ $now.toISO() }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "sheets-record-payment",
+      "name": "Google Sheets - Record Payment",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [1020, 1500],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-cred",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Job completed', payment: { total: $json.jobAmount, platformFee: $json.platformFee, contractorPayout: $json.contractorPayout } }) }}"
+      },
+      "id": "respond-job-completed",
+      "name": "Respond - Job Completed",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1280, 1500]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/admin/verify-contractor",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-verify-contractor",
+      "name": "Webhook - Verify Contractor",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 2100],
+      "webhookId": "verify-contractor-webhook"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "17mZaSGUY_XvE_ipiI1IgsvTm7xIpr0KRbYzMK7bKyyc",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Contractors",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $json.contractor_id }}",
+            "Verified": "Verified",
+            "VerifiedAt": "={{ $now.toISO() }}",
+            "VerifiedBy": "={{ $json.admin_id }}"
+          }
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED"
+        }
+      },
+      "id": "sheets-verify-contractor",
+      "name": "Google Sheets - Verify Contractor",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [500, 2100],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-cred",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Contractor verified successfully' }) }}"
+      },
+      "id": "respond-contractor-verified",
+      "name": "Respond - Contractor Verified",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [760, 2100]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/message/send",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-send-message",
+      "name": "Webhook - Send Message",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 2300],
+      "webhookId": "send-message-webhook"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "17mZaSGUY_XvE_ipiI1IgsvTm7xIpr0KRbYzMK7bKyyc",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Messages",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "MessageID": "={{ 'MSG' + $now.format('yyyyMMddHHmmss') }}",
+            "FromID": "={{ $json.from_id }}",
+            "ToID": "={{ $json.to_id }}",
+            "JobID": "={{ $json.job_id }}",
+            "Message": "={{ $json.message }}",
+            "SentAt": "={{ $now.toISO() }}",
+            "Read": "false"
+          }
+        },
+        "options": {}
+      },
+      "id": "sheets-save-message",
+      "name": "Google Sheets - Save Message",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [500, 2300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-cred",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Message sent successfully' }) }}"
+      },
+      "id": "respond-message-sent",
+      "name": "Respond - Message Sent",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [760, 2300]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hiddenkingz/review/submit",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-submit-review",
+      "name": "Webhook - Submit Review",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 2500],
+      "webhookId": "submit-review-webhook"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "17mZaSGUY_XvE_ipiI1IgsvTm7xIpr0KRbYzMK7bKyyc",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Reviews",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ReviewID": "={{ 'REV' + $now.format('yyyyMMddHHmmss') }}",
+            "JobID": "={{ $json.job_id }}",
+            "ContractorID": "={{ $json.contractor_id }}",
+            "CustomerID": "={{ $json.customer_id }}",
+            "Rating": "={{ $json.rating }}",
+            "Comment": "={{ $json.comment }}",
+            "CreatedAt": "={{ $now.toISO() }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "sheets-save-review",
+      "name": "Google Sheets - Save Review",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [500, 2500],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-cred",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Review submitted successfully' }) }}"
+      },
+      "id": "respond-review-submitted",
+      "name": "Respond - Review Submitted",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [760, 2500]
+    },
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "hiddenkingz/admin/stats",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-admin-stats",
+      "name": "Webhook - Admin Stats",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [240, 2700],
+      "webhookId": "admin-stats-webhook"
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "17mZaSGUY_XvE_ipiI1IgsvTm7xIpr0KRbYzMK7bKyyc",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Payments",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "sheets-get-payments",
+      "name": "Google Sheets - Get Payments",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [500, 2700],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-cred",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Calculate platform statistics\nconst payments = $input.all();\n\nlet totalRevenue = 0;\nlet platformFees = 0;\nlet contractorPayouts = 0;\nlet totalJobs = payments.length;\n\nfor (const payment of payments) {\n  totalRevenue += parseFloat(payment.json.TotalAmount) || 0;\n  platformFees += parseFloat(payment.json.PlatformFee) || 0;\n  contractorPayouts += parseFloat(payment.json.ContractorPayout) || 0;\n}\n\nreturn [{\n  json: {\n    totalRevenue: totalRevenue.toFixed(2),\n    platformFees: platformFees.toFixed(2),\n    contractorPayouts: contractorPayouts.toFixed(2),\n    totalJobsCompleted: totalJobs,\n    averageJobValue: totalJobs > 0 ? (totalRevenue / totalJobs).toFixed(2) : 0\n  }\n}];"
+      },
+      "id": "code-calculate-stats",
+      "name": "Calculate Platform Stats",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 2700]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, stats: $json }) }}"
+      },
+      "id": "respond-admin-stats",
+      "name": "Respond - Admin Stats",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1020, 2700]
+    }
+  ],
+  "connections": {
+    "webhook-job-create": {
+      "main": [
+        [
+          {
+            "node": "sheets-create-job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sheets-create-job": {
+      "main": [
+        [
+          {
+            "node": "email-job-created",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "email-job-created": {
+      "main": [
+        [
+          {
+            "node": "respond-job-created",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webhook-contractor-register": {
+      "main": [
+        [
+          {
+            "node": "sheets-register-contractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sheets-register-contractor": {
+      "main": [
+        [
+          {
+            "node": "email-contractor-welcome",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "email-contractor-welcome": {
+      "main": [
+        [
+          {
+            "node": "respond-contractor-registered",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webhook-customer-register": {
+      "main": [
+        [
+          {
+            "node": "sheets-register-customer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sheets-register-customer": {
+      "main": [
+        [
+          {
+            "node": "email-customer-welcome",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "email-customer-welcome": {
+      "main": [
+        [
+          {
+            "node": "respond-customer-registered",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webhook-quote-submit": {
+      "main": [
+        [
+          {
+            "node": "sheets-submit-quote",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sheets-submit-quote": {
+      "main": [
+        [
+          {
+            "node": "respond-quote-submitted",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webhook-quote-accept": {
+      "main": [
+        [
+          {
+            "node": "sheets-accept-quote",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sheets-accept-quote": {
+      "main": [
+        [
+          {
+            "node": "sheets-update-job-accepted",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sheets-update-job-accepted": {
+      "main": [
+        [
+          {
+            "node": "respond-quote-accepted",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webhook-job-complete": {
+      "main": [
+        [
+          {
+            "node": "sheets-complete-job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sheets-complete-job": {
+      "main": [
+        [
+          {
+            "node": "code-calculate-payout",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code-calculate-payout": {
+      "main": [
+        [
+          {
+            "node": "sheets-record-payment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sheets-record-payment": {
+      "main": [
+        [
+          {
+            "node": "respond-job-completed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webhook-get-contractors": {
+      "main": [
+        [
+          {
+            "node": "sheets-get-contractors",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sheets-get-contractors": {
+      "main": [
+        [
+          {
+            "node": "respond-contractors-list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webhook-get-jobs": {
+      "main": [
+        [
+          {
+            "node": "sheets-get-jobs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sheets-get-jobs": {
+      "main": [
+        [
+          {
+            "node": "respond-jobs-list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webhook-verify-contractor": {
+      "main": [
+        [
+          {
+            "node": "sheets-verify-contractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sheets-verify-contractor": {
+      "main": [
+        [
+          {
+            "node": "respond-contractor-verified",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webhook-send-message": {
+      "main": [
+        [
+          {
+            "node": "sheets-save-message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sheets-save-message": {
+      "main": [
+        [
+          {
+            "node": "respond-message-sent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webhook-submit-review": {
+      "main": [
+        [
+          {
+            "node": "sheets-save-review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sheets-save-review": {
+      "main": [
+        [
+          {
+            "node": "respond-review-submitted",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webhook-admin-stats": {
+      "main": [
+        [
+          {
+            "node": "sheets-get-payments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sheets-get-payments": {
+      "main": [
+        [
+          {
+            "node": "code-calculate-stats",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "code-calculate-stats": {
+      "main": [
+        [
+          {
+            "node": "respond-admin-stats",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "meta": {
+    "instanceId": "hiddenkingz-platform", "appsScriptUrl": "https://script.google.com/macros/s/AKfycbxQ6ZmLLtSIKFuR4nPlvleMyc9XEzBmb8Qxfc0uriBwV4uINguHa-bQmvY2Ir0lxBt-/exec"
+  },
+  "tags": [
+    {
+      "name": "Hidden Kingz",
+      "id": "hiddenkingz"
+    },
+    {
+      "name": "Caribbean Marketplace",
+      "id": "caribbean"
+    }
+  ]
+}

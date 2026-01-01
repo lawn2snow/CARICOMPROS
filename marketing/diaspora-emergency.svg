@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="emergBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="emergGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+    <linearGradient id="emergRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e63946"/>
+      <stop offset="100%" style="stop-color:#ff6b6b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1080" fill="url(#emergBg)"/>
+
+  <!-- Emergency badge -->
+  <g transform="translate(290, 80)">
+    <rect width="500" height="55" rx="27" fill="url(#emergRed)"/>
+    <text x="250" y="37" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">🚨 EMERGENCY? WE'VE GOT YOU</text>
+  </g>
+
+  <!-- Phone notification visual -->
+  <g transform="translate(340, 180)">
+    <rect width="400" height="300" rx="40" fill="#16213e" stroke="#ffd700" stroke-width="3"/>
+
+    <!-- Notification -->
+    <g transform="translate(30, 40)">
+      <rect width="340" height="80" rx="15" fill="#e63946"/>
+      <text x="25" y="35" font-size="20" fill="#ffffff">🚨</text>
+      <text x="60" y="35" font-family="Arial" font-size="16" font-weight="bold" fill="#ffffff">Emergency Alert</text>
+      <text x="60" y="58" font-family="Arial" font-size="13" fill="#ffffff" opacity="0.9">Pipe burst at mom's house!</text>
+    </g>
+
+    <!-- Response -->
+    <g transform="translate(30, 140)">
+      <rect width="340" height="80" rx="15" fill="#00b894"/>
+      <text x="25" y="35" font-size="20" fill="#ffffff">✅</text>
+      <text x="60" y="35" font-family="Arial" font-size="16" font-weight="bold" fill="#ffffff">Pro On The Way</text>
+      <text x="60" y="58" font-family="Arial" font-size="13" fill="#ffffff" opacity="0.9">Verified plumber arriving in 45 min</text>
+    </g>
+
+    <!-- Time indicator -->
+    <text x="200" y="270" font-family="Arial" font-size="14" fill="#888888" text-anchor="middle">Response time: Under 2 hours</text>
+  </g>
+
+  <!-- Headline -->
+  <text x="540" y="550" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#ffffff" text-anchor="middle">Miles Away When</text>
+  <text x="540" y="605" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="url(#emergRed)" text-anchor="middle">Emergencies Hit?</text>
+
+  <!-- Subtext -->
+  <text x="540" y="670" font-family="Arial, sans-serif" font-size="22" fill="#aaaaaa" text-anchor="middle">Get verified pros to your family's home fast</text>
+
+  <!-- Emergency services -->
+  <g transform="translate(120, 720)" font-family="Arial, sans-serif">
+    <g>
+      <rect width="200" height="100" rx="15" fill="#16213e" stroke="#e63946" stroke-width="2"/>
+      <text x="100" y="45" font-size="32" text-anchor="middle">🔧</text>
+      <text x="100" y="80" font-size="14" fill="#ffffff" text-anchor="middle">Burst Pipes</text>
+    </g>
+    <g transform="translate(220, 0)">
+      <rect width="200" height="100" rx="15" fill="#16213e" stroke="#e63946" stroke-width="2"/>
+      <text x="100" y="45" font-size="32" text-anchor="middle">⚡</text>
+      <text x="100" y="80" font-size="14" fill="#ffffff" text-anchor="middle">Power Issues</text>
+    </g>
+    <g transform="translate(440, 0)">
+      <rect width="200" height="100" rx="15" fill="#16213e" stroke="#e63946" stroke-width="2"/>
+      <text x="100" y="45" font-size="32" text-anchor="middle">🏠</text>
+      <text x="100" y="80" font-size="14" fill="#ffffff" text-anchor="middle">Roof Leaks</text>
+    </g>
+    <g transform="translate(660, 0)">
+      <rect width="200" height="100" rx="15" fill="#16213e" stroke="#e63946" stroke-width="2"/>
+      <text x="100" y="45" font-size="32" text-anchor="middle">🔒</text>
+      <text x="100" y="80" font-size="14" fill="#ffffff" text-anchor="middle">Lock Issues</text>
+    </g>
+  </g>
+
+  <!-- Trust note -->
+  <g transform="translate(280, 860)">
+    <rect width="520" height="50" rx="10" fill="#16213e"/>
+    <text x="260" y="32" font-family="Arial, sans-serif" font-size="14" fill="#ffd700" text-anchor="middle">🔒 Verified Pros • Secure Payments • Photo Updates</text>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(290, 930)">
+    <rect width="500" height="70" rx="35" fill="url(#emergGold)"/>
+    <text x="250" y="46" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Find Emergency Help Now</text>
+  </g>
+
+  <!-- Website -->
+  <text x="540" y="1050" font-family="Arial, sans-serif" font-size="20" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+</svg>

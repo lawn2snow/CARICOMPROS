@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="compBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="compGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#ffed4e"/>
+    </linearGradient>
+    <linearGradient id="compRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c"/>
+      <stop offset="100%" style="stop-color:#c0392b"/>
+    </linearGradient>
+    <linearGradient id="compGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00b894"/>
+      <stop offset="100%" style="stop-color:#55efc4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1080" fill="url(#compBg)"/>
+
+  <!-- Header -->
+  <text x="540" y="80" font-family="Arial, sans-serif" font-size="40" font-weight="bold" fill="#ffffff" text-anchor="middle">The Old Way vs.</text>
+  <text x="540" y="130" font-family="Arial, sans-serif" font-size="40" font-weight="bold" fill="url(#compGold)" text-anchor="middle">The CariCom Pros Way</text>
+
+  <!-- Two columns -->
+  <g transform="translate(60, 180)">
+    <!-- Old Way Column -->
+    <g>
+      <rect width="450" height="700" rx="25" fill="#16213e" stroke="#e74c3c" stroke-width="3"/>
+      <rect width="450" height="60" rx="25" fill="url(#compRed)"/>
+      <text x="225" y="42" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle">❌ The Old Way</text>
+
+      <g transform="translate(30, 90)">
+        <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#e74c3c">✗</text>
+        <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Ask around for referrals</text>
+        <text x="30" y="25" font-family="Arial, sans-serif" font-size="13" fill="#888888">Takes days or weeks</text>
+      </g>
+
+      <g transform="translate(30, 160)">
+        <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#e74c3c">✗</text>
+        <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">No way to verify skills</text>
+        <text x="30" y="25" font-family="Arial, sans-serif" font-size="13" fill="#888888">Hope they know what they're doing</text>
+      </g>
+
+      <g transform="translate(30, 230)">
+        <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#e74c3c">✗</text>
+        <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Pay cash upfront</text>
+        <text x="30" y="25" font-family="Arial, sans-serif" font-size="13" fill="#888888">No protection if work is bad</text>
+      </g>
+
+      <g transform="translate(30, 300)">
+        <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#e74c3c">✗</text>
+        <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">One quote, take it or leave it</text>
+        <text x="30" y="25" font-family="Arial, sans-serif" font-size="13" fill="#888888">No way to compare prices</text>
+      </g>
+
+      <g transform="translate(30, 370)">
+        <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#e74c3c">✗</text>
+        <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">No accountability</text>
+        <text x="30" y="25" font-family="Arial, sans-serif" font-size="13" fill="#888888">If they ghost, you're stuck</text>
+      </g>
+
+      <g transform="translate(30, 440)">
+        <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#e74c3c">✗</text>
+        <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">No reviews or history</text>
+        <text x="30" y="25" font-family="Arial, sans-serif" font-size="13" fill="#888888">Hiring blind</text>
+      </g>
+
+      <g transform="translate(30, 510)">
+        <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#e74c3c">✗</text>
+        <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Phone tag and missed calls</text>
+        <text x="30" y="25" font-family="Arial, sans-serif" font-size="13" fill="#888888">Hard to communicate</text>
+      </g>
+
+      <text x="225" y="620" font-size="60" text-anchor="middle">😫</text>
+      <text x="225" y="670" font-family="Arial, sans-serif" font-size="18" fill="#e74c3c" text-anchor="middle">Stressful &amp; Risky</text>
+    </g>
+
+    <!-- New Way Column -->
+    <g transform="translate(510, 0)">
+      <rect width="450" height="700" rx="25" fill="#16213e" stroke="#00b894" stroke-width="3"/>
+      <rect width="450" height="60" rx="25" fill="url(#compGreen)"/>
+      <text x="225" y="42" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a2e" text-anchor="middle">✓ CariCom Pros Way</text>
+
+      <g transform="translate(30, 90)">
+        <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#00b894">✓</text>
+        <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Post job, get quotes in hours</text>
+        <text x="30" y="25" font-family="Arial, sans-serif" font-size="13" fill="#888888">Fast and convenient</text>
+      </g>
+
+      <g transform="translate(30, 160)">
+        <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#00b894">✓</text>
+        <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">All pros verified &amp; vetted</text>
+        <text x="30" y="25" font-family="Arial, sans-serif" font-size="13" fill="#888888">Background checked</text>
+      </g>
+
+      <g transform="translate(30, 230)">
+        <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#00b894">✓</text>
+        <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Escrow payment protection</text>
+        <text x="30" y="25" font-family="Arial, sans-serif" font-size="13" fill="#888888">Pay when satisfied</text>
+      </g>
+
+      <g transform="translate(30, 300)">
+        <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#00b894">✓</text>
+        <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Compare multiple quotes</text>
+        <text x="30" y="25" font-family="Arial, sans-serif" font-size="13" fill="#888888">Get the best value</text>
+      </g>
+
+      <g transform="translate(30, 370)">
+        <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#00b894">✓</text>
+        <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Accountability built in</text>
+        <text x="30" y="25" font-family="Arial, sans-serif" font-size="13" fill="#888888">Reviews, ratings, reputation</text>
+      </g>
+
+      <g transform="translate(30, 440)">
+        <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#00b894">✓</text>
+        <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Read verified reviews</text>
+        <text x="30" y="25" font-family="Arial, sans-serif" font-size="13" fill="#888888">Know who you're hiring</text>
+      </g>
+
+      <g transform="translate(30, 510)">
+        <text y="0" font-family="Arial, sans-serif" font-size="16" fill="#00b894">✓</text>
+        <text x="30" y="0" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">In-app messaging</text>
+        <text x="30" y="25" font-family="Arial, sans-serif" font-size="13" fill="#888888">Easy, tracked communication</text>
+      </g>
+
+      <text x="225" y="620" font-size="60" text-anchor="middle">😊</text>
+      <text x="225" y="670" font-family="Arial, sans-serif" font-size="18" fill="#00b894" text-anchor="middle">Easy &amp; Protected</text>
+    </g>
+  </g>
+
+  <!-- CTA -->
+  <g transform="translate(290, 920)">
+    <rect width="500" height="65" rx="32" fill="url(#compGold)"/>
+    <text x="250" y="43" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a2e" text-anchor="middle">Try the Better Way</text>
+  </g>
+
+  <text x="540" y="1020" font-family="Arial, sans-serif" font-size="18" fill="#ffd700" text-anchor="middle">caricompros.com</text>
+</svg>

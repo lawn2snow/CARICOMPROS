@@ -1,0 +1,2124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CariCom Pros - Caribbean's Trusted Service Marketplace</title>
+    <meta name="description" content="Connect with verified service professionals across the Caribbean. From home repairs to construction - find trusted contractors for any job.">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #ffd700;
+            --accent-light: #ffed4e;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --error: #f44336;
+            --info: #2196F3;
+            --text: #333;
+            --bg: #f8f9fa;
+            --white: #ffffff;
+            --shadow: rgba(0,0,0,0.1);
+            --radius: 15px;
+            --verified: #00bfa5;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0;
+        }
+
+        .logo-image {
+            height: 120px !important;
+            max-width: 90vw !important;
+            width: auto !important;
+            object-fit: contain;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: pulse 10s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .btn-hero {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Service Search */
+        .search-container {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px var(--shadow);
+            max-width: 800px;
+            margin: -2rem auto 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .form-input, .form-select {
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
+        .stats-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-card {
+            padding: 2rem;
+            border-radius: var(--radius);
+            background: var(--bg);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+
+        /* Service Categories */
+        .categories {
+            padding: 4rem 2rem;
+            background: var(--bg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .categories-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .category-name {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-count {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
+        .steps-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .step-card {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0 auto 1rem;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-description {
+            color: #666;
+        }
+
+        /* Featured Contractors */
+        .featured-contractors {
+            padding: 4rem 2rem;
+            background: var(--bg);
+        }
+
+        .contractors-slider {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .contractor-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .contractor-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        .contractor-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contractor-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .contractor-info {
+            flex: 1;
+        }
+
+        .contractor-name {
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .verified-badge {
+            background: var(--verified);
+            color: var(--white);
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .contractor-specialty {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .contractor-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: var(--accent);
+        }
+
+        .rating-number {
+            font-weight: 600;
+        }
+
+        .rating-count {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contractor-stats {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-top: 1px solid #e9ecef;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 1rem;
+        }
+
+        .contractor-stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .stat-name {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .contractor-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-tag {
+            background: var(--bg);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+
+        .contractor-action {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+        }
+
+        .trust-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .trust-item {
+            text-align: center;
+        }
+
+        .trust-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .trust-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-description {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.8;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: var(--accent);
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--primary);
+            padding: 0.75rem;
+            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 320px;
+            height: 100%;
+            background: var(--white);
+            box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+            transition: right 0.3s ease;
+            z-index: 1999;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            padding: 1.25rem 1rem;
+            background: var(--primary);
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-menu-header .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            line-height: 1;
+        }
+
+        .mobile-menu-body {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .mobile-menu-section {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+            background: #f8f9fa;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .mobile-menu-nav {
+            padding: 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .mobile-menu-nav a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .mobile-menu-nav a:hover,
+        .mobile-menu-nav a:active {
+            background: #f8f9fa;
+        }
+
+        .mobile-menu-nav a i {
+            width: 24px;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .mobile-menu-footer {
+            padding: 1rem;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .mobile-menu-footer .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        /* Modal Base */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: var(--radius);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu, .auth-buttons {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--bg);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo" style="display: flex; align-items: center; justify-content: center;">
+                <img src="/images/caricompros-logo.png" alt="CariCom Pros" class="logo-image" style="height: 60px; width: auto;">
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#services" class="nav-link">Find Services</a>
+                <a href="marketplace.html" class="nav-link"><i class="fas fa-store"></i> Marketplace</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#contractors" class="nav-link">For Contractors</a>
+                <a href="#about" class="nav-link">About</a>
+            </nav>
+
+            <div class="auth-buttons">
+                <button class="btn btn-outline" onclick="showLoginModal()">Sign In</button>
+                <button class="btn btn-primary" onclick="showSignupModal()">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </button>
+            </div>
+
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo" style="display: flex; justify-content: center;"><img src="/images/caricompros-logo.png" alt="CariCom Pros" style="height: 50px; width: auto;"></div>
+            <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-body">
+            <div class="mobile-menu-section">Navigate</div>
+            <nav class="mobile-menu-nav">
+                <a href="#services" onclick="closeMobileMenu()"><i class="fas fa-search"></i> Find Services</a>
+                <a href="marketplace.html"><i class="fas fa-store"></i> Marketplace</a>
+                <a href="#how-it-works" onclick="closeMobileMenu()"><i class="fas fa-info-circle"></i> How It Works</a>
+                <a href="#contractors" onclick="closeMobileMenu()"><i class="fas fa-hard-hat"></i> For Contractors</a>
+                <a href="#about" onclick="closeMobileMenu()"><i class="fas fa-users"></i> About</a>
+            </nav>
+            <div class="mobile-menu-section">Account</div>
+            <nav class="mobile-menu-nav" id="mobileAccountLinks">
+                <a href="#" onclick="showLoginModal(); return false;"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+                <a href="#" onclick="showSignupModal(); return false;"><i class="fas fa-user-plus"></i> Sign Up</a>
+            </nav>
+        </div>
+        <div class="mobile-menu-footer" style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <button class="btn btn-primary" onclick="showSignupModal(); closeMobileMenu();">
+                <i class="fas fa-user-plus"></i> Sign Up - Hire a Pro
+            </button>
+            <button class="btn btn-outline" onclick="showContractorSignup(); closeMobileMenu();">
+                <i class="fas fa-hard-hat"></i> Join as a Pro
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find Trusted Service Professionals</h1>
+            <p class="hero-subtitle">Connect with verified contractors across the Caribbean for any job, big or small</p>
+            
+            <div class="hero-buttons">
+                <button class="btn btn-primary btn-hero" onclick="showSignupModal()">
+                    <i class="fas fa-user-plus"></i> Get Started - Hire a Pro
+                </button>
+                <button class="btn btn-outline btn-hero" style="background: rgba(255,255,255,0.1); color: white;" onclick="showContractorSignup()">
+                    <i class="fas fa-hard-hat"></i> Join as a Pro
+                </button>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">
+                <a href="#search-section" style="color: var(--accent);" onclick="scrollToSearch(); return false;">
+                    <i class="fas fa-search"></i> Or browse contractors without signing up
+                </a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Search Container -->
+    <div class="search-container">
+        <form class="search-form" onsubmit="searchServices(event)">
+            <div class="form-group">
+                <label class="form-label">What service do you need?</label>
+                <input type="text" class="form-input" placeholder="e.g., Plumber, Electrician, Painter" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Location</label>
+                <select class="form-select">
+                    <option>All Islands</option>
+                    <option>Anguilla</option>
+                    <option>Antigua & Barbuda</option>
+                    <option>Aruba</option>
+                    <option>Bahamas</option>
+                    <option>Barbados</option>
+                    <option>Bermuda</option>
+                    <option>Bonaire</option>
+                    <option>British Virgin Islands</option>
+                    <option>Cayman Islands</option>
+                    <option>Cuba</option>
+                    <option>Curacao</option>
+                    <option>Dominica</option>
+                    <option>Dominican Republic</option>
+                    <option>Grenada</option>
+                    <option>Guadeloupe</option>
+                    <option>Haiti</option>
+                    <option>Jamaica</option>
+                    <option>Martinique</option>
+                    <option>Montserrat</option>
+                    <option>Puerto Rico</option>
+                    <option>Saba</option>
+                    <option>St. Barthelemy</option>
+                    <option>St. Eustatius</option>
+                    <option>St. Kitts & Nevis</option>
+                    <option>St. Lucia</option>
+                    <option>St. Maarten</option>
+                    <option>St. Vincent & Grenadines</option>
+                    <option>Trinidad & Tobago</option>
+                    <option>Turks & Caicos</option>
+                    <option>US Virgin Islands</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i> Search
+            </button>
+        </form>
+    </div>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-content">
+            <div class="stat-card">
+                <div class="stat-number" id="total-pros">0</div>
+                <div class="stat-label">Verified Professionals</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="total-jobs">0</div>
+                <div class="stat-label">Jobs Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="total-customers">0</div>
+                <div class="stat-label">Happy Customers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">30+</div>
+                <div class="stat-label">Caribbean Islands</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Categories -->
+    <section class="categories" id="services">
+        <div class="section-header">
+            <h2 class="section-title">Popular Services</h2>
+            <p class="section-subtitle">Browse from 50+ service categories</p>
+        </div>
+
+        <div class="categories-grid">
+            <div class="category-card" data-category="General Contractor" onclick="selectCategory('General Contractor')">
+                <span class="category-icon">🔨</span>
+                <div class="category-name">General Contractor</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Electrician" onclick="selectCategory('Electrician')">
+                <span class="category-icon">⚡</span>
+                <div class="category-name">Electrician</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Plumber" onclick="selectCategory('Plumber')">
+                <span class="category-icon">🔧</span>
+                <div class="category-name">Plumber</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Carpenter" onclick="selectCategory('Carpenter')">
+                <span class="category-icon">🪚</span>
+                <div class="category-name">Carpenter</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Painter" onclick="selectCategory('Painter')">
+                <span class="category-icon">🎨</span>
+                <div class="category-name">Painter</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Roofer" onclick="selectCategory('Roofer')">
+                <span class="category-icon">🏠</span>
+                <div class="category-name">Roofer</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Landscaper" onclick="selectCategory('Landscaper')">
+                <span class="category-icon">🌿</span>
+                <div class="category-name">Landscaper</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Auto Mechanic" onclick="selectCategory('Auto Mechanic')">
+                <span class="category-icon">🚗</span>
+                <div class="category-name">Auto Mechanic</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Cleaner" onclick="selectCategory('Cleaner')">
+                <span class="category-icon">🧹</span>
+                <div class="category-name">Cleaner</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="HVAC Technician" onclick="selectCategory('HVAC Technician')">
+                <span class="category-icon">❄️</span>
+                <div class="category-name">HVAC Technician</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Mover" onclick="selectCategory('Mover')">
+                <span class="category-icon">📦</span>
+                <div class="category-name">Mover</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Security" onclick="selectCategory('Security')">
+                <span class="category-icon">🔒</span>
+                <div class="category-name">Security</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Mason" onclick="selectCategory('Mason')">
+                <span class="category-icon">🧱</span>
+                <div class="category-name">Mason</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Welder" onclick="selectCategory('Welder')">
+                <span class="category-icon">🔥</span>
+                <div class="category-name">Welder</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Tiler" onclick="selectCategory('Tiler')">
+                <span class="category-icon">🔲</span>
+                <div class="category-name">Tiler</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Pest Control" onclick="selectCategory('Pest Control')">
+                <span class="category-icon">🐜</span>
+                <div class="category-name">Pest Control</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Pool Service" onclick="selectCategory('Pool Service')">
+                <span class="category-icon">🏊</span>
+                <div class="category-name">Pool Service</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Appliance Repair" onclick="selectCategory('Appliance Repair')">
+                <span class="category-icon">🔌</span>
+                <div class="category-name">Appliance Repair</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Catering" onclick="selectCategory('Catering')">
+                <span class="category-icon">🍽️</span>
+                <div class="category-name">Catering</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Photography" onclick="selectCategory('Photography')">
+                <span class="category-icon">📸</span>
+                <div class="category-name">Photography</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="DJ & Entertainment" onclick="selectCategory('DJ & Entertainment')">
+                <span class="category-icon">🎵</span>
+                <div class="category-name">DJ & Entertainment</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Hair & Beauty" onclick="selectCategory('Hair & Beauty')">
+                <span class="category-icon">💇</span>
+                <div class="category-name">Hair & Beauty</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Barber" onclick="selectCategory('Barber')">
+                <span class="category-icon">✂️</span>
+                <div class="category-name">Barber</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Makeup Artist" onclick="selectCategory('Makeup Artist')">
+                <span class="category-icon">💄</span>
+                <div class="category-name">Makeup Artist</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Tailor" onclick="selectCategory('Tailor')">
+                <span class="category-icon">🧵</span>
+                <div class="category-name">Tailor</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="IT & Tech Support" onclick="selectCategory('IT & Tech Support')">
+                <span class="category-icon">💻</span>
+                <div class="category-name">IT & Tech Support</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Tutor" onclick="selectCategory('Tutor')">
+                <span class="category-icon">📚</span>
+                <div class="category-name">Tutor</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Personal Trainer" onclick="selectCategory('Personal Trainer')">
+                <span class="category-icon">💪</span>
+                <div class="category-name">Personal Trainer</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Pet Services" onclick="selectCategory('Pet Services')">
+                <span class="category-icon">🐕</span>
+                <div class="category-name">Pet Services</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Event Planning" onclick="selectCategory('Event Planning')">
+                <span class="category-icon">🎉</span>
+                <div class="category-name">Event Planning</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Interior Design" onclick="selectCategory('Interior Design')">
+                <span class="category-icon">🛋️</span>
+                <div class="category-name">Interior Design</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Window Tinting" onclick="selectCategory('Window Tinting')">
+                <span class="category-icon">🪟</span>
+                <div class="category-name">Window Tinting</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Solar Installation" onclick="selectCategory('Solar Installation')">
+                <span class="category-icon">☀️</span>
+                <div class="category-name">Solar Installation</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Flooring" onclick="selectCategory('Flooring')">
+                <span class="category-icon">🪵</span>
+                <div class="category-name">Flooring</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Fencing" onclick="selectCategory('Fencing')">
+                <span class="category-icon">🏗️</span>
+                <div class="category-name">Fencing</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Pressure Washing" onclick="selectCategory('Pressure Washing')">
+                <span class="category-icon">💦</span>
+                <div class="category-name">Pressure Washing</div>
+                <div class="category-count">Loading...</div>
+            </div>
+            <div class="category-card" data-category="Handyman" onclick="selectCategory('Handyman')">
+                <span class="category-icon">🛠️</span>
+                <div class="category-name">Handyman</div>
+                <div class="category-count">Loading...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Get your job done in 4 simple steps</p>
+        </div>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Post Your Job</h3>
+                <p class="step-description">Describe what you need done and when. It's free to post!</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Get Quotes</h3>
+                <p class="step-description">Receive quotes from verified professionals in your area</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Choose Your Pro</h3>
+                <p class="step-description">Compare profiles, reviews, and prices to find the perfect match</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3 class="step-title">Get It Done</h3>
+                <p class="step-description">Your pro completes the job. Pay securely through our platform</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Contractors -->
+    <section class="featured-contractors" id="contractors">
+        <div class="section-header">
+            <h2 class="section-title">Top Rated Professionals</h2>
+            <p class="section-subtitle">Work with the best verified contractors in your area</p>
+        </div>
+
+        <div class="contractors-slider">
+            <div class="contractor-card">
+                <div class="contractor-header">
+                    <div class="contractor-avatar">JD</div>
+                    <div class="contractor-info">
+                        <div class="contractor-name">
+                            John Davis
+                            <span class="verified-badge">
+                                <i class="fas fa-check"></i> Verified
+                            </span>
+                        </div>
+                        <div class="contractor-specialty">Master Electrician</div>
+                    </div>
+                </div>
+                
+                <div class="contractor-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="rating-number">5.0</span>
+                    <span class="rating-count">(234 reviews)</span>
+                </div>
+
+                <div class="contractor-stats">
+                    <div class="contractor-stat">
+                        <div class="stat-value">456</div>
+                        <div class="stat-name">Jobs Done</div>
+                    </div>
+                    <div class="contractor-stat">
+                        <div class="stat-value">98%</div>
+                        <div class="stat-name">On Time</div>
+                    </div>
+                    <div class="contractor-stat">
+                        <div class="stat-value">5 yrs</div>
+                        <div class="stat-name">Experience</div>
+                    </div>
+                </div>
+
+                <div class="contractor-services">
+                    <span class="service-tag">Wiring</span>
+                    <span class="service-tag">Panel Upgrades</span>
+                    <span class="service-tag">Smart Home</span>
+                </div>
+
+                <div class="contractor-action">
+                    <button class="btn btn-outline btn-small">View Profile</button>
+                    <button class="btn btn-primary btn-small">Get Quote</button>
+                </div>
+            </div>
+
+            <div class="contractor-card">
+                <div class="contractor-header">
+                    <div class="contractor-avatar">SM</div>
+                    <div class="contractor-info">
+                        <div class="contractor-name">
+                            Sarah Mitchell
+                            <span class="verified-badge">
+                                <i class="fas fa-check"></i> Verified
+                            </span>
+                        </div>
+                        <div class="contractor-specialty">Interior Designer</div>
+                    </div>
+                </div>
+                
+                <div class="contractor-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="rating-number">4.9</span>
+                    <span class="rating-count">(189 reviews)</span>
+                </div>
+
+                <div class="contractor-stats">
+                    <div class="contractor-stat">
+                        <div class="stat-value">312</div>
+                        <div class="stat-name">Jobs Done</div>
+                    </div>
+                    <div class="contractor-stat">
+                        <div class="stat-value">95%</div>
+                        <div class="stat-name">On Time</div>
+                    </div>
+                    <div class="contractor-stat">
+                        <div class="stat-value">8 yrs</div>
+                        <div class="stat-name">Experience</div>
+                    </div>
+                </div>
+
+                <div class="contractor-services">
+                    <span class="service-tag">Home Staging</span>
+                    <span class="service-tag">Renovation</span>
+                    <span class="service-tag">Color Consulting</span>
+                </div>
+
+                <div class="contractor-action">
+                    <button class="btn btn-outline btn-small">View Profile</button>
+                    <button class="btn btn-primary btn-small">Get Quote</button>
+                </div>
+            </div>
+
+            <div class="contractor-card">
+                <div class="contractor-header">
+                    <div class="contractor-avatar">RB</div>
+                    <div class="contractor-info">
+                        <div class="contractor-name">
+                            Robert Brown
+                            <span class="verified-badge">
+                                <i class="fas fa-check"></i> Verified
+                            </span>
+                        </div>
+                        <div class="contractor-specialty">General Contractor</div>
+                    </div>
+                </div>
+                
+                <div class="contractor-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="rating-number">4.8</span>
+                    <span class="rating-count">(567 reviews)</span>
+                </div>
+
+                <div class="contractor-stats">
+                    <div class="contractor-stat">
+                        <div class="stat-value">892</div>
+                        <div class="stat-name">Jobs Done</div>
+                    </div>
+                    <div class="contractor-stat">
+                        <div class="stat-value">97%</div>
+                        <div class="stat-name">On Time</div>
+                    </div>
+                    <div class="contractor-stat">
+                        <div class="stat-value">15 yrs</div>
+                        <div class="stat-name">Experience</div>
+                    </div>
+                </div>
+
+                <div class="contractor-services">
+                    <span class="service-tag">Construction</span>
+                    <span class="service-tag">Renovation</span>
+                    <span class="service-tag">Roofing</span>
+                </div>
+
+                <div class="contractor-action">
+                    <button class="btn btn-outline btn-small">View Profile</button>
+                    <button class="btn btn-primary btn-small">Get Quote</button>
+                </div>
+            </div>
+
+            <div class="contractor-card">
+                <div class="contractor-header">
+                    <div class="contractor-avatar">LW</div>
+                    <div class="contractor-info">
+                        <div class="contractor-name">
+                            Lisa Williams
+                            <span class="verified-badge">
+                                <i class="fas fa-check"></i> Verified
+                            </span>
+                        </div>
+                        <div class="contractor-specialty">Cleaning Services</div>
+                    </div>
+                </div>
+                
+                <div class="contractor-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="rating-number">5.0</span>
+                    <span class="rating-count">(423 reviews)</span>
+                </div>
+
+                <div class="contractor-stats">
+                    <div class="contractor-stat">
+                        <div class="stat-value">1.2k</div>
+                        <div class="stat-name">Jobs Done</div>
+                    </div>
+                    <div class="contractor-stat">
+                        <div class="stat-value">99%</div>
+                        <div class="stat-name">On Time</div>
+                    </div>
+                    <div class="contractor-stat">
+                        <div class="stat-value">6 yrs</div>
+                        <div class="stat-name">Experience</div>
+                    </div>
+                </div>
+
+                <div class="contractor-services">
+                    <span class="service-tag">Deep Clean</span>
+                    <span class="service-tag">Move Out</span>
+                    <span class="service-tag">Commercial</span>
+                </div>
+
+                <div class="contractor-action">
+                    <button class="btn btn-outline btn-small">View Profile</button>
+                    <button class="btn btn-primary btn-small">Get Quote</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="section-header" style="color: white;">
+            <h2 class="section-title" style="color: white;">Why Choose CariCom Pros</h2>
+            <p class="section-subtitle" style="color: white; opacity: 0.9;">Your trusted partner for all service needs</p>
+        </div>
+
+        <div class="trust-content">
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3 class="trust-title">Verified Professionals</h3>
+                <p class="trust-description">All contractors undergo background checks and skill verification</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-lock"></i></div>
+                <h3 class="trust-title">Secure Payments</h3>
+                <p class="trust-description">Money held in escrow until job is completed satisfactorily</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-star"></i></div>
+                <h3 class="trust-title">Quality Guarantee</h3>
+                <p class="trust-description">Satisfaction guaranteed or we'll make it right</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-headset"></i></div>
+                <h3 class="trust-title">24/7 Support</h3>
+                <p class="trust-description">Customer support available whenever you need help</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About CariCom Pros</h3>
+                <p>The Caribbean's premier service marketplace connecting customers with verified professionals.</p>
+                <div style="margin-top: 1rem;">
+                    <a href="#" style="color: white; margin-right: 1rem;"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" style="color: white; margin-right: 1rem;"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" style="color: white; margin-right: 1rem;"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" style="color: white;"><i class="fab fa-linkedin fa-lg"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>For Customers</h3>
+                <ul class="footer-links">
+                    <li><a href="#">How it Works</a></li>
+                    <li><a href="#">Browse Services</a></li>
+                    <li><a href="#">Post a Job</a></li>
+                    <li><a href="#">Safety Center</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>For Professionals</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Join as Pro</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                    <li><a href="#">Verification Process</a></li>
+                    <li><a href="#">Pro Resources</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="mailto:caricompros@gmail.com">caricompros@gmail.com</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 CariCom Pros. All rights reserved. | Serving the Caribbean with pride 🌴</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Sign In</h3>
+                <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Google Sign-In Button -->
+                <button onclick="signInWithGoogle()" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 8px; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 1rem; font-weight: 500; margin-bottom: 1.5rem; transition: all 0.3s;">
+                    <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                    Continue with Google
+                </button>
+
+                <div style="text-align: center; color: #999; margin-bottom: 1.5rem; position: relative;">
+                    <span style="background: white; padding: 0 1rem;">or sign in with email</span>
+                    <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #ddd; z-index: -1;"></div>
+                </div>
+
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" id="loginEmail" placeholder="your@email.com" autocomplete="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" id="loginPassword" placeholder="Your password" autocomplete="current-password">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Sign In</button>
+                </form>
+                <p style="text-align: center; margin-top: 1rem;">
+                    Don't have an account? <a href="#" onclick="switchToSignup()">Sign up</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Create Account</h3>
+                <button class="modal-close" onclick="closeModal('signupModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Google Sign-Up Button -->
+                <button onclick="signUpWithGoogle()" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 8px; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.75rem; font-size: 1rem; font-weight: 500; margin-bottom: 1.5rem; transition: all 0.3s;">
+                    <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                    Sign up with Google
+                </button>
+
+                <div style="text-align: center; color: #999; margin-bottom: 1.5rem; position: relative;">
+                    <span style="background: white; padding: 0 1rem;">or continue with email</span>
+                    <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #ddd; z-index: -1;"></div>
+                </div>
+
+                <p style="text-align: center; margin-bottom: 1rem; font-weight: 500;">I am a:</p>
+                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                    <button class="btn btn-outline signup-type-btn" id="customerTypeBtn" style="flex: 1;" onclick="setSignupType('customer')">
+                        <i class="fas fa-user"></i> Customer
+                    </button>
+                    <button class="btn btn-outline signup-type-btn" id="contractorTypeBtn" style="flex: 1;" onclick="setSignupType('contractor')">
+                        <i class="fas fa-hard-hat"></i> Pro
+                    </button>
+                </div>
+
+                <form onsubmit="handleSignup(event)" id="signupForm">
+                    <!-- Form content will be dynamically loaded based on type -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            menu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.classList.add('menu-open');
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            menu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+
+        // Close mobile menu on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
+        // Modal Functions
+        function showLoginModal() {
+            closeMobileMenu();
+            document.getElementById('loginModal').classList.add('active');
+        }
+
+        function showSignupModal() {
+            closeMobileMenu();
+            document.getElementById('signupModal').classList.add('active');
+            setSignupType('customer'); // Default to customer signup
+        }
+
+        function showContractorSignup() {
+            document.getElementById('signupModal').classList.add('active');
+            setSignupType('contractor');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        function switchToSignup() {
+            closeModal('loginModal');
+            showSignupModal();
+        }
+
+        // Set Signup Type (Customer or Contractor)
+        function setSignupType(type) {
+            const form = document.getElementById('signupForm');
+            
+            if (type === 'customer') {
+                form.innerHTML = `
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Location</label>
+                        <select class="form-select" required>
+                            <option>Anguilla</option>
+                            <option>Antigua & Barbuda</option>
+                            <option>Aruba</option>
+                            <option>Bahamas</option>
+                            <option>Barbados</option>
+                            <option>Bermuda</option>
+                            <option>Bonaire</option>
+                            <option>British Virgin Islands</option>
+                            <option>Cayman Islands</option>
+                            <option>Cuba</option>
+                            <option>Curacao</option>
+                            <option>Dominica</option>
+                            <option>Dominican Republic</option>
+                            <option>Grenada</option>
+                            <option>Guadeloupe</option>
+                            <option>Haiti</option>
+                            <option>Jamaica</option>
+                            <option>Martinique</option>
+                            <option>Montserrat</option>
+                            <option>Puerto Rico</option>
+                            <option>Saba</option>
+                            <option>St. Barthelemy</option>
+                            <option>St. Eustatius</option>
+                            <option>St. Kitts & Nevis</option>
+                            <option>St. Lucia</option>
+                            <option>St. Maarten</option>
+                            <option>St. Vincent & Grenadines</option>
+                            <option>Trinidad & Tobago</option>
+                            <option>Turks & Caicos</option>
+                            <option>US Virgin Islands</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Create Account</button>
+                `;
+            } else {
+                form.innerHTML = `
+                    <div class="form-group">
+                        <label class="form-label">Business Name</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Your Name</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Service Category</label>
+                        <select class="form-select" required>
+                            <option>Select your primary service</option>
+                            <option>General Contractor</option>
+                            <option>Electrician</option>
+                            <option>Plumber</option>
+                            <option>Carpenter</option>
+                            <option>Painter</option>
+                            <option>Roofer</option>
+                            <option>Landscaper</option>
+                            <option>Auto Mechanic</option>
+                            <option>Cleaner</option>
+                            <option>HVAC Technician</option>
+                            <option>Mover</option>
+                            <option>Security</option>
+                            <option>Mason</option>
+                            <option>Welder</option>
+                            <option>Tiler</option>
+                            <option>Pest Control</option>
+                            <option>Pool Service</option>
+                            <option>Appliance Repair</option>
+                            <option>Catering</option>
+                            <option>Photography</option>
+                            <option>DJ & Entertainment</option>
+                            <option>Hair & Beauty</option>
+                            <option>Barber</option>
+                            <option>Makeup Artist</option>
+                            <option>Tailor</option>
+                            <option>IT & Tech Support</option>
+                            <option>Tutor</option>
+                            <option>Personal Trainer</option>
+                            <option>Pet Services</option>
+                            <option>Event Planning</option>
+                            <option>Interior Design</option>
+                            <option>Window Tinting</option>
+                            <option>Solar Installation</option>
+                            <option>Flooring</option>
+                            <option>Fencing</option>
+                            <option>Pressure Washing</option>
+                            <option>Handyman</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Years of Experience</label>
+                        <select class="form-select" required>
+                            <option>Less than 1 year</option>
+                            <option>1-3 years</option>
+                            <option>3-5 years</option>
+                            <option>5-10 years</option>
+                            <option>10+ years</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Location</label>
+                        <select class="form-select" required>
+                            <option>Anguilla</option>
+                            <option>Antigua & Barbuda</option>
+                            <option>Aruba</option>
+                            <option>Bahamas</option>
+                            <option>Barbados</option>
+                            <option>Bermuda</option>
+                            <option>Bonaire</option>
+                            <option>British Virgin Islands</option>
+                            <option>Cayman Islands</option>
+                            <option>Cuba</option>
+                            <option>Curacao</option>
+                            <option>Dominica</option>
+                            <option>Dominican Republic</option>
+                            <option>Grenada</option>
+                            <option>Guadeloupe</option>
+                            <option>Haiti</option>
+                            <option>Jamaica</option>
+                            <option>Martinique</option>
+                            <option>Montserrat</option>
+                            <option>Puerto Rico</option>
+                            <option>Saba</option>
+                            <option>St. Barthelemy</option>
+                            <option>St. Eustatius</option>
+                            <option>St. Kitts & Nevis</option>
+                            <option>St. Lucia</option>
+                            <option>St. Maarten</option>
+                            <option>St. Vincent & Grenadines</option>
+                            <option>Trinidad & Tobago</option>
+                            <option>Turks & Caicos</option>
+                            <option>US Virgin Islands</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" required>
+                    </div>
+                    <div style="background: #e8f5e9; padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                        <p style="font-size: 0.9rem; color: #2e7d32;">
+                            <i class="fas fa-check-circle"></i> After signup, you'll need to complete verification including:
+                            <ul style="margin-top: 0.5rem; margin-left: 1.5rem; font-size: 0.85rem;">
+                                <li>Upload certifications/licenses</li>
+                                <li>Background check</li>
+                                <li>Identity verification</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Join as Professional</button>
+                `;
+            }
+        }
+
+        // Form Handlers - handleLogin is defined in index-script.js
+
+        async function handleSignup(event) {
+            event.preventDefault();
+            const form = event.target;
+            const isContractor = form.innerHTML.includes('Business Name');
+
+            const inputs = form.querySelectorAll('input');
+            const selects = form.querySelectorAll('select');
+
+            if (isContractor) {
+                // Contractor signup
+                const businessName = inputs[0]?.value?.trim() || '';
+                const name = inputs[1]?.value?.trim() || '';
+                const email = form.querySelector('input[type="email"]')?.value?.trim() || '';
+                const phone = form.querySelector('input[type="tel"]')?.value?.trim() || '';
+                const category = selects[0]?.value || '';
+                const experience = selects[1]?.value || '';
+                const location = selects[2]?.value || '';
+                const password = form.querySelector('input[type="password"]')?.value || '';
+
+                if (!name || !email || !category || category === 'Select your primary service') {
+                    CariComProsAPI.showToast('Please fill in all required fields', 'error');
+                    return;
+                }
+
+                CariComProsAPI.showLoading('Creating your account...');
+
+                try {
+                    const result = await CariComProsAPI.registerContractor({
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        category: category,
+                        location: location,
+                        businessName: businessName,
+                        experience: experience,
+                        password: password
+                    });
+
+                    CariComProsAPI.hideLoading();
+
+                    if (result.success) {
+                        CariComProsAPI.showToast('Account created successfully!', 'success');
+                        closeModal('signupModal');
+                        setTimeout(() => {
+                            window.location.href = '/contractors';
+                        }, 1000);
+                    } else {
+                        CariComProsAPI.showToast(result.error || 'Registration failed', 'error');
+                    }
+                } catch (error) {
+                    CariComProsAPI.hideLoading();
+                    CariComProsAPI.showToast('Registration failed. Please try again.', 'error');
+                }
+            } else {
+                // Customer signup
+                const name = inputs[0]?.value?.trim() || '';
+                const email = form.querySelector('input[type="email"]')?.value?.trim() || '';
+                const phone = form.querySelector('input[type="tel"]')?.value?.trim() || '';
+                const password = form.querySelector('input[type="password"]')?.value || '';
+                const location = selects[0]?.value || '';
+
+                if (!name || !email) {
+                    CariComProsAPI.showToast('Please fill in all required fields', 'error');
+                    return;
+                }
+
+                CariComProsAPI.showLoading('Creating your account...');
+
+                try {
+                    const result = await CariComProsAPI.registerCustomer({
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        location: location,
+                        password: password
+                    });
+
+                    CariComProsAPI.hideLoading();
+
+                    if (result.success) {
+                        CariComProsAPI.showToast('Account created successfully!', 'success');
+                        closeModal('signupModal');
+                        setTimeout(() => {
+                            window.location.href = '/customers';
+                        }, 1000);
+                    } else {
+                        CariComProsAPI.showToast(result.error || 'Registration failed', 'error');
+                    }
+                } catch (error) {
+                    CariComProsAPI.hideLoading();
+                    CariComProsAPI.showToast('Registration failed. Please try again.', 'error');
+                }
+            }
+        }
+
+        function searchServices(event) {
+            event.preventDefault();
+            const form = event.target;
+            const searchInput = form.querySelector('input[type="text"]');
+            const locationSelect = form.querySelector('select');
+
+            const searchTerm = searchInput?.value?.trim() || '';
+            const location = locationSelect?.value || '';
+
+            if (searchTerm) localStorage.setItem('hk_search_term', searchTerm);
+            if (location) localStorage.setItem('hk_search_location', location);
+
+            window.location.href = '/browse';
+        }
+
+        function selectCategory(category) {
+            localStorage.setItem('hk_search_category', category);
+            window.location.href = '/browse';
+        }
+
+        function scrollToSearch() {
+            document.querySelector('.search-container').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+
+        // ============================================
+        // GOOGLE SIGN-IN
+        // ============================================
+
+        const GOOGLE_CLIENT_ID = '420164295583-cqgrq7sdg25g9u2fp6d17roj1ud15u23.apps.googleusercontent.com';
+        let googleSignupType = 'customer'; // Default signup type for Google
+
+        // Initialize Google Sign-In
+        function initGoogleSignIn() {
+            if (typeof google !== 'undefined' && google.accounts) {
+                google.accounts.id.initialize({
+                    client_id: GOOGLE_CLIENT_ID,
+                    callback: handleGoogleCredential,
+                    auto_select: false
+                });
+            }
+        }
+
+        // Sign in with Google (existing users)
+        function signInWithGoogle() {
+            googleSignupType = null; // Login mode
+            if (typeof google !== 'undefined' && google.accounts) {
+                google.accounts.id.prompt((notification) => {
+                    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                        // Fallback: Show One Tap or redirect
+                        showGoogleTypeModal('login');
+                    }
+                });
+            } else {
+                alert('Google Sign-In is loading. Please try again.');
+            }
+        }
+
+        // Sign up with Google (new users)
+        function signUpWithGoogle() {
+            showGoogleTypeModal('signup');
+        }
+
+        // Show modal to select user type for Google signup
+        function showGoogleTypeModal(mode) {
+            closeModal('loginModal');
+            closeModal('signupModal');
+
+            const existingModal = document.getElementById('googleTypeModal');
+            if (existingModal) existingModal.remove();
+
+            const modal = document.createElement('div');
+            modal.className = 'modal active';
+            modal.id = 'googleTypeModal';
+            modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+
+            modal.innerHTML = `
+                <div class="modal-content" onclick="event.stopPropagation()">
+                    <div class="modal-header">
+                        <h3 class="modal-title">${mode === 'login' ? 'Sign In' : 'Sign Up'} with Google</h3>
+                        <button class="modal-close" onclick="document.getElementById('googleTypeModal').remove()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p style="text-align: center; margin-bottom: 1.5rem;">I am a:</p>
+                        <div style="display: flex; gap: 1rem;">
+                            <button class="btn btn-outline" style="flex: 1; padding: 1.5rem;" onclick="proceedWithGoogle('customer')">
+                                <i class="fas fa-user" style="font-size: 2rem; display: block; margin-bottom: 0.5rem;"></i>
+                                Customer
+                            </button>
+                            <button class="btn btn-primary" style="flex: 1; padding: 1.5rem;" onclick="proceedWithGoogle('contractor')">
+                                <i class="fas fa-hard-hat" style="font-size: 2rem; display: block; margin-bottom: 0.5rem;"></i>
+                                Pro
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+        }
+
+        // Proceed with Google authentication
+        function proceedWithGoogle(userType) {
+            googleSignupType = userType;
+            const modal = document.getElementById('googleTypeModal');
+            if (modal) modal.remove();
+
+            if (typeof google !== 'undefined' && google.accounts) {
+                google.accounts.id.prompt();
+            }
+        }
+
+        // Handle Google credential response
+        async function handleGoogleCredential(response) {
+            try {
+                // Decode JWT token
+                const payload = JSON.parse(atob(response.credential.split('.')[1]));
+                const { email, name, picture, sub: googleId } = payload;
+
+                // Call backend to login or register
+                const result = await CariComProsAPI.request('googleAuth', 'POST', {
+                    email: email,
+                    name: name,
+                    picture: picture,
+                    googleId: googleId,
+                    userType: googleSignupType || 'customer'
+                });
+
+                if (result.success) {
+                    // Store user data
+                    CariComProsAPI.setUserData({
+                        id: result.user.id,
+                        name: result.user.name,
+                        email: result.user.email,
+                        phone: result.user.phone || '',
+                        location: result.user.location || '',
+                        type: result.user.type,
+                        picture: picture
+                    });
+
+                    // Close any open modals
+                    closeModal('loginModal');
+                    closeModal('signupModal');
+
+                    // Redirect based on user type
+                    if (result.user.type === 'contractor') {
+                        window.location.href = '/contractors';
+                    } else {
+                        window.location.href = '/customers';
+                    }
+                } else {
+                    alert(result.error || 'Authentication failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Google auth error:', error);
+                alert('Authentication failed. Please try again.');
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('load', initGoogleSignIn);
+    </script>
+    <!-- CariCom Pros API Service -->
+    <script src="js/api-service.js"></script>
+    <script src="js/index-script.js"></script>
+</body>
+</html>

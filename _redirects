@@ -1,0 +1,2 @@
+# Netlify redirects - using netlify.toml for all redirects
+# This file is kept for compatibility but netlify.toml takes precedence

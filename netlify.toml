@@ -1,0 +1,111 @@
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://api.hiddenkingz.com/:splat"
+  status = 200
+  force = true
+
+# Browse contractors (public, no login required)
+[[redirects]]
+  from = "/browse"
+  to = "/browse.html"
+  status = 200
+
+[[redirects]]
+  from = "/browse/*"
+  to = "/browse.html"
+  status = 200
+
+# Singular /customer redirect to /customers
+[[redirects]]
+  from = "/customer"
+  to = "/customers"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/customer/*"
+  to = "/customers"
+  status = 301
+  force = true
+
+# Singular /contractor redirect to /contractors
+[[redirects]]
+  from = "/contractor"
+  to = "/contractors"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contractor/*"
+  to = "/contractors"
+  status = 301
+  force = true
+
+# Legacy old dashboard URLs redirect to clean URLs
+[[redirects]]
+  from = "/customer-dashboard.html"
+  to = "/customers"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contractor-dashboard.html"
+  to = "/contractors"
+  status = 301
+  force = true
+
+# Marketplace routes
+[[redirects]]
+  from = "/marketplace"
+  to = "/marketplace.html"
+  status = 200
+
+[[redirects]]
+  from = "/marketplace/*"
+  to = "/marketplace.html"
+  status = 200
+
+# Admin dashboard (admin.html serves /admin directly, no redirect needed)
+# These redirects handle sub-routes like /admin/settings
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin.html"
+  status = 200
+
+# Fallback - serve index.html for unmatched routes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
