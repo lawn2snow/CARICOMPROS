@@ -1,11 +1,13 @@
 // Service Worker for Hidden Kingz Platform
-const CACHE_NAME = 'hidden-kingz-v2';
+const CACHE_NAME = 'caricompros-v3';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/customer-dashboard.html',
-  '/contractor-dashboard.html',
-  '/admin-dashboard.html',
+  '/customers.html',
+  '/contractors.html',
+  '/admin.html',
+  '/browse.html',
+  '/marketplace.html',
   '/manifest.json',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
 ];
